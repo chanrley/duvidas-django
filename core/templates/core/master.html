@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <title class="fixed-top">{% block title %}Novo Portal DVA{% endblock %}</title>
+  <link rel="stylesheet" href="../static/css/mystyle.css">
+
+</head>
+<body>
+
+  <h1 class="text-white text-center bg-dark fixed-top">Novo Portal DVA</h1> <br><br>
+
+  {% block content %}
+  {% endblock %}
+</div>
+</body>
+</html>

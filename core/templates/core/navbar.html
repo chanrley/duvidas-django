@@ -1,0 +1,23 @@
+{% extends 'core/master.html' %}
+{% include 'core/__header.html' %}
+
+{% block content %}
+<div class="dropdown">
+  <ul>
+    <li class="nav-item dropdown bg-info" style="list-style: none;">
+      {%for i in menus %}
+        <a class="nav-link dropdown-toggle"  data-bs-toggle="dropdown" href="#"> {{ i.nome }}</a>
+        <ul class="dropdown-menu">
+          {% for x in submenus %}
+            <li><a class="dropdown-item" href="#">{{ x.nome }}</a></li>
+          {% endfor %}
+        </ul>  
+      {% endfor %} 
+    </li>
+    
+  </ul>
+</div>
+
+  {% include './partials/__footer.html' %} 
+{% endblock %}
+
