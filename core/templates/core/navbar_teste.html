@@ -8,12 +8,15 @@
     Dropdown button
   </button>
   <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-    <li><a class="dropdown-item active" href="#">
+    <li>
+      <a class="dropdown-item active" href="#">
       {%for i in menus %}
         <a href="#"> {{ i.nome }}</a><br>
       {% endfor %}
 
-    </a></li>
+      </a>
+    </li>
+    
     <li><a class="dropdown-item" href="#">Another action</a></li>
     <li><a class="dropdown-item" href="#">Something else here</a></li>
     <li><hr class="dropdown-divider"></li>

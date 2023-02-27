@@ -8,10 +8,12 @@ from novo_portal_dva.models import models, Menu, SubMenu
 def index(request):
     items = Item.objects.filter(is_sold=False)[0:6]
     categories = Category.objects.all()
-
+    menus = Menu.objects.all()
+    
     return render(request, 'core/index.html', {
         'categories': categories,
         'items': items,
+        'menus': menus,
     })
 
 def contact(request):
