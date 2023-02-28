@@ -6,14 +6,12 @@ from django.db import models
 from novo_portal_dva.models import models, Menu, SubMenu
 
 def index(request):
-    items = Item.objects.filter(is_sold=False)[0:6]
-    categories = Category.objects.all()
     menus = Menu.objects.all()
-    
+    submenus = SubMenu.objects.all()
+
     return render(request, 'core/index.html', {
-        'categories': categories,
-        'items': items,
         'menus': menus,
+        'submenus': submenus,
     })
 
 def contact(request):
@@ -49,23 +47,42 @@ def master(request):
 def navbar(request):
     menus = Menu.objects.all()
     submenus = SubMenu.objects.all()
-    #sub = get_object_or_404(SubMenu, pk=id)
+    id = 1
+    subs = SubMenu.objects.filter(menu_id=id).values()
+    um = SubMenu.objects.filter(menu_id=1).values()
+    dois = SubMenu.objects.filter(menu_id=2).values()
+    tres = SubMenu.objects.filter(menu_id=3).values()
+    quatro = SubMenu.objects.filter(menu_id=4).values()
+    cinco = SubMenu.objects.filter(menu_id=5).values()
+    seis = SubMenu.objects.filter(menu_id=6).values()
+    sete = SubMenu.objects.filter(menu_id=7).values()
+    oito = SubMenu.objects.filter(menu_id=8).values()
+    nove = SubMenu.objects.filter(menu_id=9).values()
+
 
     return render(request, 'core/navbar.html', {
         'menus': menus,
         'submenus': submenus,
-        #'sub': sub
+        'subs': subs,
+        'um': um,
+        'dois': dois,
+        'tres': tres,
+        'quatro': quatro,
+        'cinco': cinco,
+        'seis': seis,
+        'sete': sete,
+        'oito': oito,
+        'nove': nove,
+
     })
 
 def navbar_teste(request):
     menus = Menu.objects.all()
     submenus = SubMenu.objects.all()
-    #sub = get_object_or_404(SubMenu, pk=id)
-
-    return render(request, 'core/navbar_teste.html', {
-        'menus': menus,
-        'submenus': submenus,
-        #'sub': sub
+    #subs = SubMenu.objects.filter(id=pk).values()
+    return render(request, 'core/navbar_teste.html', { 
+        'submenus': submenus
+    
     })
 
 

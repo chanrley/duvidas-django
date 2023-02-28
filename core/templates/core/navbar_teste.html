@@ -1,29 +1,25 @@
 {% extends 'core/master.html' %}
 {% include 'core/__header.html' %}
-
+{% load static %}
 {% block content %}
 
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown button
-  </button>
-  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-    <li>
-      <a class="dropdown-item active" href="#">
-      {%for i in menus %}
-        <a href="#"> {{ i.nome }}</a><br>
-      {% endfor %}
 
-      </a>
+<div class="dropdown">
+  <ul>
+    <li class="nav-item dropdown bg-info" style="list-style: none;">
+      {%for i in menus %}
+        <a class="nav-link dropdown-toggle"  id="myDropdown" data-bs-toggle="dropdown" href="#"> {{ i.nome }}</a>
+        <ul class="dropdown-menu">
+          {% if i.nome == 'ATENDIMENTO' %}
+            {% for x in submenus %}
+              <li><a class="dropdown-item" href="#">{{ x.nome }}</a></li>
+            {% endfor %}
+          {%endif %}
+        </ul>  
+      {% endfor %} 
     </li>
-    
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Separated link</a></li>
   </ul>
 </div>
-
 
   {% include './partials/__footer.html' %} 
 {% endblock %}

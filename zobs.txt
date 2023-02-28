@@ -1,0 +1,18 @@
+nesse link quase tem oq preciso:
+https://www.w3schools.com/howto/howto_js_dropdown_sidenav.asp
+
+
+Nesse aqui tb usando só o bootstrap e js:
+https://www.codeply.com/p/rhCuZhEUrk
+
+Nesse tb:
+https://mdbootstrap.com/docs/standard/extended/dropdown-multilevel/
+
+
+Nesse aqui ele faz usando ajax:
+https://www.youtube.com/watch?v=ZOQwyFEFmS4
+parei no 49:40
+em 54:08 ele mostra o javascript/ajax
+
+AGORA PRECISO ADAPTAR AO DJANGO
+

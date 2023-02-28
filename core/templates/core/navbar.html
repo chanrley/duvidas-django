@@ -1,23 +1,69 @@
 {% extends 'core/master.html' %}
 {% include 'core/__header.html' %}
-
+{% load static %}
 {% block content %}
+
 <div class="dropdown">
   <ul>
     <li class="nav-item dropdown bg-info" style="list-style: none;">
-      {%for i in menus %}
-        <a class="nav-link dropdown-toggle"  data-bs-toggle="dropdown" href="#"> {{ i.nome }}</a>
+      {% for i in menus %}
+        <a class="nav-link dropdown-toggle" id="myDropdown" data-bs-toggle="dropdown" href="#"> {{ i.nome }}</a>
         <ul class="dropdown-menu">
-          {% for x in submenus %}
-            <li><a class="dropdown-item" href="#">{{ x.nome }}</a></li>
-          {% endfor %}
+              {% if i.id == 1 %}
+                {% for x in um %}
+                  <li><a class="dropdown-item" href="#"> {{ x.nome }}</a></li>
+                {% endfor %}
+              {% elif i.id == 2 %}
+                {% for x in dois %}
+                  <li><a class="dropdown-item" href="#"> {{ x.nome }}</a></li>
+                {% endfor %}
+                
+              {% elif i.id == 3 %}
+                {% for x in tres %}
+                  <li><a class="dropdown-item" href="#"> {{ x.nome }}</a></li>
+                {% endfor %}
+                
+              {% elif i.id == 4 %}
+                {% for x in quatro %}
+                  <li><a class="dropdown-item" href="#"> {{ x.nome }}</a></li>
+                {% endfor %}
+                
+              {% elif i.id == 5 %}
+                {% for x in cinco %}
+                  <li><a class="dropdown-item" href="#"> {{ x.nome }}</a></li>
+                {% endfor %}
+                
+              {% elif i.id == 6 %}
+                {% for x in seis %}
+                  <li><a class="dropdown-item" href="#"> {{ x.nome }}</a></li>
+                {% endfor %}
+                
+              {% elif i.id == 7 %}
+                {% for x in sete %}
+                  <li><a class="dropdown-item" href="#"> {{ x.nome }}</a></li>
+                {% endfor %}
+                
+              {% elif i.id == 8 %}
+                {% for x in oito %}
+                  <li><a class="dropdown-item" href="#"> {{ x.nome }}</a></li>
+                {% endfor %}
+                
+              {% elif i.id == 9 %}
+                {% for x in nove %}
+                  <li><a class="dropdown-item" href="#"> {{ x.nome }}</a></li>
+                {% endfor %}
+                {% comment %}  
+                {% else %}
+                  {% for x in submenus %}
+                    <li><a class="dropdown-item" href="#"> {{ x.nome }}</a></li>
+                  {% endfor %}
+                {% endcomment %}
+              {% endif %}
         </ul>  
       {% endfor %} 
     </li>
-    
   </ul>
 </div>
 
   {% include './partials/__footer.html' %} 
 {% endblock %}
-

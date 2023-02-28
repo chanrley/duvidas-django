@@ -4,11 +4,11 @@ class Menu(models.Model):
     nome = models.CharField(max_length=255)
 
     class Meta:
-        ordering = ('nome',)
+        ordering = ('id', 'nome',)
         verbose_name_plural = 'Menus'
     
     def __str__(self):
-        return self.nome
+        return f'{self.nome}'
 
 
 class SubMenu(models.Model):
