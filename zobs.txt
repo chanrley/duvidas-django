@@ -16,3 +16,5 @@ em 54:08 ele mostra o javascript/ajax
 
 AGORA PRECISO ADAPTAR AO DJANGO
 
+Vídeo de referência para criação do projeto Puddle:
+https://www.youtube.com/watch?v=ZxMB6Njs3ck
