@@ -21,12 +21,11 @@ class NewItemForm(forms.ModelForm):
             'description': forms.Textarea(attrs={
                 'class': INPUT_CLASSES
             }),
-            'price': forms.TextInput(attrs={
+            'image': forms.FileInput(attrs={
                 'class': INPUT_CLASSES
             }),
-            'image': forms.FileInput(attrs={
-                'class': INPUT_CLASSES,
-                'required': True
+            'price': forms.TextInput(attrs={
+                'class': INPUT_CLASSES
             }),
             'created_at': forms.FileInput(attrs={
                 'class': INPUT_CLASSES
