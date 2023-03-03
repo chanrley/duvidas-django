@@ -1,7 +1,11 @@
 {% extends 'core/master.html' %}
-{% include 'core/__header.html' %}
+{% include 'core/partials/__header.html' %}
 {% load static %}
 {% block content %}
+
+<div class="container">
+  <button class="btn btn-danger"><a href="http://127.0.0.1:8000/items/new">Publicações</a></button>
+</div>
 
 <div class="dropdown">
   <ul>

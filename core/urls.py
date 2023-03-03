@@ -8,7 +8,7 @@ from core.views import nova_url, navbar_teste
 app_name = 'core'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.navbar, name='navbar'),
     path('master/', views.master, name='master'),
     path('navbar/', views.navbar, name='navbar'),
     path('navbar_teste', views.navbar_teste, name='navbar_teste'),
