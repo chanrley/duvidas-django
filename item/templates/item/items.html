@@ -5,17 +5,18 @@
 {% block title %}Items{% endblock %}
 
 {% block content %}
+{% comment %} <h1>Tst</h1> {% endcomment %}
     <div class="pb-6 grid grid-cols-4 gap-4 bg-gray-100">
         <div class="col-span-1">
             <form method="get" action="{% url 'item:items' %}">
-                <input name="query" class="w-full py-4 px-6 border rounded-xl" type="text" value="{{ query }}" placeholder="Find a bike, a chair or car...">
+                <input name="query" class="w-full py-4 px-6 border rounded-xl" type="text" value="{{ query }}" placeholder="Pesquisar por palavra">
 
-                <button class="mt-2 py-4 px-8 text-lg bg-teal-500 text-white rounded-xl">Search</button>
+                <button class="mt-2 py-4 px-8 text-lg bg-teal-500 text-white rounded-xl">Buscar</button>
             </form>
 
             <hr class="my-6">
 
-            <p class="font-semibold">Categories</p>
+            <p class="font-semibold">Categorias</p>
 
             <ul>
                 {% for category in categories %}
@@ -27,10 +28,10 @@
 
             <hr class="my-6">
 
-            <p class="font-semibold">Clear filters</p>
+            <p class="font-semibold">Limpar filtros</p>
 
             <ul>
-                <li><a href="{% url 'item:items' %}" class="mt-2 py-4 px-8 inline-block bg-yellow-500 text-lg rounded-xl text-white">Clear</a>
+                <li><a href="{% url 'item:items' %}" class="mt-2 py-4 px-8 inline-block bg-yellow-500 text-lg rounded-xl text-white">Limpar</a>
         </div>
 
         <div class="col-span-3">
@@ -39,7 +40,7 @@
                     <div>
                         <a href="{% url 'item:detail' item.id %}">
                             <div>
-                                <img src="{{ item.image.url }}" class="rounded-t-xl">
+                                <img src="{{ item.image.url }}" class="rounded-t-xl" id="imagem">
                             </div>
                             <div class="p-6 bg-white rounded-b-xl">
                                 <h2 class="text-2xl">{{ item.name }}</h2>

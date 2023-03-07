@@ -1,3 +1,4 @@
+{% load static %}
 {% include 'core/partials/__header.html' %}
 <!DOCTYPE html>
 <html>
@@ -8,6 +9,8 @@
         {% bootstrap_css %}
         {% bootstrap_javascript %}
         
+        
+        {% comment %} <link rel="stylesheet" href="{% static 'css/mystyle.css' %}"> {% endcomment %}
         <script src="https://cdn.tailwindcss.com"></script>
 
         <title>{% block title %}{% endblock %} | Novo Portal DVA</title>

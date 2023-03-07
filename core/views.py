@@ -58,6 +58,17 @@ def navbar(request):
     sete = SubMenu.objects.filter(menu_id=7).values()
     oito = SubMenu.objects.filter(menu_id=8).values()
     nove = SubMenu.objects.filter(menu_id=9).values()
+    dez = SubMenu.objects.filter(menu_id=10).values()
+    onze = SubMenu.objects.filter(menu_id=11).values()
+    doze = SubMenu.objects.filter(menu_id=12).values()
+    treze = SubMenu.objects.filter(menu_id=13).values()
+    quatorze = SubMenu.objects.filter(menu_id=14).values()
+    quinze = SubMenu.objects.filter(menu_id=15).values()
+    dezesseis = SubMenu.objects.filter(menu_id=16).values()
+    dezessete = SubMenu.objects.filter(menu_id=17).values()
+    dezoito = SubMenu.objects.filter(menu_id=18).values()
+    dezenove = SubMenu.objects.filter(menu_id=19).values()
+    vinte = SubMenu.objects.filter(menu_id=20).values()
 
 
     return render(request, 'core/navbar.html', {
@@ -73,7 +84,17 @@ def navbar(request):
         'sete': sete,
         'oito': oito,
         'nove': nove,
-
+        'dez': dez,
+        'onze': onze, 	
+        'doze': doze,	
+        'treze': treze,	
+        'quatorze': quatorze,
+        'quinze': quinze,
+        'dezesseis': dezesseis,
+        'dezessete': dezessete,
+        'dezoito': dezoito,
+        'dezenove': dezenove, 
+        'vinte': vinte,
     })
 
 def navbar_teste(request):
