@@ -63,8 +63,9 @@ body {
   padding-right: 8px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
   #imagem {
     display: none;
   }
 }
+
