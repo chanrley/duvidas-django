@@ -13,9 +13,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 
 #Maneira correta com arquivos de configuração
-# import environ
-# env = environ.Env()
-# environ.Env.read_env()
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,8 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = env("SECRET_KEY")
-SECRET_KEY = 'django-insecure-j4ippt+3h39u4ontllpc8a(4h&^god(7aicz#@q^sl_(w)2otp'
+SECRET_KEY = env("SECRET_KEY")
+# SECRET_KEY = 'django-insecure-j4ippt+3h39u4ontllpc8a(4h&^god(7aicz#@q^sl_(w)2otp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -93,6 +93,7 @@ WSGI_APPLICATION = 'puddle.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -101,7 +102,7 @@ DATABASES = {
 }
 
 
-"""
+
 # Maneira hardcoded
 DATABASES = {
     'default': {
@@ -115,7 +116,7 @@ DATABASES = {
 }
 """
 
-"""
+
 # maneira correta
 # Your secret key
 #SECRET_KEY = env("SECRET_KEY")
@@ -130,7 +131,6 @@ DATABASES = {
         'PORT': env("DB_PORT"),
     }
 }
-"""
 
 
 # Password validation

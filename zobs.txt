@@ -18,3 +18,7 @@ AGORA PRECISO ADAPTAR AO DJANGO
 
 Vídeo de referência para criação do projeto Puddle:
 https://www.youtube.com/watch?v=ZxMB6Njs3ck
+
+# Como fazer para habilitar o postgres de maneira segura:
+https://stackpython.medium.com/how-to-start-django-project-with-a-database-postgresql-aaa1d74659d8
+
