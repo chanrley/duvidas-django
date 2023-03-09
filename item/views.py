@@ -5,7 +5,36 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import NewItemForm, EditItemForm
 from .models import Category, Item
 
+import tkinter as tk
+import tkinter.ttk as tkk
+from tkinter import *
+from tkinter.ttk import * 
+
+root = Tk()
+width = root.winfo_screenwidth()
+
+print(width)
+
+
 def items(request):
+
+    root = Tk()
+    width = root.winfo_screenwidth()
+
+    print(width)
+    
+    if width <= 650:
+        classe = 'grid grid-cols-1 gap-1'
+        
+    else:
+        classe = 'grid grid-cols-3 gap-3'
+    print(classe)
+    context = {
+        'classe': classe
+    }
+    
+    print(context)    
+
     query = request.GET.get('query', '')
     category_id = request.GET.get('category', 0)
     categories = Category.objects.all()
@@ -23,7 +52,9 @@ def items(request):
         'query': query,
         'categories': categories,
         'category_id': int(category_id),
-        
+        'context': context,
+        'width': width,
+        'classe': classe,
     })
 
 def detail(request, pk):

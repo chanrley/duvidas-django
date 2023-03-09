@@ -34,22 +34,37 @@
                 <li><a href="{% url 'item:items' %}" class="mt-2 py-4 px-8 inline-block bg-yellow-500 text-lg rounded-xl text-white">Limpar</a>
         </div>
 
-        <div class="col-span-3">
-            <div class="grid grid-cols-3 gap-3">
-                {% for item in items %}
-                    <div>
-                        <a href="{% url 'item:detail' item.id %}">
-                            <div>
-                                <img src="{{ item.image.url }}" class="rounded-t-xl" id="imagem">
-                            </div>
-                            <div class="p-6 bg-white rounded-b-xl">
-                                <h2 class="text-2xl">{{ item.name }}</h2>
-                                <p class="text-gray-500">Criado em: {{ item.created_at }}</p>
-                            </div>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
+        <div class="col-span-3" id="father">
+            
+            {% if  classe == 'grid grid-cols-3 gap-3' %}
+                <div class="grid grid-cols-3 gap-3" id="card">
+            {% else %}
+                <div class="grid grid-cols-1 gap-1" id="card">
+            {% endif %}
+            {% comment %} <div class="{{ classe }}" id="card"> {% endcomment %}
+            {% comment %} {% else %} {% endcomment %}
+            {% comment %} <div class="grid grid-cols-1 gap-1" id="card"> {% endcomment %}
+            {% comment %} {% endif %} {% endcomment %}
+
+                    {% for item in items %}
+                        <div class="order-{{item.id}}">
+                            <a href="{% url 'item:detail' item.id %}">
+                                <div>
+                                    <img src="{{ item.image.url }}" class="rounded-t-xl" id="imagem">
+                                </div>
+                                <div class="p-6 bg-white rounded-b-xl">
+                                    <h2 class="text-2xl">{{ item.name }}</h2>
+                                    <p class="text-gray-500">Criado em: {{ item.created_at }}</p>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
         </div>
+    </div>
+    <div class="father white">
+        <div class="card blue">Card 1</div>
+        <div class="card blue">Card 2</div>
+        <div class="card blue">Card 3</div>
     </div>
 {% endblock %}

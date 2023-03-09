@@ -1,13 +1,8 @@
-# Puddle | Django
+# Novo Portal DVA | Django
 
-Learn how to build a simple online market place website using Django.
+Esse projeto foi baseado numa simples aplicação de market place usando o Django.
 
-This repository is a part of a video tutorial I created for FreeCodeCamp
-
-My channel:
-[CodeWithStein](https://www.youtube.com/channel/UCfVoYvY8BfTDeF63JQmQJvg/?sub_confirmation=1)
+Esse repositório é parte de um vídeo tutorial criado pela FreeCodeCamp.
 
 ## Author
-This repository and video is created by CodeWithStein. Check out my website for more information.
-
-[Code With Stein - Website](https://codewithstein.com)
+Esse repositório foi criado pela equipe DVA.
