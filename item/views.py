@@ -10,11 +10,6 @@ import tkinter.ttk as tkk
 from tkinter import *
 from tkinter.ttk import * 
 
-root = Tk()
-width = root.winfo_screenwidth()
-
-print(width)
-
 
 def items(request):
 

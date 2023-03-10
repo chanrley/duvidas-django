@@ -6,6 +6,7 @@
 
 {% block content %}
 {% comment %} <h1>Tst</h1> {% endcomment %}
+    {% comment %} <i class="bi bi-yin-yang"></i> {% endcomment %}
     <div class="pb-6 grid grid-cols-4 gap-4 bg-gray-100">
         <div class="col-span-1">
             <form method="get" action="{% url 'item:items' %}">
@@ -37,9 +38,9 @@
         <div class="col-span-3" id="father">
             
             {% if  classe == 'grid grid-cols-3 gap-3' %}
-                <div class="grid grid-cols-3 gap-3" id="card">
+                <div class="{{ classe }}" id="card">
             {% else %}
-                <div class="grid grid-cols-1 gap-1" id="card">
+                <div class="{{ classe }}" id="card">
             {% endif %}
             {% comment %} <div class="{{ classe }}" id="card"> {% endcomment %}
             {% comment %} {% else %} {% endcomment %}
@@ -63,8 +64,8 @@
         </div>
     </div>
     <div class="father white">
-        <div class="card blue">Card 1</div>
-        <div class="card blue">Card 2</div>
-        <div class="card blue">Card 3</div>
+        <div class="card blue order-2">Card 2</div>
+        <div class="card blue order-1">Card 1</div>
+        <div class="card blue order-3">Card 3</div>
     </div>
 {% endblock %}

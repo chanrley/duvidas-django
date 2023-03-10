@@ -1,4 +1,10 @@
-nesse link quase tem oq preciso:
+Configuração:
+    O primeiro comando para iniciar um projeto django é "django-admin startproject <nome_do_projeto> .
+    Caso de esse erro basta navegar na pasta onde está o django admin:
+    django-admin : O termo 'django-admin' não é reconhecido como nome de cmdlet
+    Ex local: C:\Users\39126409801\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\Scripts
+
+nesse link quase tem oq preciso em relação a dropdown:
 https://www.w3schools.com/howto/howto_js_dropdown_sidenav.asp
 
 
@@ -20,5 +26,10 @@ Vídeo de referência para criação do projeto Puddle:
 https://www.youtube.com/watch?v=ZxMB6Njs3ck
 
 # Como fazer para habilitar o postgres de maneira segura:
-https://stackpython.medium.com/how-to-start-django-project-with-a-database-postgresql-aaa1d74659d8
+    https://stackpython.medium.com/how-to-start-django-project-with-a-database-postgresql-aaa1d74659d8
 
+Link programando web com python da Harvard e Freecodecamp:
+    https://www.youtube.com/watch?v=vzGllw18DkA
+
+Para saber o que deve ser ignorado ao subir no gitlab:
+    https://www.toptal.com/developers/gitignore/
