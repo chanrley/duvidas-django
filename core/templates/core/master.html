@@ -1,3 +1,5 @@
+{% load static %}
+{% include 'core/partials/__header.html' %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,13 +8,11 @@
   {% bootstrap_css %}
   {% bootstrap_javascript %}
   <title class="fixed-top">{% block title %}Novo Portal DVA{% endblock %}</title>
+
   <link rel="stylesheet" href="../static/css/mystyle.css">
   <script src="https://unpkg.com/@popperjs/core@2"></script>
 </head>
 <body>
-
-  <h1 class="text-white text-center bg-dark fixed-top">Novo Portal DVA</h1> <br><br>
-
   {% block content %}
   {% endblock %}
 </div>

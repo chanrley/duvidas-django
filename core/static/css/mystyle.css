@@ -1,67 +1,8 @@
 body {
-  background-color: #341256;
-  color: #ffffff;
+  margin-top: 70px;
+  background-image: url('images/fundo-portal.png');
 }
 
-
-/* Fixed sidenav, full height */
-.sidenav {
-  height: 100%;
-  width: 200px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  padding-top: 20px;
-}
-
-/* Style the sidenav links and the dropdown button */
-.sidenav a, .dropdown-btn {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 20px;
-  color: #818181;
-  display: block;
-  border: none;
-  background: none;
-  width:100%;
-  text-align: left;
-  cursor: pointer;
-  outline: none;
-}
-
-/* On mouse-over */
-.sidenav a:hover, .dropdown-btn:hover {
-  color: #f1f1f1;
-}
-
-/* Main content */
-.main {
-  margin-left: 200px; /* Same as the width of the sidenav */
-  font-size: 20px; /* Increased text to enable scrolling */
-  padding: 0px 10px;
-}
-
-/* Add an active class to the active dropdown button */
-.active {
-  background-color: green;
-  color: white;
-}
-
-/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-.dropdown-container {
-  display: none;
-  background-color: #262626;
-  padding-left: 8px;
-}
-
-/* Optional: Style the caret down icon */
-.fa-caret-down {
-  float: right;
-  padding-right: 8px;
-}
 
 @media screen and (max-width: 650px) {
   #imagem {
@@ -84,10 +25,106 @@ body {
 
   }
   
-
   
 }
-.p {
+
+#imagem-logo-top-bar {
+/* padding: 20px;  */
+/* margin-bottom: 20px;  */
+  margin: 25px 25px 25px 25px;
+  margin-left: 150px;
+  width: 25%;
+}
+
+#cabecalho {
+  background-color: #FFFFFF;
+  padding-bottom: 25px;
+  height: 15%;
+  position: fixed;
+}
+
+.btn {
+  background-color: #72007A;
+  color: #FFFFFF;
+  margin: 25px 25px 25px 25px;
+  width: 8%;
+}
+
+/* .dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0.125em;
+} */
+.dropdown:hover > .dropdown-menu {
+  display: block;
+  margin-top: 0.125em;
+  color: #FFFFFF;
+}
+
+.nav-item {
+  background-color: #72007A;
+  width: 10%;
+  color: #FFFFFF;
+}
+
+#menu {
+  margin-top: -1%;
+}
+
+#menu:hover {
+  color: #FFFFFF;
+}
+
+btn:hover {
+  color: #FFFFFF;
+}
+
+.nav-link:hover{
+  color: #FFFFFF;
+  text-align: center;
+  width: 50%;
+}
+
+img {
+  margin-top: 0px;
+  padding-top: -20px;
+  margin-left: 0px;
+}
+
+.dropdown-item{
+  color: #72007A;
+  
+}
+
+hr {
+  color: #72007A !important;
+  height: 3px !important;
+  width: 100%;
+}
+
+#imagem-logo-top-bar {
+  width: 30%
+}
+
+#cls-container{
+  width: 30%;
+}
+
+#cnt-image {
+  width: 10%;
+  margin-left: 10px;
+  padding-left: 10%;
+  
+}
+
+
+p {
   text-decoration: none;
+  text-align: center;
+  margin: 0px 0px 0px 0px;
+
+}
+
+#img-buscar {
+  float: right;
 }
 

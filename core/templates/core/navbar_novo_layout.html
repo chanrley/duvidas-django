@@ -1,0 +1,43 @@
+{% load static %}
+{% include 'core/partials/__header.html' %}
+
+<body>
+
+<div class="container gt-3" id="cls-container">
+  <div class="container position-absolute top-0 start-0" id="menu">
+    <li class="btn nav-item dropdown" style="list-style: none;">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Menu
+      </a>
+      <ul class="dropdown-menu">
+        {%for menu in menus %}
+          <li>
+          <a class="dropdown-item" href="#">
+            {{ menu.nome }}<br>
+          </a>
+        {%endfor %}
+        </li>  
+  </div>
+  <div class="container" id="cnt-image">
+    <img src="{% static 'images/logo-top-bar.png' %}"   class="justify-content-center fixed-top" id="imagem-logo-top-bar" />
+  </div>
+   
+
+  
+</div>
+
+ <i class="bi bi-search" id="img-buscar" />
+  
+  <hr>
+
+  
+
+  <hr>
+
+      
+<div class="container">
+  <button class="btn btn-danger"><a href="http://127.0.0.1:8000/items/new">Publicações</a></button>
+</div>
+
+
+  {% include './partials/__footer.html' %} 
