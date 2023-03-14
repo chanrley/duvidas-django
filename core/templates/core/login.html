@@ -1,13 +1,34 @@
-{% extends 'core/base.html' %}
+{% include 'core/partials/__header.html' %}
+{% load bootstrap5 %}
 
-{% block title %}Log in{% endblock %}
+<div class="container">
+    <button class="btn btn-danger"><a href="http://127.0.0.1:8000/items/new">Publicações</a></button>
+</div>
 
-{% block content %}
-<div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">
-    <h1 class="mb-6 text-3xl">Log in</h1>
+<div class="container mb-3">
+    Log in <hr>
+</div>
 
-    <form method="post" action=".">
+
+<div class="container">
+    
+    <form method="post" action="." id="form-login">
         {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleInputdrt1" class="form-label">DRT</label>
+          <input type="text" class="form-control" id="exampleInputdrt1" aria-describedby="drtHelp" maxlength=11 required>
+          <div id="drtHelp" class="form-text">Não compartilhe seu DRT ou use o de outra pessoa</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-3" id="logar"><a href="../logado">Entrar</a></button>
+      </form>
+
+      
+    
+    {% comment %} <form method="post" action=".">
+        {% csrf_token %}
+
+
 
         <div class="mb-3">
             <label class="inline-block mb-2">Username</label><br>
@@ -30,6 +51,8 @@
         {% endif %}
 
         <button class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Submit</button>
-    </form>
+    </form> {% endcomment %}
+
 </div>
-{% endblock %}
+
+{% include 'core/partials/__footer.html' %}

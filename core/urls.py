@@ -2,8 +2,9 @@ from django.contrib.auth import views as auth_views
 from django.urls import path
 
 from . import views
-from .forms import LoginForm
-from core.views import nova_url, navbar_novo_layout
+from .forms import LoginForm, LogadoForm
+from core.views import nova_url, navbar_novo_layout, logado
+
 
 app_name = 'core'
 
@@ -16,4 +17,6 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('signup/', views.signup, name='signup'),
     path('login/', auth_views.LoginView.as_view(template_name='core/login.html', authentication_form=LoginForm), name='login'),
+    path('logado/', views.logado, name='logado'),
+    
 ]

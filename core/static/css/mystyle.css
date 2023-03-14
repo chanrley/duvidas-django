@@ -136,3 +136,21 @@ p {
 #nav-item-drop{
   list-style: none;
 }
+
+
+/* Formulários */
+
+#exampleInputdrt1{
+  width: 145px;
+  
+}
+
+#logar {
+  background-color: #72007A;
+  color: #FFFFFF;
+}
+
+#logar:hover {
+  background-color: #72117B;
+  color: #AAAAAA;
+}

@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 from item.models import Category, Item
-from .forms import SignupForm
+from .forms import SignupForm, LogadoForm, LoginForm
 from django.db import models
 from novo_portal_dva.models import models, Menu, SubMenu
+from django.contrib import messages
+
 
 def index(request):
     menus = Menu.objects.all()
@@ -145,6 +147,30 @@ def navbar_novo_layout(request):
         'dezenove': dezenove, 
         'vinte': vinte,
     
+    })
+
+
+def login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            return redirect('/login/')
+    else:
+        form = SignupForm()
+
+    return render(request, 'core/signup.html', {
+        'form': form
+    })
+
+
+def logado(request):
+    menus = Menu.objects.all()
+
+    return render(request, 'core/logado.html', { 
+        'menus': menus,
     })
 
 
