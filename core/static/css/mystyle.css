@@ -1,6 +1,6 @@
 body {
   margin-top: 70px;
-  background-image: url('images/fundo-portal.png');
+  background-image: url('/images/fundo-portal.png');
 }
 
 
@@ -98,7 +98,6 @@ img {
 hr {
   color: #72007A !important;
   height: 3px !important;
-  width: 100%;
 }
 
 #imagem-logo-top-bar {
@@ -107,6 +106,7 @@ hr {
 
 #cls-container{
   width: 30%;
+  
 }
 
 #cnt-image {
@@ -128,3 +128,11 @@ p {
   float: right;
 }
 
+#myDropdown:hover {
+  background-color: #72007A;
+  color: #FFFFFF;
+}
+
+#nav-item-drop{
+  list-style: none;
+}
