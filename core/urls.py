@@ -3,7 +3,7 @@ from django.urls import path
 
 from . import views
 from .forms import LoginForm, LogadoForm
-from core.views import nova_url, navbar_novo_layout, logado
+from core.views import nova_url, navbar_novo_layout, logado, usuario, edit
 
 
 app_name = 'core'
@@ -18,5 +18,9 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('login/', auth_views.LoginView.as_view(template_name='core/login.html', authentication_form=LoginForm), name='login'),
     path('logado/', views.logado, name='logado'),
+    path('usuario/', views.usuario, name='usuario'),
+    path('loginform/', views.loginform, name='loginform'),
+    path('<int:pk>/edit/', views.edit, name='edit'),
+
     
 ]

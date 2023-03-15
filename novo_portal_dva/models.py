@@ -46,3 +46,15 @@ class Usuario(models.Model):
     def __str__(self):
         return f"{self.nome} - {self.perfil_acesso}"
 
+class Login(models.Model):
+    drt = models.CharField(max_length=11)
+    nome = models.CharField(max_length=100)
+    cargo = models.CharField(max_length=100)
+    perfil_acesso = models.CharField(max_length=100)
+    
+    class Meta:
+        ordering = ('nome',)
+        verbose_name_plural = 'Logins'
+    def __str__(self):
+        return f"{self.drt} - {self.nome}"
+

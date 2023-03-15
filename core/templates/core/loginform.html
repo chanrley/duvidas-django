@@ -1,0 +1,52 @@
+
+{% load static %}
+{% load bootstrap5 %}
+{% include 'core/partials/__header.html' %}
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title> Ler Usuarios</title>
+    {% bootstrap_css %}
+</head>
+<body>
+    <div class="container">
+        <h1>Ler usuários</h1>
+        {% bootstrap_messages %}
+        {% comment %} <form action="{% url 'core:loginform' %}" method="post" class="form" autocomplete="off"> {% endcomment %}
+            {% comment %} {% csrf_token %} {% endcomment %}
+            {% comment %} {% bootstrap_form forms %} {% endcomment %}
+            
+{% comment %}              
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                
+            {% endbuttons %} {% endcomment %}
+        {% comment %} </form> {% endcomment %}
+        
+    </div>
+    <div class="container" id="cnt-tabela">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col" id="nome">Nome</th>
+                    <th scope="col" id="nome">Cargo</th>
+                    <th scope="col" id="nome">Editar</th>
+                </tr>
+            </thead>
+            {% for usuario in usuarios %}
+                <tr>
+                    <td scope="row">{{ usuario.nome }}</td>       
+                    <td scope="row">{{ usuario.cargo }}</td>
+                    <td scope="row"><a href="../{{usuario.id}}/edit"> Editar</a></td>
+
+
+                    {% comment %} <input type="text" value={{ usuario.nome }} disabled> {% endcomment %}
+                </tr>
+            {% endfor %}
+        </table>    
+    </div>
+</body>
+</html>

@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from novo_portal_dva.models import Usuario
+
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={
@@ -42,3 +44,35 @@ class SignupForm(UserCreationForm):
         'class': 'w-full py-4 px-6 rounded-xl'
     }))
 
+class UsuarioModelForm(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ['drt', 'nome', 'cargo', 'perfil_acesso']
+
+class LoginModelForm(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ['drt', 'nome', 'cargo', 'perfil_acesso']
+        ordering = ['nome']
+
+INPUT_CLASSES = ''
+
+# class EditUsuarioForm(forms.ModelForm):
+#     class Meta:
+#         model = UsuarioModelForm
+#         private_fields = ('drt',)
+#         fields = ('drt', 'nome', 'cargo', 'perfil_acesso')
+#         widgets = {
+#             'drt': forms.TextInput(attrs={
+#                 'class': INPUT_CLASSES
+#             }),
+#             'nome': forms.TextInput(attrs={
+#                 'class': INPUT_CLASSES
+#             }),
+#             'cargo': forms.TextInput(attrs={
+#                 'class': INPUT_CLASSES
+#             }),
+#             'perfil_acesso': forms.TextInput(attrs={
+#                 'class': INPUT_CLASSES
+#             })
+#         }

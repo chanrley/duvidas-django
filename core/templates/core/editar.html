@@ -1,0 +1,30 @@
+{% include 'core/partials/__header.html' %}
+{% load static %}
+{% load bootstrap5 %}
+
+
+<body>
+    <div class="container">
+        <h1>Criar usuário</h1>
+        {% bootstrap_messages %}
+       
+        {% buttons %}
+           <a href="/loginform"><button type="button" class="btn btn-secondary">Listar usuários</button></a>
+        {% endbuttons %}
+
+        <form action="." method="post" class="form">
+            {% csrf_token %}
+
+            {% comment %} {% bootstrap_form forms %} {% endcomment %}
+
+            {% for usr in usuario %}
+                <input type="text" value="{{ usr.nome}}"> <br>
+            {%endfor%}
+
+            
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+        
+    </div>
+
+    {% include 'core/partials/__footer.html' %}

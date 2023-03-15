@@ -154,3 +154,29 @@ p {
   background-color: #72117B;
   color: #AAAAAA;
 }
+
+/* Ler usuários do banco de dados */
+
+th, td, tr {
+  background-color: #72117B;
+  border-style:solid !important;
+  border-color: #96D4D4 !important;
+  color: #AAAAAA;
+}
+
+#nome {
+  color: red !important;
+}
+
+input {
+  color: red !important;
+}
+
+#cnt-tabela{
+  /* margin: 0px 0px 0px 0px;
+  padding: 10px 10px 10px 10px; */
+  margin-top: 10px;
+  
+}
+
+

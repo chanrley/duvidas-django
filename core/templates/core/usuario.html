@@ -1,0 +1,27 @@
+ {% include 'core/partials/__header.html' %}
+ {% load static %}
+ {% load bootstrap5 %}
+
+ 
+ <body>
+     <div class="container">
+         <h1>Criar usuário</h1>
+         {% bootstrap_messages %}
+        
+         {% buttons %}
+            <a href="/loginform"><button type="button" class="btn btn-secondary">Listar usuários</button></a>
+         {% endbuttons %}
+
+         <form action="." method="post" class="form" autocomplete="off" enctype="multipart/form-data">
+             {% csrf_token %}
+ 
+             {% bootstrap_form form %}
+             {% buttons %}
+                 <button type="submit" class="btn btn-primary">Cadastrar</button>
+                 
+             {% endbuttons %}
+         </form>
+         
+     </div>
+ 
+     {% include 'core/partials/__footer.html' %}
