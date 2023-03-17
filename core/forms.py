@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from novo_portal_dva.models import Usuario
+from usuario.models import Usuario
 
 
 class LoginForm(AuthenticationForm):
@@ -49,13 +49,18 @@ class UsuarioModelForm(forms.ModelForm):
         model = Usuario
         fields = ['drt', 'nome', 'cargo', 'perfil_acesso']
 
-class LoginModelForm(forms.ModelForm):
-    class Meta:
-        model = Usuario
-        fields = ['drt', 'nome', 'cargo', 'perfil_acesso']
-        ordering = ['nome']
+# class UsuarioModelForm2(forms.ModelForm):
+#     class Meta:
+#         model = Usuario
+#         fields = ['nome', 'cargo']
 
-INPUT_CLASSES = ''
+# class LoginModelForm(forms.ModelForm):
+#     class Meta:
+#         model = Usuario
+#         fields = ['drt', 'nome', 'cargo', 'perfil_acesso']
+#         ordering = ['nome']
+
+# INPUT_CLASSES = ''
 
 # class EditUsuarioForm(forms.ModelForm):
 #     class Meta:
@@ -76,3 +81,9 @@ INPUT_CLASSES = ''
 #                 'class': INPUT_CLASSES
 #             })
 #         }
+
+
+# class UsuarioForm(forms.ModelForm):
+#     class Meta:
+#         model = Usuario
+#         fields = ['drt', 'nome', 'cargo', 'perfil_acesso']

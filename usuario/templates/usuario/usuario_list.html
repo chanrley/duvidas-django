@@ -1,0 +1,21 @@
+{% include 'core/partials/__header.html' %}
+{% load bootstrap5 %}
+
+{%block title %}<h1>Lista de usuarios</h1>{% endblock %}
+
+<body>
+    <div class="container">
+
+        <input type="submit" onclick="location.href = '{% url 'usuario:create' %}'" value="Criar novo usuario">
+        <ul>
+            <li style="list-style-type: none;">
+                {% for usuario in object_list %}
+                    <li>{{ usuario.nome }} - <a href="{% url 'usuario:update' pk=usuario.id %}">Editar</a>
+                    <a href="{% url 'usuario:detail' pk=usuario.id %}">Visualizar</a>
+                    <a href="{% url 'usuario:delete' pk=usuario.id %}">Apagar</a>
+                {% endfor %}
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

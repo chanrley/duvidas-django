@@ -2,27 +2,28 @@
 {% load static %}
 {% load bootstrap5 %}
 
-
 <body>
     <div class="container">
-        <h1>Criar usuário</h1>
+        <h1>Editar usuário</h1>
         {% bootstrap_messages %}
        
         {% buttons %}
            <a href="/loginform"><button type="button" class="btn btn-secondary">Listar usuários</button></a>
         {% endbuttons %}
 
-        <form action="." method="post" class="form">
+        <form action="../views:salvar" method="POST" class="form">
             {% csrf_token %}
 
-            {% comment %} {% bootstrap_form forms %} {% endcomment %}
+            {% comment %} {% bootstrap_form form %} {% endcomment %}
 
             {% for usr in usuario %}
                 <input type="text" value="{{ usr.nome}}"> <br>
+                <input type="text" value="{{ usr.cargo}}"> <br>
+                <input type="text" value="{{ usr.cargo}}"> <br>
             {%endfor%}
 
             
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="../views:salvar"><button type="submit" class="btn btn-primary">Salvar</button></a>
         </form>
         
     </div>

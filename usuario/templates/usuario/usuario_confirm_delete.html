@@ -1,0 +1,15 @@
+{% include 'core/partials/__header.html' %}
+{% load bootstrap5 %}
+
+{%block title %}<h1>Apagar usuário</h1>{% endblock %}
+
+<body>
+    Tem certeza que deseja apagar o cliente '{{ object.nome }}'?
+    <form action="." method="post">
+        {% csrf_token %}
+        <input type="submit" value="sim, tenho certeza">
+        <input type="reset" onclick="location.href= '{% url 'usuario:list' %}'" value="Não quero apagar">
+
+    </form>
+</body>
+</html>

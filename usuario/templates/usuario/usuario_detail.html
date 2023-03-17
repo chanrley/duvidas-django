@@ -1,0 +1,13 @@
+{% include 'core/partials/__header.html' %}
+{% load bootstrap5 %}
+
+{%block title %}<h1>Visualizar usuários</h1>{% endblock %}
+
+<body>
+    <input type="submit" onclick="location.href = '{% url 'usuario:list' %}'" value="Voltar para a lista">
+    <br>
+    Nome: {{ object.nome }}
+    <br>
+    Cargo: {{ object.cargo }}
+</body>
+</html>

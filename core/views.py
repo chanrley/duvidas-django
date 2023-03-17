@@ -2,10 +2,13 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
 from item.models import Category, Item
-from .forms import SignupForm, LogadoForm, LoginForm, UsuarioModelForm, LoginModelForm
+# from .forms import SignupForm, LogadoForm, LoginForm, UsuarioModelForm, LoginModelForm, UsuarioModelForm2
 from django.db import models
-from novo_portal_dva.models import models, Menu, SubMenu, Usuario
+from novo_portal_dva.models import models, Menu, SubMenu
+# from core.models import Usuario
 from django.contrib import messages
+from usuario.models import Usuario
+from core.forms import UsuarioModelForm
 
 
 def index(request):
@@ -151,20 +154,20 @@ def navbar_novo_layout(request):
     })
 
 
-def login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
+# def login(request):
+#     if request.method == 'POST':
+#         form = LoginForm(request.POST)
 
-        if form.is_valid():
-            form.save()
+#         if form.is_valid():
+#             form.save()
 
-            return redirect('/login/')
-    else:
-        form = SignupForm()
+#             return redirect('/login/')
+#     else:
+#         form = SignupForm()
 
-    return render(request, 'core/signup.html', {
-        'form': form
-    })
+#     return render(request, 'core/signup.html', {
+#         'form': form
+#     })
 
 
 def logado(request):
@@ -174,24 +177,24 @@ def logado(request):
         'menus': menus,
     })
 
-def usuario(request):
-    if str(request.method) == 'POST':
-        form = UsuarioModelForm(request.POST, request.FILES)
-        if form.is_valid():
-            prod = form.save(commit=True)
-            # print(f'DRT:  {prod.drt}')
-            # print(f'Nome:  {prod.nome}')
-            # print(f'Perfil:  {prod.perfil_acesso}')
-            messages.success(request, 'Usuário salvo com sucesso')
-            form = UsuarioModelForm()
-        else:
-            messages.error(request, "Erro ao salvar")
-    else:
-        form = UsuarioModelForm()
-    context = {
-        'form': form
-    }      
-    return render(request, 'core/usuario.html', context)
+# def usuario(request):
+#     if str(request.method) == 'POST':
+#         form = UsuarioModelForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             prod = form.save(commit=True)
+#             # print(f'DRT:  {prod.drt}')
+#             # print(f'Nome:  {prod.nome}')
+#             # print(f'Perfil:  {prod.perfil_acesso}')
+#             messages.success(request, 'Usuário salvo com sucesso')
+#             form = UsuarioModelForm()
+#         else:
+#             messages.error(request, "Erro ao salvar")
+#     else:
+#         form = UsuarioModelForm()
+#     context = {
+#         'form': form
+#     }      
+#     return render(request, 'core/usuario.html', context)
 
 def loginform(request):
     usuarios = Usuario.objects.all()
@@ -211,27 +214,38 @@ def loginform(request):
 
 
 # @login_required
-def edit(request, pk):
-    # id =1
-    form = UsuarioModelForm(request.POST, request.FILES)
-    usuario = Usuario.objects.filter(id=pk).values
-    if form.is_valid():
-        prod = form.save(commit=False)
-        print(f'DRT:  {prod.drt}')
-        print(f'Nome:  {prod.nome}')
-        print(f'Perfil:  {prod.perfil_acesso}')
-        messages.success(request, 'Usuário salvo com sucesso')
-        # form = UsuarioModelForm()
-    else:
-        messages.error(request, "Erro ao salvar")
-    context = {
-        'form': form,
-        'usuario': usuario,
-    }      
-    return render(request, 'core/editar.html', context)
+# def edit(request, pk):
+#     # id =1
+#     form = UsuarioModelForm(request.POST, request.FILES)
+#     usuario = Usuario.objects.filter(id=pk).values
+#     if form.is_valid():
+#         prod = form.save(commit=False)
+#         # print(f'DRT:  {prod.drt}')
+#         # print(f'Nome:  {prod.nome}')
+#         # print(f'Perfil:  {prod.perfil_acesso}')
+#         messages.success(request, 'Usuário salvo com sucesso')
+#         # form = UsuarioModelForm()
+#     else:
+#         messages.error(request, "Erro ao salvar")
+#     context = {
+#         'form': form,
+#         'usuario': usuario,
+#     }      
+#     return render(request, 'core/editar.html', context)
 
-# def salvar(request, pk)
+# def salvar(request):
+#     if request.method == 'POST':
+#         form = UsuarioModelForm2(request.POST)
 
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, 'Usuário salvo com sucesso')
+#             return redirect('/login/')
+#     else:
+#         messages.error(request, "Erro ao salvar")
+#         form = UsuarioModelForm2()
 
+#     return render(request, 'core/signup.html', {
+#         'form': form
+#     })
 
-  

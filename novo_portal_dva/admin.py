@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Menu, SubMenu, GrupoAcesso, Usuario
+from .models import Menu, SubMenu
 
 admin.site.register(Menu)
 
@@ -12,18 +12,18 @@ class ModelAdminSubMenu(admin.ModelAdmin):
 admin.site.register(SubMenu, ModelAdminSubMenu)
 
 
-class ModelAdminGrupoAcesso(admin.ModelAdmin):
-    model = GrupoAcesso
-    list_display_links = ['grupo_acesso', 'nome_grupo']
-    list_display = ['id', 'grupo_acesso', 'nome_grupo']
+# class ModelAdminGrupoAcesso(admin.ModelAdmin):
+#     model = GrupoAcesso
+#     list_display_links = ['grupo_acesso', 'nome_grupo']
+#     list_display = ['id', 'grupo_acesso', 'nome_grupo']
 
-class ModelAdminUsuario(admin.ModelAdmin):
-    model = Usuario
-    list_display_links = ['drt', 'nome']
-    list_display = ['id', 'drt', 'nome', 'cargo', 'perfil_acesso']
+# class ModelAdminUsuario(admin.ModelAdmin):
+#     model = Usuario
+#     list_display_links = ['drt', 'nome']
+#     list_display = ['id', 'drt', 'nome', 'cargo', 'perfil_acesso']
 
-admin.site.register(Usuario, ModelAdminUsuario)
-admin.site.register(GrupoAcesso, ModelAdminGrupoAcesso)
+# admin.site.register(Usuario, ModelAdminUsuario)
+# admin.site.register(GrupoAcesso, ModelAdminGrupoAcesso)
 
 
 
