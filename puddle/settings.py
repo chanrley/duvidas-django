@@ -56,8 +56,9 @@ INSTALLED_APPS = [
     'bootstrap5',
     'django_filters',
     'bootstrapform',
-    'usuario'
-
+    'usuario',
+    'log',
+    'registrolog',
 ]
 
 MIDDLEWARE = [

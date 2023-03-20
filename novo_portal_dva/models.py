@@ -23,6 +23,7 @@ class SubMenu(models.Model):
         return f"{self.nome} - {self.menu}"
 
 
+
 # class GrupoAcesso(models.Model):
 #     grupo_acesso = models.IntegerField()
 #     nome_grupo = models.CharField(max_length=100)
