@@ -12,6 +12,7 @@ urlpatterns = [
     path('master/', views.master, name='master'),
     path('navbar/', views.navbar, name='navbar'),
     path('navbar_novo_layout/', views.navbar_novo_layout, name='navbar_novo_layout'),
+    path('navbar_novo_layout_integrado/', views.navbar_novo_layout_integrado, name='navbar_novo_layout_integrado'),
     path('nova_url/', views.nova_url, name='nova_url'),
     path('contact/', views.contact, name='contact'),
     path('signup/', views.signup, name='signup'),

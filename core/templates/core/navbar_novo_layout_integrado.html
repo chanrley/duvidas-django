@@ -1,0 +1,318 @@
+{% load static %}
+{% include 'core/partials/__header.html' %}
+  
+<style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .b-example-divider {
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+  </style>
+  <body class="back-portal">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border-purpple">
+      <div class="container-fluid ">
+        <button type="button" data-bs-target="#sidebar" data-bs-toggle="collapse" class="btn btn-purpple">Menu</button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <img src="{% static 'img/logo-top-bar.png' %}" style="width:60%; margin-left: 5%;"/>
+          </ul>
+          <form class="d-flex" role="search">
+            {% comment %}        parei aqui ***     
+            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+            <button class="btn btn-outline-purpple" type="submit">Buscar</button>
+             {% endcomment %}
+             <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+             <button class="btn btn-outline-purpple" type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+          <div class="col-auto px-0">
+              <div id="sidebar" class="collapse collapse-horizontal border-end">
+                  <div id="sidebar-nav" class="list-back list-group border-0 rounded-0 text-sm-start min-vh-100">
+                    <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+                      <ul class="list-unstyled ps-0">
+                        <li class="mb-1">
+                          {% comment %} <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed list-format" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+                            Home <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg plus-config" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                 </svg>
+                          </button>
+                           {% endcomment %}
+                           {% for i in menus %}
+                            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed list-format" data-bs-toggle="collapse" data-bs-target="#home-collapse{{ i.id }}" aria-expanded="false">
+                                  {{ i.nome }} {% comment %} - {{ i.id }} {% endcomment %}
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg plus-config" viewBox="0 0 16 16">
+                                      <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                  </svg>
+                            </button>
+                          
+
+                          <div class="collapse" id="home-collapse{{ i.id }}" style="">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                              {% comment %} <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">Overview</a></li>
+                              <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">Updates</a></li>
+                              <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">Reports</a></li> {% endcomment %}
+                                {% if i.id == 1 %}
+                                  {% for x in um %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                          
+                                {% elif i.id == 2 %}
+                                  {% for x in dois %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 3 %}
+                                  {% for x in tres %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 4 %}
+                                  {% for x in quatro %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 5 %}
+                                  {% for x in cinco %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 6 %}
+                                  {% for x in seis %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 7 %}
+                                  {% for x in sete %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 8 %}
+                                  {% for x in oito %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 9 %}
+                                  {% for x in nove %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 10 %}
+                                  {% for x in dez %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 11 %}
+                                  {% for x in onze %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 12 %}
+                                  {% for x in doze %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 13 %}
+                                  {% for x in treze %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 14 %}
+                                  {% for x in quatorze %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 15 %}
+                                  {% for x in quinze %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 16 %}
+                                  {% for x in dezesseis %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 17 %}
+                                  {% for x in dezessete %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 18 %}
+                                  {% for x in dezoito %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 19 %}
+                                  {% for x in dezenove %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                                
+                                {% elif i.id == 20 %}
+                                  {% for x in vinte %}
+                                  <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">
+                                      {{ x.nome}} 
+                                    </a>
+                                  </li>
+                                  {% endfor %}
+                
+                                {% else %}
+
+                                {% endif %}
+                            </ul>
+                          </div>
+                        </li>
+                        {% endfor %}
+                        <li class="mb-1">
+                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed list-format" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                            Dashboard <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg plus-config" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                      </svg>
+                          </button>
+                          <div class="collapse" id="dashboard-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                              <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">Overview</a></li>
+                              <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">Weekly</a></li>
+                              <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">Monthly</a></li>
+                              <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">Annually</a></li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="mb-1">
+                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed list-format" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                            Orders <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg plus-config" viewBox="0 0 16 16">
+                                      <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                   </svg>
+                          </button>
+                          <div class="collapse" id="orders-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                              <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">New</a></li>
+                              <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">Processed</a></li>
+                              <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">Shipped</a></li>
+                            <li class="dropdown-item"><a href="https://getbootstrap.com/docs/5.2/examples/sidebars/#" class="link-purpple d-inline-flex text-decoration-none rounded">Returned</a></li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="mb-1">
+                          <a class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed list-format">
+                            Account
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <script src="../../static/js/bootstrap.min.js"></script>
+  </body>
+</html>

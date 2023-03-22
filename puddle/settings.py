@@ -163,7 +163,7 @@ TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -178,3 +178,32 @@ STATIC_ROOT = 'staticfiles'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os
+#Logging
+LOGGING ={
+    'version':1,
+    'loggers':{
+        'django':{
+            'handlers':['file',],
+            'level':'INFO'
+        }
+    },
+    'handlers':{
+        'file':{
+            'level':'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/logs.log'),
+            'formatter':'simpleRe',
+        },
+    },
+    'formatters':{
+        'simpleRe': {
+            'format': '{levelname}s;{asctime}s;{module}s;{filename}s;{name}s;{message}s',
+            'datefmt':'%m/%d/%Y %I:%M:%S %p',
+            'style': '{',
+        }
+    }
+}
+
+

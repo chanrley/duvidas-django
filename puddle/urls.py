@@ -5,6 +5,8 @@ from django.urls import path, include
 
 
 urlpatterns = [
+    path('log/', include('log.urls')),
+    path('registrolog/', include('registrolog.urls')),
     path('core/', include('core.urls')),
     path('usuario/', include('usuario.urls')),
     path('items/', include('item.urls')),
