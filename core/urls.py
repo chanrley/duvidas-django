@@ -4,6 +4,12 @@ from django.urls import path
 from . import views
 from .forms import LoginForm, LogadoForm
 
+from .views import HomePageView, SearchResultsView
+
+def test(request):
+    pass
+    # division = 1 / 0 #EX: 1
+    # division = a / 1 #EX: 2
 
 
 app_name = 'core'
@@ -13,6 +19,7 @@ urlpatterns = [
     path('navbar/', views.navbar, name='navbar'),
     path('navbar_novo_layout/', views.navbar_novo_layout, name='navbar_novo_layout'),
     path('navbar_novo_layout_integrado/', views.navbar_novo_layout_integrado, name='navbar_novo_layout_integrado'),
+    # path('navbar_novo_layout_integrado_filtrado/', views.navbar_novo_layout_integrado_filtrado, name='navbar_novo_layout_integrado_filtrado'),
     path('nova_url/', views.nova_url, name='nova_url'),
     path('contact/', views.contact, name='contact'),
     path('signup/', views.signup, name='signup'),
@@ -21,7 +28,8 @@ urlpatterns = [
     # path('usuario/', views.usuario, name='usuario'),
     # path('loginform/', views.loginform, name='loginform'),
     # path('<int:pk>/edit/', views.edit, name='edit'),
-
-    
+    path("search/", SearchResultsView.as_view(), name="search_results"),
+    path("pesquisa/", HomePageView.as_view(), name="pesquisa"),
+    path('test/', test)
 ]
 

@@ -10,6 +10,14 @@ from django.contrib import messages
 from usuario.models import Usuario
 from core.forms import UsuarioModelForm
 
+from django.db.models import Q
+from django.views.generic import TemplateView, ListView
+from novo_portal_dva.models import City
+import logging 
+
+# db_logger = logging.getLogger('db')
+db_logger = logging.getLogger('db')
+
 
 def index(request):
     menus = Menu.objects.all()
@@ -178,6 +186,9 @@ def navbar_novo_layout_integrado(request):
     vinte = SubMenu.objects.filter(menu_id=20).values()
 
 
+    db_logger.info('info message XPTO')
+    db_logger.warning('warning message XPTO')
+
     return render(request, 'core/navbar_novo_layout_integrado.html', { 
         'menus': menus,
         'um': um,
@@ -203,7 +214,9 @@ def navbar_novo_layout_integrado(request):
     
     })
 
-
+def clicar_menu(request):
+    db_logger.warning('menu clicado XPTO')
+    
 # def login(request):
 #     if request.method == 'POST':
 #         form = LoginForm(request.POST)
@@ -299,3 +312,18 @@ def loginform(request):
 #         'form': form
 #     })
 
+
+
+class HomePageView(TemplateView):
+    template_name = 'pesquisa.html'
+
+class SearchResultsView(ListView):
+    model = City
+    template_name = 'search_results.html'
+    def get_queryset(self):  # new
+        query = self.request.GET.get("q")
+        object_list = City.objects.filter(
+            Q(name__icontains=query) | Q(state__icontains=query)
+        )
+        return object_list
+    

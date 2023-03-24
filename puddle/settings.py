@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'usuario',
     'log',
     'registrolog',
+    'django_db_logger',
 ]
 
 MIDDLEWARE = [
@@ -180,28 +181,66 @@ STATIC_ROOT = 'staticfiles'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import os
-#Logging
-LOGGING ={
-    'version':1,
-    'loggers':{
-        'django':{
-            'handlers':['file',],
-            'level':'INFO'
-        }
-    },
-    'handlers':{
-        'file':{
-            'level':'INFO',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs/logs.log'),
-            'formatter':'simpleRe',
+################################################################################
+#Logging em arquivo funcionando, mas desabilitado para fazermos gravar no banco#
+################################################################################
+# LOGGING ={
+#     'version':1,
+#     'loggers':{
+#         'django':{
+#             'handlers':['file',],
+#             'level':'DEBUG'
+#         }
+#     },
+#     'handlers':{
+#         'file':{
+#             'level':'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'logs/logs.log'),
+#             'formatter':'simpleRe',
+#         },
+#     },
+#     'formatters':{
+#         'simpleRe': {
+#             'format': '{levelname}s;{asctime}s;{module}s;{filename}s;{name}s;{message}s',
+#             'datefmt':'%m/%d/%Y %I:%M:%S %p',
+#             'style': '{',
+#         }
+#     }
+# }
+################################################################################
+#Logging em arquivo funcionando, mas desabilitado para fazermos gravar no banco#
+################################################################################
+
+################################################
+#GRAVANDO OS LOGS NO BANCO DE DADOS FUNCIONANDO# 24/03/2023
+################################################
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(asctime)s %(message)s'
         },
     },
-    'formatters':{
-        'simpleRe': {
-            'format': '{levelname}s;{asctime}s;{module}s;{filename}s;{name}s;{message}s',
-            'datefmt':'%m/%d/%Y %I:%M:%S %p',
-            'style': '{',
+    'handlers': {
+        'db_log': {
+            'level': 'DEBUG',
+            'class': 'django_db_logger.db_log_handler.DatabaseLogHandler'
+        },
+    },
+    'loggers': {
+        'db': {
+            'handlers': ['db_log'],
+            'level': 'DEBUG'
+        },
+        'django.request': { # logging 500 errors to database
+            'handlers': ['db_log'],
+            'level': 'ERROR',
+            'propagate': False,
         }
     }
 }
