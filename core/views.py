@@ -315,15 +315,29 @@ def loginform(request):
 
 
 class HomePageView(TemplateView):
-    template_name = 'pesquisa.html'
+    template_name = 'core/pesquisa.html'
 
 class SearchResultsView(ListView):
-    model = City
-    template_name = 'search_results.html'
+    model = Menu
+    template_name = 'core/search_results.html'
     def get_queryset(self):  # new
         query = self.request.GET.get("q")
-        object_list = City.objects.filter(
-            Q(name__icontains=query) | Q(state__icontains=query)
+        object_list = Menu.objects.filter(
+            Q(nome__icontains=query) | Q(nome__icontains=query)
+        )
+        return object_list
+
+class NavbarView(TemplateView):
+    template_name = 'core/navbar_novo_layout_integrado.html'
+
+
+class ProcuraMenuView(ListView):
+    model = Menu
+    template_name = 'core/navbar_novo_layout_integrado_filtrado.html'
+    def get_queryset(self):  # new
+        query = self.request.GET.get("q")
+        object_list = Menu.objects.filter(
+            Q(nome__icontains=query) | Q(nome__icontains=query)
         )
         return object_list
     
