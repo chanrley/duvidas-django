@@ -53,6 +53,19 @@
       -webkit-overflow-scrolling: touch;
     }
   </style>
+  {% comment %} 
+  Testes
+  
+  {% endcomment %}
+  <form action="{% url 'core:navbar_novo_layout_integrado_filtrado' %}" method="get">
+    <input name="q" type="text" placeholder="Procurar Menu">
+  </form>
+  
+  <form action="{% url 'core:navbar_novo_layout_integrado_filtrado2' %}" method="get">
+    <input name="q" type="text" placeholder="Procurar Sub Menu">
+  </form>
+  
+
   <body class="back-portal">
     <nav class="navbar navbar-expand-lg bg-body-tertiary border-purpple">
       <div class="container-fluid ">

@@ -1,0 +1,10 @@
+<!-- templates/search_results.html -->
+<h1>Search Results</h1>
+
+<ul>
+  {% for submenu in object_list %}
+    <li>
+      Submenu: {{ submenu.nome }} - {{ submenu.id }} *** Menu: {{ submenu.menu }}
+    </li>
+  {% endfor %}
+</ul>

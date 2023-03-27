@@ -341,3 +341,13 @@ class ProcuraMenuView(ListView):
         )
         return object_list
     
+class ProcuraSubMenuView(ListView):
+    model = SubMenu
+    template_name = 'core/navbar_novo_layout_integrado_filtrado2.html'
+    def get_queryset(self):  # new
+        query = self.request.GET.get("q")
+        object_list = SubMenu.objects.filter(
+            Q(nome__icontains=query) | Q(nome__icontains=query)
+        )
+        return object_list
+    

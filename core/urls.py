@@ -4,7 +4,7 @@ from django.urls import path
 from . import views
 from .forms import LoginForm, LogadoForm
 
-from .views import HomePageView, SearchResultsView
+from .views import HomePageView, SearchResultsView, NavbarView, ProcuraMenuView, ProcuraSubMenuView
 
 def test(request):
     pass
@@ -30,6 +30,11 @@ urlpatterns = [
     # path('<int:pk>/edit/', views.edit, name='edit'),
     path("search/", SearchResultsView.as_view(), name="search_results"),
     path("pesquisa/", HomePageView.as_view(), name="pesquisa"),
+
+    path("navbar_novo_layout_integrado_filtrado/", ProcuraMenuView.as_view(), name="navbar_novo_layout_integrado_filtrado"),
+    path("navbar_novo_layout_integrado_filtrado2/", ProcuraSubMenuView.as_view(), name="navbar_novo_layout_integrado_filtrado2"),
+    path("busca/", NavbarView.as_view(), name="NavbarView"),
     path('test/', test)
+
 ]
 
