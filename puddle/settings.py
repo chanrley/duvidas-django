@@ -181,9 +181,9 @@ STATIC_ROOT = 'staticfiles'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import os
-################################################################################
-#Logging em arquivo funcionando, mas desabilitado para fazermos gravar no banco#
-################################################################################
+#########################################################################################
+#Logging em arquivo funcionando, mas desabilitado para fazermos gravar no banco de dados#
+#########################################################################################
 # LOGGING ={
 #     'version':1,
 #     'loggers':{
@@ -208,13 +208,13 @@ import os
 #         }
 #     }
 # }
-################################################################################
-#Logging em arquivo funcionando, mas desabilitado para fazermos gravar no banco#
-################################################################################
+#########################################################################################
+#Logging em arquivo funcionando, mas desabilitado para fazermos gravar no banco de dados#
+#########################################################################################
 
-################################################
-#GRAVANDO OS LOGS NO BANCO DE DADOS FUNCIONANDO# 24/03/2023
-################################################
+############################################################
+#GRAVANDO OS LOGS NO BANCO DE DADOS FUNCIONANDO# 24/03/2023#
+############################################################
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

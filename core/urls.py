@@ -22,7 +22,7 @@ urlpatterns = [
     # path('navbar_novo_layout_integrado_filtrado/', views.navbar_novo_layout_integrado_filtrado, name='navbar_novo_layout_integrado_filtrado'),
     path('nova_url/', views.nova_url, name='nova_url'),
     path('contact/', views.contact, name='contact'),
-    path('signup/', views.signup, name='signup'),
+    # path('signup/', views.signup, name='signup'),
     path('login/', auth_views.LoginView.as_view(template_name='core/login.html', authentication_form=LoginForm), name='login'),
     path('logado/', views.logado, name='logado'),
     # path('usuario/', views.usuario, name='usuario'),
