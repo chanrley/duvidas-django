@@ -49,6 +49,11 @@ class UsuarioModelForm(forms.ModelForm):
         model = Usuario
         fields = ['drt', 'nome', 'cargo', 'perfil_acesso']
 
+class DrtModelForm(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ['drt']
+        
 # class UsuarioModelForm2(forms.ModelForm):
 #     class Meta:
 #         model = Usuario

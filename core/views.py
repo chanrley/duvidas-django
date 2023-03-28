@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 
 from item.models import Category, Item
 # from .forms import SignupForm, LogadoForm, LoginForm, UsuarioModelForm, LoginModelForm, UsuarioModelForm2
@@ -8,7 +8,7 @@ from novo_portal_dva.models import models, Menu, SubMenu
 # from core.models import Usuario
 from django.contrib import messages
 from usuario.models import Usuario
-from core.forms import UsuarioModelForm
+from core.forms import UsuarioModelForm, DrtModelForm
 
 from django.db.models import Q
 from django.views.generic import TemplateView, ListView
@@ -214,6 +214,7 @@ def navbar_novo_layout_integrado(request):
     
     })
 
+
 def clicar_menu(request):
     db_logger.warning('menu clicado XPTO')
     
@@ -274,6 +275,23 @@ def loginform(request):
         'usuarios': usuarios,
     }      
     return render(request, 'core/loginform.html', context)
+
+def entrar(request):
+    
+    if str(request.method)=='POST':
+        form = DrtModelForm(request.POST)
+        # print(form)
+        context = {
+            'form': form
+        }
+        return render(request, 'core/entrar.html', context)
+    else:
+        return render(request, 'core/acesso_negado.html') #criar página
+        # form = DrtModelForm()
+    
+   
+ 
+    # return render(request, 'core/index-portal.html')
 
 
 # @login_required
@@ -351,3 +369,65 @@ class ProcuraSubMenuView(ListView):
         )
         return object_list
     
+# class IndexPortalView(TemplateView):
+#     template_name = 'core/index-portal.html'
+#     menus = Menu.objects.all()
+#     object_list = menus
+
+#     def get_queryset(self):
+#         # query = self.request.GET.get("q")
+#         object_list = Menu.objects.all()
+#         print(object_list)
+#         return object_list
+
+def index_portal(request):
+    menus = Menu.objects.all()
+    submenus = SubMenu.objects.all()
+    um = SubMenu.objects.filter(menu_id=1).values()
+    dois = SubMenu.objects.filter(menu_id=2).values()
+    tres = SubMenu.objects.filter(menu_id=3).values()
+    quatro = SubMenu.objects.filter(menu_id=4).values()
+    cinco = SubMenu.objects.filter(menu_id=5).values()
+    seis = SubMenu.objects.filter(menu_id=6).values()
+    sete = SubMenu.objects.filter(menu_id=7).values()
+    oito = SubMenu.objects.filter(menu_id=8).values()
+    nove = SubMenu.objects.filter(menu_id=9).values()
+    dez = SubMenu.objects.filter(menu_id=10).values()
+    onze = SubMenu.objects.filter(menu_id=11).values()
+    doze = SubMenu.objects.filter(menu_id=12).values()
+    treze = SubMenu.objects.filter(menu_id=13).values()
+    quatorze = SubMenu.objects.filter(menu_id=14).values()
+    quinze = SubMenu.objects.filter(menu_id=15).values()
+    dezesseis = SubMenu.objects.filter(menu_id=16).values()
+    dezessete = SubMenu.objects.filter(menu_id=17).values()
+    dezoito = SubMenu.objects.filter(menu_id=18).values()
+    dezenove = SubMenu.objects.filter(menu_id=19).values()
+    vinte = SubMenu.objects.filter(menu_id=20).values()
+
+    return render(request, 'core/index-portal.html', { 
+        'menus': menus,
+        'um': um,
+        'dois': dois,
+        'tres': tres,
+        'quatro': quatro,
+        'cinco': cinco,
+        'seis': seis,
+        'sete': sete,
+        'oito': oito,
+        'nove': nove,
+        'dez': dez,
+        'onze': onze, 	
+        'doze': doze,	
+        'treze': treze,	
+        'quatorze': quatorze,
+        'quinze': quinze,
+        'dezesseis': dezesseis,
+        'dezessete': dezessete,
+        'dezoito': dezoito,
+        'dezenove': dezenove, 
+        'vinte': vinte,
+    
+    })
+
+def testar(request):
+    return render(request, 'core/testar.html')

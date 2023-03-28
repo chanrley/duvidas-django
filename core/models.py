@@ -10,3 +10,11 @@ class City(models.Model):
     def __str__(self):
         return self.name
     
+class Testar(models.Model):
+  nome = models.CharField(max_length=255)
+
+  class Meta:
+    verbose_name_plural = "testes"
+    
+  def __str__(self):
+    return self.nome
