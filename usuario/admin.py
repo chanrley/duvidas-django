@@ -9,7 +9,7 @@ class ModelAdminGrupoAcesso(admin.ModelAdmin):
 class ModelAdminUsuario(admin.ModelAdmin):
     model = Usuario
     list_display_links = ['drt', 'nome']
-    list_display = ['id', 'drt', 'nome', 'cargo', 'perfil_acesso']
+    list_display = ['id', 'drt', 'nome', 'cargo', 'perfil_acesso', 'senha']
 
 admin.site.register(Usuario, ModelAdminUsuario)
 admin.site.register(GrupoAcesso, ModelAdminGrupoAcesso)

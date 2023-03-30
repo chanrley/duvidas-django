@@ -1,6 +1,5 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
-
 from item.models import Category, Item
 # from .forms import SignupForm, LogadoForm, LoginForm, UsuarioModelForm, LoginModelForm, UsuarioModelForm2
 from django.db import models
@@ -9,11 +8,13 @@ from novo_portal_dva.models import models, Menu, SubMenu
 from django.contrib import messages
 from usuario.models import Usuario
 from core.forms import UsuarioModelForm, DrtModelForm
-
 from django.db.models import Q
 from django.views.generic import TemplateView, ListView
 from novo_portal_dva.models import City
 import logging 
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as login_django
+
 
 # db_logger = logging.getLogger('db')
 db_logger = logging.getLogger('db')
@@ -23,7 +24,8 @@ def index(request):
     menus = Menu.objects.all()
     submenus = SubMenu.objects.all()
 
-    return render(request, 'core/index.html', {
+    # return render(request, 'core/index.html', {
+    return render(request, 'core/index-portal.html', {
         'menus': menus,
         'submenus': submenus,
     })
@@ -215,23 +217,79 @@ def navbar_novo_layout_integrado(request):
     })
 
 
-def clicar_menu(request):
-    db_logger.warning('menu clicado XPTO')
+# def clicar_menu(request):
+#     db_logger.warning('menu clicado XPTO')
     
-# def login(request):
-#     if request.method == 'POST':
-#         form = LoginForm(request.POST)
+def loggin(request):
+#    return render(request, 'core/login.html')
 
-#         if form.is_valid():
-#             form.save()
+    if request.method == "GET":
+        return render(request, 'core/loggin.html')
+    else:
+        # print('Entrei no else')
+        username = str(request.POST.get('username'))
+        senha = Usuario.objects.filter(drt=username)
+        menus = Menu.objects.all()
+        submenus = SubMenu.objects.all()
+        um = SubMenu.objects.filter(menu_id=1).values()
+        dois = SubMenu.objects.filter(menu_id=2).values()
+        tres = SubMenu.objects.filter(menu_id=3).values()
+        quatro = SubMenu.objects.filter(menu_id=4).values()
+        cinco = SubMenu.objects.filter(menu_id=5).values()
+        seis = SubMenu.objects.filter(menu_id=6).values()
+        sete = SubMenu.objects.filter(menu_id=7).values()
+        oito = SubMenu.objects.filter(menu_id=8).values()
+        nove = SubMenu.objects.filter(menu_id=9).values()
+        dez = SubMenu.objects.filter(menu_id=10).values()
+        onze = SubMenu.objects.filter(menu_id=11).values()
+        doze = SubMenu.objects.filter(menu_id=12).values()
+        treze = SubMenu.objects.filter(menu_id=13).values()
+        quatorze = SubMenu.objects.filter(menu_id=14).values()
+        quinze = SubMenu.objects.filter(menu_id=15).values()
+        dezesseis = SubMenu.objects.filter(menu_id=16).values()
+        dezessete = SubMenu.objects.filter(menu_id=17).values()
+        dezoito = SubMenu.objects.filter(menu_id=18).values()
+        dezenove = SubMenu.objects.filter(menu_id=19).values()
+        vinte = SubMenu.objects.filter(menu_id=20).values()
+        # print(type(username))
+        # print(username)
+        # print(type(senha))
+        # print(senha)
 
-#             return redirect('/login/')
-#     else:
-#         form = SignupForm()
-
-#     return render(request, 'core/signup.html', {
-#         'form': form
-#     })
+        # drt = username
+        # user = authenticate(username=username, password=senha)
+        # print(drt)
+        for username in senha:
+            # login_django(request, user)
+            print("Entrou no for")
+            return render(request, 'core/index-portal.html', {
+                'menus': menus,
+                'um': um,
+                'dois': dois,
+                'tres': tres,
+                'quatro': quatro,
+                'cinco': cinco,
+                'seis': seis,
+                'sete': sete,
+                'oito': oito,
+                'nove': nove,
+                'dez': dez,
+                'onze': onze, 	
+                'doze': doze,	
+                'treze': treze,	
+                'quatorze': quatorze,
+                'quinze': quinze,
+                'dezesseis': dezesseis,
+                'dezessete': dezessete,
+                'dezoito': dezoito,
+                'dezenove': dezenove, 
+                'vinte': vinte,
+            })
+            # return HttpResponse('Autenticado')     
+        else:
+            return HttpResponse("User ou senha inválidos")
+    
+    
 
 
 def logado(request):
@@ -277,7 +335,6 @@ def loginform(request):
     return render(request, 'core/loginform.html', context)
 
 def entrar(request):
-    
     if str(request.method)=='POST':
         form = DrtModelForm(request.POST)
         # print(form)
@@ -380,6 +437,7 @@ class ProcuraSubMenuView(ListView):
 #         print(object_list)
 #         return object_list
 
+# @login_required
 def index_portal(request):
     menus = Menu.objects.all()
     submenus = SubMenu.objects.all()
@@ -403,6 +461,9 @@ def index_portal(request):
     dezoito = SubMenu.objects.filter(menu_id=18).values()
     dezenove = SubMenu.objects.filter(menu_id=19).values()
     vinte = SubMenu.objects.filter(menu_id=20).values()
+    
+    db_logger.info('info message XPTO')
+    db_logger.warning('warning message XPTO')
 
     return render(request, 'core/index-portal.html', { 
         'menus': menus,
@@ -431,3 +492,7 @@ def index_portal(request):
 
 def testar(request):
     return render(request, 'core/testar.html')
+
+def crud(request):
+    return render(request, 'core/crud.html')
+

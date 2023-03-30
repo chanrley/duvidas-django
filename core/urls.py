@@ -4,7 +4,9 @@ from django.urls import path
 from . import views
 from .forms import LoginForm, LogadoForm
 
-from .views import HomePageView, SearchResultsView, NavbarView, ProcuraMenuView, ProcuraSubMenuView, index_portal, testar
+from .views import HomePageView, SearchResultsView, NavbarView, ProcuraMenuView, ProcuraSubMenuView, testar, loggin
+
+
 
 def test(request):
     pass
@@ -15,29 +17,32 @@ def test(request):
 app_name = 'core'
 
 urlpatterns = [
-    path('master/', views.master, name='master'),
-    path('navbar/', views.navbar, name='navbar'),
-    path('navbar_novo_layout/', views.navbar_novo_layout, name='navbar_novo_layout'),
+    # path('master/', views.master, name='master'),
+    # path('navbar/', views.navbar, name='navbar'),
+    # path('navbar_novo_layout/', views.navbar_novo_layout, name='navbar_novo_layout'),
     path('navbar_novo_layout_integrado/', views.navbar_novo_layout_integrado, name='navbar_novo_layout_integrado'),
     # path('navbar_novo_layout_integrado_filtrado/', views.navbar_novo_layout_integrado_filtrado, name='navbar_novo_layout_integrado_filtrado'),
-    path('nova_url/', views.nova_url, name='nova_url'),
-    path('contact/', views.contact, name='contact'),
+    # path('nova_url/', views.nova_url, name='nova_url'),
+    # path('contact/', views.contact, name='contact'),
     # path('signup/', views.signup, name='signup'),
-    path('login/', auth_views.LoginView.as_view(template_name='core/login.html', authentication_form=LoginForm), name='login'),
-    path('logado/', views.logado, name='logado'),
+    # path('login/', auth_views.LoginView.as_view(template_name='core/login.html', authentication_form=LoginForm), name='login'),
+    path('loggin/', views.loggin, name='loggin'),
+    path('crud/', views.crud, name='crud'),
+    # path('', views.loggin, name='loggin'),
+
+    # path('logado/', views.logado, name='logado'),
     # path('usuario/', views.usuario, name='usuario'),
     # path('loginform/', views.loginform, name='loginform'),
     # path('<int:pk>/edit/', views.edit, name='edit'),
     path("search/", SearchResultsView.as_view(), name="search_results"),
     path("pesquisa/", HomePageView.as_view(), name="pesquisa"),
     path("index-portal/", views.index_portal, name="index-portal"),
-    path("entrar/", views.entrar, name="entrar"),
+    # path("entrar/", views.entrar, name="entrar"),
 
     path("navbar_novo_layout_integrado_filtrado/", ProcuraMenuView.as_view(), name="navbar_novo_layout_integrado_filtrado"),
     path("navbar_novo_layout_integrado_filtrado2/", ProcuraSubMenuView.as_view(), name="navbar_novo_layout_integrado_filtrado2"),
     path("busca/", NavbarView.as_view(), name="NavbarView"),
     path('test/', test),
-    
     path('testar/', views.testar, name='testar'),
 
 ]

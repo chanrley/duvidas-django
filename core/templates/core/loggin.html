@@ -40,13 +40,14 @@
 </head>
 
 <body class="background-main ">
-    <form class="login-main" method="post" action="{% url 'core:entrar' %}" id="form-login">
+    {% comment %} <form class="login-main" method="post" action="{% url 'core:entrar' %}" id="form-login"> ***funcionando {% endcomment %}
+    <form class="login-main" method="POST" action="{% url 'core:loggin' %}">
       {% csrf_token %}
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">DRT</label>
-        <input type="text" maxlength="11" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input type="text" maxlength="11" class="form-control"  name="username">
       </div>
-      <button type="submit" class="btn btn-primary">Entrar</button>
+      <input type="submit" class="btn btn-primary" value="Logar">
     </form>
 
 
