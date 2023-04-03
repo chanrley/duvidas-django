@@ -14,6 +14,8 @@ from novo_portal_dva.models import City
 import logging 
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
+from item.models import Item
+from django.views.generic import DetailView
 
 
 # db_logger = logging.getLogger('db')
@@ -229,6 +231,10 @@ def loggin(request):
         # print('Entrei no else')
         username = str(request.POST.get('username'))
         senha = Usuario.objects.filter(drt=username)
+        user = Usuario.objects.values_list('nome').filter(drt=username)
+
+        # print(user)
+        
         menus = Menu.objects.all()
         submenus = SubMenu.objects.all()
         um = SubMenu.objects.filter(menu_id=1).values()
@@ -261,7 +267,9 @@ def loggin(request):
         # print(drt)
         for username in senha:
             # login_django(request, user)
-            print("Entrou no for")
+            # print("Entrou no for")        
+            # print(senha)
+
             return render(request, 'core/index-portal.html', {
                 'menus': menus,
                 'um': um,
@@ -284,7 +292,9 @@ def loggin(request):
                 'dezoito': dezoito,
                 'dezenove': dezenove, 
                 'vinte': vinte,
+                'user': user,
             })
+        
             # return HttpResponse('Autenticado')     
         else:
             return HttpResponse("User ou senha inválidos")
@@ -490,9 +500,102 @@ def index_portal(request):
     
     })
 
+
+def conteudo(request):
+    # if request.method == "GET":
+    #     return render(request, 'core/loggin.html')
+    # else:
+    # print('Entrei no else')
+    # username = str(request.POST.get('username'))
+    # senha = Usuario.objects.filter(drt=username)
+    # user = Usuario.objects.values_list('nome').filter(drt=username)
+
+    # print(user)
+    
+    menus = Menu.objects.all()
+    submenus = SubMenu.objects.all()
+    um = SubMenu.objects.filter(menu_id=1).values()
+    dois = SubMenu.objects.filter(menu_id=2).values()
+    tres = SubMenu.objects.filter(menu_id=3).values()
+    quatro = SubMenu.objects.filter(menu_id=4).values()
+    cinco = SubMenu.objects.filter(menu_id=5).values()
+    seis = SubMenu.objects.filter(menu_id=6).values()
+    sete = SubMenu.objects.filter(menu_id=7).values()
+    oito = SubMenu.objects.filter(menu_id=8).values()
+    nove = SubMenu.objects.filter(menu_id=9).values()
+    dez = SubMenu.objects.filter(menu_id=10).values()
+    onze = SubMenu.objects.filter(menu_id=11).values()
+    doze = SubMenu.objects.filter(menu_id=12).values()
+    treze = SubMenu.objects.filter(menu_id=13).values()
+    quatorze = SubMenu.objects.filter(menu_id=14).values()
+    quinze = SubMenu.objects.filter(menu_id=15).values()
+    dezesseis = SubMenu.objects.filter(menu_id=16).values()
+    dezessete = SubMenu.objects.filter(menu_id=17).values()
+    dezoito = SubMenu.objects.filter(menu_id=18).values()
+    dezenove = SubMenu.objects.filter(menu_id=19).values()
+    vinte = SubMenu.objects.filter(menu_id=20).values()
+    # print(type(username))
+    # print(username)
+    # print(type(senha))
+    # print(senha)
+
+    # drt = username
+    # user = authenticate(username=username, password=senha)
+    # print(drt)
+    # for username in senha:
+    #     # login_django(request, user)
+    #     # print("Entrou no for")        
+    #     print(senha)
+    
+    return render(request, 'core/conteudo.html', {
+            
+            'menus': menus,
+            'um': um,
+            'dois': dois,
+            'tres': tres,
+            'quatro': quatro,
+            'cinco': cinco,
+            'seis': seis,
+            'sete': sete,
+            'oito': oito,
+            'nove': nove,
+            'dez': dez,
+            'onze': onze, 	
+            'doze': doze,	
+            'treze': treze,	
+            'quatorze': quatorze,
+            'quinze': quinze,
+            'dezesseis': dezesseis,
+            'dezessete': dezessete,
+            'dezoito': dezoito,
+            'dezenove': dezenove, 
+            'vinte': vinte,  
+    })
+
+
 def testar(request):
     return render(request, 'core/testar.html')
 
-def crud(request):
-    return render(request, 'core/crud.html')
+def crud_lista(request):
+    item = Item.objects.all()
+    contexto = {
+        'item': item
+    }
+    return render(request, 'core/crud_lista.html', contexto)
+
+def busca(request):
+    item = Item.objects.all()
+    contexto = {
+        'item': item,
+    }
+    return render(request, 'core/busca.html', contexto)
+
+def visualizar(request):
+    print("Visualizar")
+
+
+class ItemDetail(DetailView):
+    queryset = Item.objects.all()
+
+
 

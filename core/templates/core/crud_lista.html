@@ -1,54 +1,13 @@
 {% load static %}
 {% include 'core/partials/__header.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>Portal de Procedimentos</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="" rel="icon">
-  <link href="{% static '/assets/img/logo.png' %}" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="{% static '/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static '/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-  <link href="{% static '/assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
-  <link href="{% static '/assets/vendor/quill/quill.snow.css' %}" rel="stylesheet">
-  <link href="{% static '/assets/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
-  <link href="{% static '/assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
-  <link href="{% static '/assets/vendor/simple-datatables/style.css' %}" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="{% static '/assets/css/style.css' %}" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: NiceAdmin
-  * Updated: Mar 09 2023 with Bootstrap v5.2.3
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
-
-<body>
-
-  <!-- ======= Header ======= -->
+  {% comment %} <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center border-purpple">
 
     <div class="d-flex align-items-center justify-content-between">
-      <button type="button" class="btn btn-black toggle-sidebar-btn">Menu</button>
-      <a href="index.html" class="logo d-flex align-items-center">
+      <button type="button" class="btn btn-black toggle-sidebar-btn" action="{% url 'core:index-portal' %}">Menu</button>
+      <a href="core/index-portal.html" class="logo d-flex align-items-center">
         <img src="{% static '/assets/img/logo.png' %}" alt="">
       </a>
       
@@ -59,7 +18,7 @@
         <input type="text" name="query" placeholder="Buscar" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
-    </div><!-- End Search Bar -->
+    </div><!-- End Search Bar --> {% endcomment %}
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -90,8 +49,8 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
-          <span>Dashboard</span>
+        <a class="nav-link">
+          <span>Testar</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
@@ -275,43 +234,27 @@
               <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Data</th>
-                <th scope="col">Hora</th>
+                {% comment %} <th scope="col">Hora</th> {% endcomment %}
                 <th scope="col">Quem publicou?</th>
                 <th scope="col">Titulo</th>
                 <th scope="col" colspan="3">Opções</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>10/02/2023</td>
-                <td>09:00</td>
-                <td>João Paulo</td>
-                <td>Otto</td>
-                <td><button type="button" class="btn btn-purpple">Visualizar</button></td>
-                <td><button type="button" class="btn btn-purpple">Editar</button></td>
-                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Excluir</button></td>
+              {% for x in item %}
+              <tr>    
+                  <th scope="row">{{ x.id }}</th>
+                  <td>{{ x.created_at }}</td>
+                  {% comment %} <td>09:00</td> {% endcomment %}
+                  <td>{{ x.created_by }}</td>
+                  <td>{{ x.name }}</td>
+                  <td><button type="button" class="btn btn-purpple">Visualizar</button></td>
+                  <td><button type="button" class="btn btn-purpple">Editar</button></td>
+                  <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Excluir</button></td>
+                  <br>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>10/02/2023</td>
-                <td>09:00</td>
-                <td>João Paulo</td>
-                <td>Otto</td>
-                <td><button type="button" class="btn btn-purpple">Visualizar</button></td>
-                <td><button type="button" class="btn btn-purpple">Editar</button></td>
-                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Excluir</button></td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td >10/02/2023</td>
-                <td>09:00</td>
-                <td>João Paulo</td>
-                <td>Otto</td>
-                <td><button type="button" class="btn btn-purpple">Visualizar</button></td>
-                <td><button type="button" class="btn btn-purpple">Editar</button></td>
-                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Excluir</button></td>
-              </tr>
+              {% endfor %}
+             
             </tbody>
     </table>
     <div class=" modal fade modal-dialog modal-dialog-centered modal-portal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

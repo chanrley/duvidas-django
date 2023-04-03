@@ -1,0 +1,11 @@
+{% load static %}
+{% include 'core/partials/__header.html' %}
+
+    <input type="submit" onclick="location.href = '{% url 'item:detail' %}'" value="Voltar para a lista">
+    <br>
+    Nome: {{ object.nome }}
+    <br>
+    Idade: {{ object.idade }}
+
+
+{% include 'core/partials/__footer.html' %}

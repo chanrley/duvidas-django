@@ -23,11 +23,16 @@ urlpatterns = [
     path('navbar_novo_layout_integrado/', views.navbar_novo_layout_integrado, name='navbar_novo_layout_integrado'),
     # path('navbar_novo_layout_integrado_filtrado/', views.navbar_novo_layout_integrado_filtrado, name='navbar_novo_layout_integrado_filtrado'),
     # path('nova_url/', views.nova_url, name='nova_url'),
-    # path('contact/', views.contact, name='contact'),
+    path('contact/', views.contact, name='contact'),
     # path('signup/', views.signup, name='signup'),
     # path('login/', auth_views.LoginView.as_view(template_name='core/login.html', authentication_form=LoginForm), name='login'),
     path('loggin/', views.loggin, name='loggin'),
-    path('crud/', views.crud, name='crud'),
+    path('crud_lista/', views.crud_lista, name='crud_lista'),
+    path('conteudo/', views.conteudo, name='conteudo'),
+    path('busca/', views.busca, name='busca'),
+    path('visualizar/', views.visualizar, name='visualizar'),
+
+    path('detail/<int:pk>/', views.ItemDetail.as_view(), name='detail'),
     # path('', views.loggin, name='loggin'),
 
     # path('logado/', views.logado, name='logado'),
