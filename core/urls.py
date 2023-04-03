@@ -4,8 +4,7 @@ from django.urls import path
 from . import views
 from .forms import LoginForm, LogadoForm
 
-from .views import HomePageView, SearchResultsView, NavbarView, ProcuraMenuView, ProcuraSubMenuView, testar, loggin
-
+from .views import HomePageView, SearchResultsView, NavbarView, ProcuraMenuView, ProcuraSubMenuView, testar, loggin, remove_publicacao
 
 
 def test(request):
@@ -31,6 +30,12 @@ urlpatterns = [
     path('conteudo/', views.conteudo, name='conteudo'),
     path('busca/', views.busca, name='busca'),
     path('visualizar/', views.visualizar, name='visualizar'),
+    path('remove_publicacao/<int:id>/', views.remove_publicacao, name='remove_publicacao'),
+    
+    #Trabalhando aqui. Parei aqui    
+    path('deletar/<int:id>/', views.item_delete, name='item_delete'),
+
+
 
     path('detail/<int:pk>/', views.ItemDetail.as_view(), name='detail'),
     # path('', views.loggin, name='loggin'),

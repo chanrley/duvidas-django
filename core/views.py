@@ -597,5 +597,36 @@ def visualizar(request):
 class ItemDetail(DetailView):
     queryset = Item.objects.all()
 
+def remove_publicacao(request, id):
+    print("entrei no remove")
+    
+    item = Item.objects.get(id=id)
+    item.delete()
+
+    item = Item.objects.all()
+    contexto = {
+        'item': item
+    }
+    return render(request, 'core/crud_lista.html', contexto)
+
+def remove_publicacao2(request, id):
+    print("entrei no remove2")
+
+    items = Item.objects.get(id=id)
+    items.delete()
+
+    items = Item.objects.all()
+    contexto = {
+        'items': items
+    }
+    return render(request, 'core/crud_lista.html', contexto)
+
+def item_delete(request, id):
+	item = get_object_or_404(Item, pk=id)
+	item.delete()
+	return redirect('core:crud_lista')
+
+
+
 
 
