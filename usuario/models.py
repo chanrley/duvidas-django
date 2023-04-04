@@ -25,3 +25,15 @@ class Usuario(models.Model):
     
     def __str__(self):
         return f"{self.nome} - {self.perfil_acesso} - {self.senha}"
+    
+class GrupoAcessoDetalhe(models.Model):
+    fk_perfil_acesso = models.ForeignKey(to=GrupoAcesso, on_delete=models.CASCADE)
+    detalhe_acesso = models.IntegerField()
+    
+    class Meta:
+        ordering = ('fk_perfil_acesso',)
+        verbose_name_plural = 'Detalhes Grupo de Acesso'
+    
+    def __str__(self):
+        return f"{self.fk_perfil_acesso} - {self.detalhe_acesso}"
+

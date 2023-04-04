@@ -2,6 +2,10 @@ from django import forms
 
 from .models import Item
 from .admin import OrderItem
+from item.models import Item
+from django.forms import ModelForm
+
+
 
 INPUT_CLASSES = 'w-full py-4 px-6 rounded-xl border'
 
@@ -51,3 +55,13 @@ class EditItemForm(forms.ModelForm):
                 'class': INPUT_CLASSES
             })
         }
+
+
+class ItemForm(ModelForm):
+    class Meta:
+        model = Item
+        fields = ['category','name','description', 'created_by']
+
+
+
+

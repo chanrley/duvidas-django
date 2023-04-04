@@ -26,20 +26,21 @@ urlpatterns = [
     # path('signup/', views.signup, name='signup'),
     # path('login/', auth_views.LoginView.as_view(template_name='core/login.html', authentication_form=LoginForm), name='login'),
     path('loggin/', views.loggin, name='loggin'),
+    path('', views.loggin, name='loggin'),
     path('crud_lista/', views.crud_lista, name='crud_lista'),
     path('conteudo/', views.conteudo, name='conteudo'),
     path('busca/', views.busca, name='busca'),
     path('visualizar/', views.visualizar, name='visualizar'),
-    path('remove_publicacao/<int:id>/', views.remove_publicacao, name='remove_publicacao'),
-    
-    #Trabalhando aqui. Parei aqui    
+    path('remove_publicacao/<int:id>/', views.remove_publicacao, name='remove_publicacao'),    
     path('deletar/<int:id>/', views.item_delete, name='item_delete'),
-
+    
+    #Trabalhando aqui. Parei aqui
+    path('item_update/<int:id>/', views.item_update, name='item_update'),
+    #Trabalhando aqui. Parei aqui
 
 
     path('detail/<int:pk>/', views.ItemDetail.as_view(), name='detail'),
     # path('', views.loggin, name='loggin'),
-
     # path('logado/', views.logado, name='logado'),
     # path('usuario/', views.usuario, name='usuario'),
     # path('loginform/', views.loginform, name='loginform'),

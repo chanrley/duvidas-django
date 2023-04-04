@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import GrupoAcesso, Usuario
+from .models import GrupoAcesso, Usuario, GrupoAcessoDetalhe
 
 class ModelAdminGrupoAcesso(admin.ModelAdmin):
     model = GrupoAcesso
@@ -14,3 +14,9 @@ class ModelAdminUsuario(admin.ModelAdmin):
 admin.site.register(Usuario, ModelAdminUsuario)
 admin.site.register(GrupoAcesso, ModelAdminGrupoAcesso)
 
+class ModelGrupoAcessoDetalhe(admin.ModelAdmin):
+    model = GrupoAcessoDetalhe
+    list_display_links = ['fk_perfil_acesso', 'detalhe_acesso']
+    list_display = ['fk_perfil_acesso', 'detalhe_acesso']
+    
+admin.site.register(GrupoAcessoDetalhe)

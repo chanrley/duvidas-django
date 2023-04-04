@@ -1,3 +1,5 @@
+{% comment %} funcionado com deleção de registros em 04/04/23 às 13:41 {% endcomment %}
+
 {% load static %}
 {% include 'core/partials/__header.html' %}
 
@@ -249,11 +251,7 @@
                   <td>{{ x.created_by }}</td>
                   <td>{{ x.name }}</td>
                   <td><button type="button" class="btn btn-purpple">Visualizar</button></td>
-                  {% comment %} <td><button type="button" class="btn btn-purpple" onclick="location.href= '{% url 'core:item_update' item.id %}'">Editar</button></td> {% endcomment %}
-                  <form action="{% url 'core:item_update' x.id %}" method="POST">
-                    {% csrf_token %}
-                    <td><button type="submit" class="btn btn-secondary">Editar</button></td>
-                  </form>
+                  <td><button type="button" class="btn btn-purpple">Editar</button></td>
                   <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ x.id}}">Excluir</button></td>
                   <br>
               </tr>

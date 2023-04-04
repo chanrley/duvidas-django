@@ -92,3 +92,4 @@ class DrtModelForm(forms.ModelForm):
 #     class Meta:
 #         model = Usuario
 #         fields = ['drt', 'nome', 'cargo', 'perfil_acesso']
+

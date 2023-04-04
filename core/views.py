@@ -6,7 +6,7 @@ from django.db import models
 from novo_portal_dva.models import models, Menu, SubMenu
 # from core.models import Usuario
 from django.contrib import messages
-from usuario.models import Usuario
+from usuario.models import Usuario, GrupoAcessoDetalhe
 from core.forms import UsuarioModelForm, DrtModelForm
 from django.db.models import Q
 from django.views.generic import TemplateView, ListView
@@ -16,6 +16,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
 from item.models import Item
 from django.views.generic import DetailView
+from item.forms import ItemForm
 
 
 # db_logger = logging.getLogger('db')
@@ -233,30 +234,76 @@ def loggin(request):
         senha = Usuario.objects.filter(drt=username)
         user = Usuario.objects.values_list('nome').filter(drt=username)
 
-        # print(user)
         
-        menus = Menu.objects.all()
-        submenus = SubMenu.objects.all()
-        um = SubMenu.objects.filter(menu_id=1).values()
-        dois = SubMenu.objects.filter(menu_id=2).values()
-        tres = SubMenu.objects.filter(menu_id=3).values()
-        quatro = SubMenu.objects.filter(menu_id=4).values()
-        cinco = SubMenu.objects.filter(menu_id=5).values()
-        seis = SubMenu.objects.filter(menu_id=6).values()
-        sete = SubMenu.objects.filter(menu_id=7).values()
-        oito = SubMenu.objects.filter(menu_id=8).values()
-        nove = SubMenu.objects.filter(menu_id=9).values()
-        dez = SubMenu.objects.filter(menu_id=10).values()
-        onze = SubMenu.objects.filter(menu_id=11).values()
-        doze = SubMenu.objects.filter(menu_id=12).values()
-        treze = SubMenu.objects.filter(menu_id=13).values()
-        quatorze = SubMenu.objects.filter(menu_id=14).values()
-        quinze = SubMenu.objects.filter(menu_id=15).values()
-        dezesseis = SubMenu.objects.filter(menu_id=16).values()
-        dezessete = SubMenu.objects.filter(menu_id=17).values()
-        dezoito = SubMenu.objects.filter(menu_id=18).values()
-        dezenove = SubMenu.objects.filter(menu_id=19).values()
-        vinte = SubMenu.objects.filter(menu_id=20).values()
+        
+        # perfil_acesso = Usuario.objects.get(drt=username)
+        # perfil = models.Usuario.objects.filter(drt__in=perfil_acesso)
+        # print(f"perfil: {perfil_acesso}")
+        
+        grupo_acesso = GrupoAcessoDetalhe.objects.values_list('fk_perfil_acesso').filter(fk_perfil_acesso=2)
+        
+        print(f"grupo: {grupo_acesso}")
+        
+
+        if (1,) in grupo_acesso:
+            # print('Entrei no if')
+            menus = Menu.objects.all()
+            submenus = SubMenu.objects.all()
+            um = SubMenu.objects.filter(menu_id=1).values()
+            dois = SubMenu.objects.filter(menu_id=2).values()
+            tres = SubMenu.objects.filter(menu_id=3).values()
+            quatro = SubMenu.objects.filter(menu_id=4).values()
+            cinco = SubMenu.objects.filter(menu_id=5).values()
+            seis = SubMenu.objects.filter(menu_id=6).values()
+            sete = SubMenu.objects.filter(menu_id=7).values()
+            oito = SubMenu.objects.filter(menu_id=8).values()
+            nove = SubMenu.objects.filter(menu_id=9).values()
+            dez = SubMenu.objects.filter(menu_id=10).values()
+            onze = SubMenu.objects.filter(menu_id=11).values()
+            doze = SubMenu.objects.filter(menu_id=12).values()
+            treze = SubMenu.objects.filter(menu_id=13).values()
+            quatorze = SubMenu.objects.filter(menu_id=14).values()
+            quinze = SubMenu.objects.filter(menu_id=15).values()
+            dezesseis = SubMenu.objects.filter(menu_id=16).values()
+            dezessete = SubMenu.objects.filter(menu_id=17).values()
+            dezoito = SubMenu.objects.filter(menu_id=18).values()
+            dezenove = SubMenu.objects.filter(menu_id=19).values()
+            vinte = SubMenu.objects.filter(menu_id=20).values()
+            contexto = {
+                    'menus': menus,
+                    'um': um,
+                    'dois': dois,
+                    'tres': tres,
+                    'quatro': quatro,
+                    'cinco': cinco,
+                    'seis': seis,
+                    'sete': sete,
+                    'oito': oito,
+                    'nove': nove,
+                    'dez': dez,
+                    'onze': onze, 	
+                    'doze': doze,	
+                    'treze': treze,	
+                    'quatorze': quatorze,
+                    'quinze': quinze,
+                    'dezesseis': dezesseis,
+                    'dezessete': dezessete,
+                    'dezoito': dezoito,
+                    'dezenove': dezenove, 
+                    'vinte': vinte,
+                    'user': user,
+            }
+        elif (2,) in grupo_acesso:
+            menus = Menu.objects.all()
+            oito = SubMenu.objects.filter(menu_id=8).values()
+            contexto = {
+                    'menus': menus,
+                    'oito': oito,
+                    'user': user,
+            }
+        else:
+            return redirect(request, 'core/loggin.html')
+            # print('Entrei no else')
         # print(type(username))
         # print(username)
         # print(type(senha))
@@ -268,32 +315,8 @@ def loggin(request):
         for username in senha:
             # login_django(request, user)
             # print("Entrou no for")        
-            # print(senha)
-
-            return render(request, 'core/index-portal.html', {
-                'menus': menus,
-                'um': um,
-                'dois': dois,
-                'tres': tres,
-                'quatro': quatro,
-                'cinco': cinco,
-                'seis': seis,
-                'sete': sete,
-                'oito': oito,
-                'nove': nove,
-                'dez': dez,
-                'onze': onze, 	
-                'doze': doze,	
-                'treze': treze,	
-                'quatorze': quatorze,
-                'quinze': quinze,
-                'dezesseis': dezesseis,
-                'dezessete': dezessete,
-                'dezoito': dezoito,
-                'dezenove': dezenove, 
-                'vinte': vinte,
-                'user': user,
-            })
+            print(grupo_acesso)
+            return render(request, 'core/index-portal.html', contexto)
         
             # return HttpResponse('Autenticado')     
         else:
@@ -598,7 +621,7 @@ class ItemDetail(DetailView):
     queryset = Item.objects.all()
 
 def remove_publicacao(request, id):
-    print("entrei no remove")
+    #print("entrei no remove") # não entra
     
     item = Item.objects.get(id=id)
     item.delete()
@@ -609,23 +632,47 @@ def remove_publicacao(request, id):
     }
     return render(request, 'core/crud_lista.html', contexto)
 
-def remove_publicacao2(request, id):
-    print("entrei no remove2")
+# def remove_publicacao2(request, id):
+#     print("entrei no remove2")
 
-    items = Item.objects.get(id=id)
-    items.delete()
+#     items = Item.objects.get(id=id)
+#     items.delete()
 
-    items = Item.objects.all()
-    contexto = {
-        'items': items
-    }
-    return render(request, 'core/crud_lista.html', contexto)
+#     items = Item.objects.all()
+#     contexto = {
+#         'items': items
+#     }
+#     return render(request, 'core/crud_lista.html', contexto)
 
 def item_delete(request, id):
-	item = get_object_or_404(Item, pk=id)
-	item.delete()
-	return redirect('core:crud_lista')
+    print("pronto")
+    item = get_object_or_404(Item, pk=id)
+    item.delete()
+    return redirect('core:crud_lista')
 
+def item_update(request, id):
+    print("pronto")
+    item = get_object_or_404(Item, pk=id)
+    form = ItemForm(instance=item)
+
+    if(request.method == 'POST'):
+        form = ItemForm(request.POST, instance=item)	
+        if(form.is_valid()):
+            item = form.save(commit=False)
+            item.category = form.cleaned_data['category']
+            item.name = form.cleaned_data['name']
+            item.description = form.cleaned_data['description']
+            item.created_by = form.cleaned_data['created_by']
+            item.created_at = form.cleaned_data['created_at']
+
+            item.save()
+
+            return redirect('core:crud_lista')
+        else:
+            return render(request, 'core/editar.html', {'form': form, 'item' : item})
+
+    elif(request.method == 'GET'):
+        return render(request, 'core/editar.html', {'form': form, 'item' : item})
 
 
 
