@@ -59,7 +59,7 @@ h6 {
 # Main
 --------------------------------------------------------------*/
 #main {
-  margin-top: 60px;
+  margin-top: 30px;
   padding: 20px 30px;
   transition: all 0.3s;
 }
@@ -1259,3 +1259,45 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+
+
+/*--------------------------------------------------------------
+# Forms
+--------------------------------------------------------------*/
+/* #form-edicao {
+  color: red;
+  border: 1px  dotted black;
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+} */
+
+/* #div-edicao {
+  color: red;
+  border: 1px  dotted black;
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+} */
+
+/* #main{
+  
+} */
+
+
+#tabela-portal {
+  position: relative;
+  margin-top: -355%;
+
+}
+
+/*
+#main-edicao {
+   margin-top: 10px; 
+}
+*/
+

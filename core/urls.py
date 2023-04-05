@@ -33,9 +33,10 @@ urlpatterns = [
     path('visualizar/', views.visualizar, name='visualizar'),
     path('remove_publicacao/<int:id>/', views.remove_publicacao, name='remove_publicacao'),    
     path('deletar/<int:id>/', views.item_delete, name='item_delete'),
-    
-    #Trabalhando aqui. Parei aqui
     path('item_update/<int:id>/', views.item_update, name='item_update'),
+
+    #Trabalhando aqui. Parei aqui
+    path('item_visualizar/<int:id>/', views.item_visualizar, name='item_visualizar'),
     #Trabalhando aqui. Parei aqui
 
 

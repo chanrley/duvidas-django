@@ -658,13 +658,14 @@ def item_update(request, id):
     if(request.method == 'POST'):
         form = ItemForm(request.POST, instance=item)	
         if(form.is_valid()):
-            item = form.save(commit=False)
+            print("Form válido")
+            
             item.category = form.cleaned_data['category']
             item.name = form.cleaned_data['name']
             item.description = form.cleaned_data['description']
             item.created_by = form.cleaned_data['created_by']
-            item.created_at = form.cleaned_data['created_at']
-
+            # item.created_at = form.cleaned_data['created_at']
+            item = form.save(commit=True)
             item.save()
 
             return redirect('core:crud_lista')
@@ -674,6 +675,16 @@ def item_update(request, id):
     elif(request.method == 'GET'):
         return render(request, 'core/editar.html', {'form': form, 'item' : item})
 
-
-
+def item_visualizar(request, id):
+    print("Entrei no visualizar")
+    ver_item = get_object_or_404(Item, pk=id)
+    form = ItemForm(instance=ver_item)
+    print(vars(ver_item))
+    print(vars(form))
+    
+    if(request.method == 'GET'):
+        print("Entrei no IF")
+        return redirect(request, 'core/item_visualizar.html', {'ver_item': ver_item})
+    else:
+        return render(request, 'core/crud_lista.html', {'form': form, 'ver_item' : ver_item})
 

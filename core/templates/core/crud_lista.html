@@ -64,7 +64,7 @@
               <span>Alerts</span>
             </a>
           </li>
-          <li>
+          {% comment %} <li>
             <a href="components-accordion.html">
               <span>Accordion</span>
             </a>
@@ -222,14 +222,14 @@
             </a>
           </li>
         </ul>
-      </li><!-- End Icons Nav -->
-
+      </li><!-- End Icons Nav --> {% endcomment %}
+    </ul>
     </ul>
 
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="tabela-portal">
             <thead class="table-purpple">
               <tr>
                 <th scope="col">Id</th>
@@ -248,10 +248,14 @@
                   {% comment %} <td>09:00</td> {% endcomment %}
                   <td>{{ x.created_by }}</td>
                   <td>{{ x.name }}</td>
-                  <td><button type="button" class="btn btn-purpple">Visualizar</button></td>
+                  {% comment %} <form action="{% url 'core:item_visualizar' x.id %}" method="GET"> {% endcomment %}
+                    {% comment %} {% csrf_token %} {% endcomment %}
+                    <td><button type="submit" class="btn btn-purpple">Visualizar</button></td>
+                  {% comment %} </form> {% endcomment %}
+                  
                   {% comment %} <td><button type="button" class="btn btn-purpple" onclick="location.href= '{% url 'core:item_update' item.id %}'">Editar</button></td> {% endcomment %}
-                  <form action="{% url 'core:item_update' x.id %}" method="POST">
-                    {% csrf_token %}
+                  <form action="{% url 'core:item_update' x.id %}" method="GET">
+                    {% comment %} {% csrf_token %} {% endcomment %}
                     <td><button type="submit" class="btn btn-secondary">Editar</button></td>
                   </form>
                   <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ x.id}}">Excluir</button></td>
@@ -287,38 +291,4 @@
 
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-    </div>
-  </footer><!-- End Footer -->
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  <script src="{% static '/assets/js/jquery-3.4.1.min.js' %}"></script>
-    <script type="text/javascript">
-        $('.modal').modal('show');
-    </script>
-  <!-- Vendor JS Files -->
-  <script src="{% static '/assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
-  <script src="{% static '/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static '/assets/vendor/chart.js/chart.umd.js' %}"></script>
-  <script src="{% static '/assets/vendor/echarts/echarts.min.js' %}"></script>
-  <script src="{% static '/assets/vendor/quill/quill.min.js' %}"></script>
-  <script src="{% static '/assets/vendor/simple-datatables/simple-datatables.js' %}"></script>
-  <script src="{% static '/assets/vendor/tinymce/tinymce.min.js' %}"></script>
-  <script src="{% static '/assets/vendor/php-email-form/validate.js' %}"></script>
-
-  <!-- Template Main JS File -->
-  <script src="{% static '/assets/js/main.js' %}"></script>
-
-</body>
-
-</html>
+  {% include 'core/partials/__footer.html' %}
