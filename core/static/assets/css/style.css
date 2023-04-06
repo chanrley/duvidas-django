@@ -1291,7 +1291,8 @@ h6 {
 
 #tabela-portal {
   position: relative;
-  margin-top: -355%;
+  margin-top: -100px;
+  margin-bottom: 10px;
 
 }
 

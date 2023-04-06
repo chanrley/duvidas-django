@@ -227,17 +227,18 @@
     </ul>
 
   </aside><!-- End Sidebar-->
-
+  
   <main id="main" class="main">
     <table class="table table-bordered" id="tabela-portal">
+            
             <thead class="table-purpple">
+              {% comment %} <tr scope="row" colspan="8">Publicações<tr> {% endcomment %}
               <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Data</th>
-                {% comment %} <th scope="col">Hora</th> {% endcomment %}
                 <th scope="col">Quem publicou?</th>
                 <th scope="col">Titulo</th>
-                <th scope="col" colspan="3">Opções</th>
+                <th scope="col" colspan="4">Opções</th>
               </tr>
             </thead>
             <tbody>
@@ -245,13 +246,16 @@
               <tr>    
                   <th scope="row">{{ x.id }}</th>
                   <td>{{ x.created_at }}</td>
-                  {% comment %} <td>09:00</td> {% endcomment %}
                   <td>{{ x.created_by }}</td>
                   <td>{{ x.name }}</td>
-                  {% comment %} <form action="{% url 'core:item_visualizar' x.id %}" method="GET"> {% endcomment %}
+                  <form action="{% url 'core:item_create' %}" method="GET"> 
+                    <td><button type="submit" class="btn btn-purpple">Criar</button></td>
+                  </form>
+
+                  <form action="{% url 'core:item_visualizar' x.id %}" method="GET">
                     {% comment %} {% csrf_token %} {% endcomment %}
                     <td><button type="submit" class="btn btn-purpple">Visualizar</button></td>
-                  {% comment %} </form> {% endcomment %}
+                  </form>
                   
                   {% comment %} <td><button type="button" class="btn btn-purpple" onclick="location.href= '{% url 'core:item_update' item.id %}'">Editar</button></td> {% endcomment %}
                   <form action="{% url 'core:item_update' x.id %}" method="GET">

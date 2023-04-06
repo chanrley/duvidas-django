@@ -34,10 +34,15 @@ urlpatterns = [
     path('remove_publicacao/<int:id>/', views.remove_publicacao, name='remove_publicacao'),    
     path('deletar/<int:id>/', views.item_delete, name='item_delete'),
     path('item_update/<int:id>/', views.item_update, name='item_update'),
+    #######################
+    #Criação de publicação#
+    #######################
+    path('item_create/', views.item_create, name='item_create'),
 
-    #Trabalhando aqui. Parei aqui
+
+    #Trabalhando aqui. Parei aqui. ainda não funcionou
     path('item_visualizar/<int:id>/', views.item_visualizar, name='item_visualizar'),
-    #Trabalhando aqui. Parei aqui
+    #Trabalhando aqui. Parei aqui. ainda não funcionou
 
 
     path('detail/<int:pk>/', views.ItemDetail.as_view(), name='detail'),

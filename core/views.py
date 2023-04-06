@@ -676,11 +676,11 @@ def item_update(request, id):
         return render(request, 'core/editar.html', {'form': form, 'item' : item})
 
 def item_visualizar(request, id):
-    print("Entrei no visualizar")
+    #print("Entrei no visualizar")
     ver_item = get_object_or_404(Item, pk=id)
     form = ItemForm(instance=ver_item)
-    print(vars(ver_item))
-    print(vars(form))
+    #print(vars(ver_item)) #semelhante ao var_dump(variavel) no PHP pois printa o objeto inteiro
+    #print(vars(form))
     
     if(request.method == 'GET'):
         print("Entrei no IF")
@@ -688,3 +688,14 @@ def item_visualizar(request, id):
     else:
         return render(request, 'core/crud_lista.html', {'form': form, 'ver_item' : ver_item})
 
+
+def item_create(request):
+    if request.method == 'GET':
+        form = ItemForm(request.GET)
+        if form.is_valid():
+#            print("form valido")
+            item = form.save(commit=True)
+            return redirect('../crud_lista', pk=item.pk)
+    else:
+        form = ItemForm()
+    return render(request, 'core/item_create.html', {'form': form})
