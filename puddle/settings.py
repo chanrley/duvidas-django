@@ -60,6 +60,9 @@ INSTALLED_APPS = [
     'log',
     'registrolog',
     'django_db_logger',
+    'ckeditor',
+    'ckeditor_uploader',
+
 ]
 
 MIDDLEWARE = [
@@ -245,4 +248,7 @@ LOGGING = {
     }
 }
 
+CKEDITOR_BASEPATH = "/staticfiles/ckeditor/ckeditor/"
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_FILENAME_GENERATOR = 'utils.get_filename'
 

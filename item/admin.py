@@ -1,6 +1,5 @@
 from django.contrib import admin
-
-from .models import Category, Item
+from .models import Category, Item, Post
 
 
 admin.site.register(Category)
@@ -13,3 +12,5 @@ class OrderItem(admin.ModelAdmin):
     readonly_fields = ['created_at']
 
 admin.site.register(Item, OrderItem)
+
+admin.site.register(Post)

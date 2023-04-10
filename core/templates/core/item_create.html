@@ -216,7 +216,8 @@
         <h2>Criar Publicação</h2>
         <form action="{% url 'core:item_create' %}" method="GET">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.media}}
+        {{ form.as_p}}
         <button type="submit" class="btn btn-purpple" >Criar</button>
         </form>
         {% comment %} {% endblock %} {% endcomment %}
@@ -224,3 +225,4 @@
 </main>
 
 
+{% include 'core/partials/__footer.html' %}

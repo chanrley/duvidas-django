@@ -37,3 +37,4 @@ Para saber o que deve ser ignorado ao subir no gitlab:
 Sobre gravar os logs no banco:
     https://github.com/CiCiUi/django-db-logger
 
+#print(vars(variavel / objeto)) #semelhante ao var_dump(variavel) no PHP pois printa o objeto inteiro

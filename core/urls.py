@@ -1,5 +1,5 @@
 from django.contrib.auth import views as auth_views
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 from .forms import LoginForm, LogadoForm
@@ -39,11 +39,12 @@ urlpatterns = [
     #######################
     path('item_create/', views.item_create, name='item_create'),
 
-
-    #Trabalhando aqui. Parei aqui. ainda não funcionou
+    ##################
+    #Visualizar items#
+    ##################
     path('item_visualizar/<int:id>/', views.item_visualizar, name='item_visualizar'),
-    #Trabalhando aqui. Parei aqui. ainda não funcionou
-
+    
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 
     path('detail/<int:pk>/', views.ItemDetail.as_view(), name='detail'),
     # path('', views.loggin, name='loggin'),

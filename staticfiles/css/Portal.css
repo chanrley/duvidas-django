@@ -1,0 +1,55 @@
+.back-portal{
+    background-image:url("../img/fundo-portal.png");
+    background-size: 100%;
+}
+.list-back{
+    background-color: white;
+}
+.list-format{
+    color:#72007A;
+    width:100%;
+}
+.list-format:hover{
+    background-color: #72007A;
+    color:white;
+    width:100%;
+}
+.plus-config{
+    position:absolute;
+    left:19%;
+}
+.btn-purpple{
+    background-color: #72007A;
+    color:white;
+    width: 10%;
+}
+.btn-purpple:hover{
+    background-color: #72007A;
+    color:white;
+    width: 10%;
+}
+.btn-outline-purpple{
+    background-color: #72007A;
+    color:white;
+}
+.btn-outline-purpple:hover{
+    background-color: #72007A;
+    color:white;
+}
+.border-purpple{
+    border-bottom: 2.5px solid #72007A ;
+}
+.link-purpple{
+    padding: 2.5% 2.5% 2.5% 10%;
+    color:#72007A;
+    width:100%;
+}
+.link-purpple:hover{
+    background-color: #EFEEEE;
+
+}
+.table-portal{
+    position:absolute;
+    top:10%;
+    width: auto;
+}

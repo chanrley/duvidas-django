@@ -1,4 +1,6 @@
 from django.db import models
+from ckeditor.fields import RichTextField
+
 
 class City(models.Model):
     name = models.CharField(max_length=255)
@@ -18,3 +20,8 @@ class Testar(models.Model):
     
   def __str__(self):
     return self.nome
+
+class Post(models.Model):
+    title = models.CharField(max_length=255)
+    body1 = models.TextField(blank=True, null=True)
+    body2 = RichTextField(blank=True, null=True)

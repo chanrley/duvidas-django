@@ -233,14 +233,11 @@ def loggin(request):
         username = str(request.POST.get('username'))
         senha = Usuario.objects.filter(drt=username)
         user = Usuario.objects.values_list('nome').filter(drt=username)
-
-        
-        
         # perfil_acesso = Usuario.objects.get(drt=username)
         # perfil = models.Usuario.objects.filter(drt__in=perfil_acesso)
         # print(f"perfil: {perfil_acesso}")
         
-        grupo_acesso = GrupoAcessoDetalhe.objects.values_list('fk_perfil_acesso').filter(fk_perfil_acesso=2)
+        grupo_acesso = GrupoAcessoDetalhe.objects.values_list('fk_perfil_acesso').filter(fk_perfil_acesso=1)
         
         print(f"grupo: {grupo_acesso}")
         
@@ -620,6 +617,7 @@ def visualizar(request):
 class ItemDetail(DetailView):
     queryset = Item.objects.all()
 
+
 def remove_publicacao(request, id):
     #print("entrei no remove") # não entra
     
@@ -676,18 +674,19 @@ def item_update(request, id):
         return render(request, 'core/editar.html', {'form': form, 'item' : item})
 
 def item_visualizar(request, id):
-    #print("Entrei no visualizar")
-    ver_item = get_object_or_404(Item, pk=id)
-    form = ItemForm(instance=ver_item)
-    #print(vars(ver_item)) #semelhante ao var_dump(variavel) no PHP pois printa o objeto inteiro
-    #print(vars(form))
+    # #print("Entrei no visualizar")
+    # ver_item = get_object_or_404(Item, pk=id)
+    # form = ItemForm(instance=ver_item)
+    # #print(vars(ver_item)) #semelhante ao var_dump(variavel) no PHP pois printa o objeto inteiro
+    # #print(vars(form))
     
-    if(request.method == 'GET'):
-        print("Entrei no IF")
-        return redirect(request, 'core/item_visualizar.html', {'ver_item': ver_item})
-    else:
-        return render(request, 'core/crud_lista.html', {'form': form, 'ver_item' : ver_item})
-
+    # if(request.method == 'GET'):
+    #     print("Entrei no IF")
+    #     return redirect(request, 'core/item_visualizar.html', {'ver_item': ver_item})
+    # else:
+    #     return render(request, 'core/crud_lista.html', {'form': form, 'ver_item' : ver_item})
+    item = get_object_or_404(Item, pk=id)
+    return render(request, 'core/item_visualizar.html', {'item': item})
 
 def item_create(request):
     if request.method == 'GET':
