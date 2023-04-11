@@ -9,6 +9,9 @@ urlpatterns = [
     path('registrolog/', include('registrolog.urls')),
     path('core/', include('core.urls')),
     path('', include('core.urls')),
+
+    path('ckeditor', include('ckeditor_uploader.urls')),
+    
     path('usuario/', include('usuario.urls')),
     path('items/', include('item.urls')),
     path('dashboard/', include('dashboard.urls')),

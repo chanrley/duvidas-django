@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from ckeditor.fields import RichTextField
-
+from ckeditor_uploader.fields import RichTextUploadingField
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -33,3 +33,4 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     body1 = models.TextField(blank=True, null=True)
     body2 = RichTextField(blank=True, null=True)
+    body3 = RichTextUploadingField(blank=True, null=True)
