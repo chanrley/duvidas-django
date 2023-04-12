@@ -215,9 +215,11 @@
         <br>
         <h2>Criar Publicação</h2>
         <form action="{% url 'core:item_create' %}" method="GET">
-        {% csrf_token %}
-        {{ form.media}}
-        {{ form.as_p}}
+          {% csrf_token %}
+          
+          {{ form.as_p }}
+          {{ form.media|safe}}
+          {{ description_with_photo|safe }}<br>
         <button type="submit" class="btn btn-purpple" >Criar</button>
         </form>
         {% comment %} {% endblock %} {% endcomment %}

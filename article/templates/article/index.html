@@ -1,0 +1,14 @@
+{% for article in articles %}
+    <h1>{{ article.title}}</h1>
+    <div class="body">
+        {{ article.content|safe }}
+        {{ article.created_at|safe}}
+    </div>
+
+    <div class="body-upload">
+        {{ article.content_with_photo|safe }}
+    </div>
+
+{% endfor %}
+
+ 

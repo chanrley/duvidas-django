@@ -38,6 +38,8 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
 
 # Application definition
 
@@ -61,6 +63,7 @@ INSTALLED_APPS = [
     'registrolog',
     'django_db_logger',
     'ckeditor',
+    'article',
     'ckeditor_uploader',
 
 ]
@@ -173,10 +176,27 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIA_URL = 'media/'
+##########################
+#antes do code with stein#
+##########################
+#STATIC_URL = 'static/'
+#MEDIA_URL = 'media/'
+#MEDIA_ROOT = BASE_DIR / 'media'
+#STATIC_ROOT = 'staticfiles'
+##########################
+#antes do code with stein#
+##########################
+
+
+#depois do code with stein
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-STATIC_ROOT = 'staticfiles'
+
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+CKEDITOR_UPLOAD_PATH = "uploads/"
+#depois do code with stein
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -248,15 +268,15 @@ LOGGING = {
     }
 }
 
-CKEDITOR_BASEPATH = "/staticfiles/ckeditor/ckeditor/"
-CKEDITOR_UPLOAD_PATH = "uploads/"
-CKEDITOR_FILENAME_GENERATOR = 'utils.get_filename'
+# CKEDITOR_BASEPATH = "/staticfiles/ckeditor/ckeditor/"
+# CKEDITOR_UPLOAD_PATH = "uploads/"
+# CKEDITOR_FILENAME_GENERATOR = 'utils.get_filename'
 
 
-CKEDITOR_IMAGE_BACKEND = 'pillow'
+# CKEDITOR_IMAGE_BACKEND = 'pillow'
 
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'Basic',
-    },
-}
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         'toolbar': 'Basic',
+#     },
+# }

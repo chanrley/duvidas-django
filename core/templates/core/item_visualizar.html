@@ -229,8 +229,9 @@
   </aside><!-- End Sidebar-->
 <br>
 <main id="main" class="main">
-    <h1>Visualizar item "{{item.name}}"</h1>
-    <p> Descrição: {{item.description}}</p>
+    <h1>Visualizar item "{{ item.name }}"</h1>
+    <p> Descrição: {{ item.description }}</p>
+    <p> Descrição com foto: {{item.description_with_photo|safe}}
     <p> Criado em: {{ item.created_at }}
 </main>
 

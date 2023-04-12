@@ -1,0 +1,26 @@
+{% load static %}
+
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+
+
+{% comment %} <h1>{{ article.title|safe }} </h1>
+<hr>
+
+{{ article.content|safe }}
+
+<hr>
+
+{{ article.content_with_photo|safe }}
+
+<hr> {% endcomment %}
+
+<form method="post" action="{% url 'article:detail' article.id %}">
+    {% csrf_token %}
+
+    
+    {{ form.as_p }}
+    {{ form.media }}
+
+    <button>Save changes</button>
+</form>

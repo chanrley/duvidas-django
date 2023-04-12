@@ -649,24 +649,26 @@ def item_delete(request, id):
     return redirect('core:crud_lista')
 
 def item_update(request, id):
-    print("pronto")
+    # print("pronto")
     item = get_object_or_404(Item, pk=id)
     form = ItemForm(instance=item)
 
     if(request.method == 'POST'):
         form = ItemForm(request.POST, instance=item)	
         if(form.is_valid()):
-            print("Form válido")
+            # print("Form válido")
             
             item.category = form.cleaned_data['category']
             item.name = form.cleaned_data['name']
             item.description = form.cleaned_data['description']
+            item.description_with_photo = form.cleaned_data['description_with_photo']
+            
             item.created_by = form.cleaned_data['created_by']
             # item.created_at = form.cleaned_data['created_at']
             item = form.save(commit=True)
             item.save()
 
-            return redirect('core:crud_lista')
+            return redirect(request, 'core:crud_lista', {'form': form, 'item': item})
         else:
             return render(request, 'core/editar.html', {'form': form, 'item' : item})
 
