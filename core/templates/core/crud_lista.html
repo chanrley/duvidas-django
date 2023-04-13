@@ -261,7 +261,7 @@
                   <form action="{% url 'core:item_update' x.id %}" method="GET">
                     {% comment %} {% csrf_token %} {% endcomment %}
                     <td><button type="submit" class="btn btn-secondary">Editar</button></td>
-                    <td><button type="submit" class="btn btn-danger">Testando{{ x.description_with_photo|safe }}</button></td>
+                    {% comment %} <td><button type="submit" class="btn btn-danger">Testando{{ x.description_with_photo|safe }}</button></td> {% endcomment %}
 
                   </form>
                   <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ x.id}}">Excluir</button></td>

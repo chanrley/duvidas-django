@@ -650,30 +650,33 @@ def item_delete(request, id):
 
 def item_update(request, id):
     # print("pronto")
-    item = get_object_or_404(Item, pk=id)
-    form = ItemForm(instance=item)
+    item = Item.objects.all()
+
+    items = get_object_or_404(Item, pk=id)
+    form = ItemForm(instance=items)
 
     if(request.method == 'POST'):
-        form = ItemForm(request.POST, instance=item)	
+        form = ItemForm(request.POST, instance=items)	
         if(form.is_valid()):
             # print("Form válido")
             
-            item.category = form.cleaned_data['category']
-            item.name = form.cleaned_data['name']
-            item.description = form.cleaned_data['description']
-            item.description_with_photo = form.cleaned_data['description_with_photo']
+            items.category = form.cleaned_data['category']
+            items.name = form.cleaned_data['name']
+            items.description = form.cleaned_data['description']
+            items.description_with_photo = form.cleaned_data['description_with_photo']
             
-            item.created_by = form.cleaned_data['created_by']
-            # item.created_at = form.cleaned_data['created_at']
-            item = form.save(commit=True)
-            item.save()
-
-            return redirect(request, 'core:crud_lista', {'form': form, 'item': item})
+            items.created_by = form.cleaned_data['created_by']
+            # items.created_at = form.cleaned_data['created_at']
+            items = form.save(commit=True)
+            items.save()
+            print("form válido")
+            return render(request, 'core/crud_lista.html', {'items': items, 'item': item})
+        
         else:
-            return render(request, 'core/editar.html', {'form': form, 'item' : item})
+            return render(request, 'core/editar.html', {'form': form, 'items' : items})
 
     elif(request.method == 'GET'):
-        return render(request, 'core/editar.html', {'form': form, 'item' : item})
+        return render(request, 'core/editar.html', {'form': form, 'items' : items})
 
 def item_visualizar(request, id):
     # #print("Entrei no visualizar")

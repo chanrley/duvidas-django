@@ -1,10 +1,12 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
-
 from . import views
 from .forms import LoginForm, LogadoForm
-
 from .views import HomePageView, SearchResultsView, NavbarView, ProcuraMenuView, ProcuraSubMenuView, testar, loggin, remove_publicacao
+
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 
 def test(request):
@@ -63,5 +65,5 @@ urlpatterns = [
     path('test/', test),
     path('testar/', views.testar, name='testar'),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)#only for development environment, in production using nginx instead
 
