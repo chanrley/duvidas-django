@@ -24,6 +24,7 @@ db_logger = logging.getLogger('db')
 
 
 def index(request):
+    """Classe inicial do projeto, porém foi descontinuada"""
     menus = Menu.objects.all()
     submenus = SubMenu.objects.all()
 
@@ -64,6 +65,7 @@ def master(request):
     })
 
 def navbar(request):
+    """Popular navbar com dados do banco de dados"""
     menus = Menu.objects.all()
     submenus = SubMenu.objects.all()
     id = 1
@@ -117,6 +119,7 @@ def navbar(request):
     })
 
 def navbar_novo_layout(request):
+    """Popula navbar no novo layout nos padrões do CSF(Carrefour Soluções Financeiras)"""
     menus = Menu.objects.all()
     submenus = SubMenu.objects.all()
     um = SubMenu.objects.filter(menu_id=1).values()
@@ -167,6 +170,7 @@ def navbar_novo_layout(request):
     })
 
 def navbar_novo_layout_integrado(request):
+    """Navbar integrada com frontend e backend"""
     menus = Menu.objects.all()
     submenus = SubMenu.objects.all()
     um = SubMenu.objects.filter(menu_id=1).values()
@@ -225,7 +229,7 @@ def navbar_novo_layout_integrado(request):
     
 def loggin(request):
 #    return render(request, 'core/login.html')
-
+    """Função para 'logar' no sistema """
     if request.method == "GET":
         return render(request, 'core/loggin.html')
     else:
