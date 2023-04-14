@@ -1,6 +1,6 @@
 import pandas as pd
 # from .models import Usuario
-from .models import Usuario
+from usuario.models import Usuario
 # import usuario.Usuario
 
 
