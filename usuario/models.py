@@ -22,6 +22,7 @@ class Usuario(models.Model):
     class Meta:
         ordering = ('nome',)
         verbose_name_plural = 'Usuários'
+        verbose_name = 'usuario'
     
     def __str__(self):
         return f"{self.nome} - {self.perfil_acesso} - {self.senha}"
