@@ -13,5 +13,6 @@ urlpatterns = [
     path('delete/<int:pk>/', views.UsuarioDelete.as_view(), name='delete'),
     path('userdata/', views.userdata, name='userdata'),
     path('importar/', views.importar, name='importar'),
+    path('userdata/', views.userdata, name='userdata'),
     
 ]

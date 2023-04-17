@@ -45,11 +45,11 @@ def userdata(request):
         data = []
         for drt, nome, cargo, perfil_acesso in csvf:
             drt = Usuario(drt=drt)
-            nome.set_nome(nome)
-            cargo.set_cargo(cargo)
-            perfil_acesso.set_perfil_acesso(perfil_acesso)
-
-            data.append(drt)
+            nome = Usuario(nome=nome)
+            cargo = Usuario(cargo=cargo)
+            perfil_acesso = Usuario(perfil_acesso=perfil_acesso)
+            
+            data.append(drt, nome, cargo, perfil_acesso)
         Usuario.ojects.bulk_create(data)
     
     return JsonResponse('user csv is now working', safe=False)
