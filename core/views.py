@@ -231,33 +231,29 @@ def navbar_novo_layout_integrado(request):
 def loggin(request):
 #    return render(request, 'core/login.html')
     """Função para 'logar' no sistema """
-    # print(f'Id: {username2}')
-
     if request.method == "GET":
         return render(request, 'core/loggin.html')
     else:
         # print('Entrei no else')
         username = str(request.POST.get('username'))
         senha = Usuario.objects.filter(drt=username)
-        user = Usuario.objects.values_list('nome').filter(drt=username)
-        # print(vars(user))
+        #user = Usuario.objects.values_list('nome').filter(drt=username)
+        user = Usuario.objects.get(drt=username)
+        user_grupo_acesso = user.perfil_acesso
+
+        print(f'Usuário: {user}')
 
         # perfil_acesso = Usuario.objects.get(drt=username)
         # perfil = models.Usuario.objects.filter(drt__in=perfil_acesso)
         # print(f"perfil: {perfil_acesso}")
         
-        grupo_acesso = GrupoAcessoDetalhe.objects.values_list('fk_perfil_acesso').filter(fk_perfil_acesso=1)
+
+
+        # grupo_acesso = GrupoAcessoDetalhe.objects.values_list('fk_perfil_acesso').filter(fk_perfil_acesso=1)
+        grupo_acesso = GrupoAcessoDetalhe.objects.values_list('fk_perfil_acesso').filter(fk_perfil_acesso=user_grupo_acesso)
         
-        # print(f"grupo: {grupo_acesso}")
-        # print(f"user: {user}")
+        print(f"grupo: {grupo_acesso}")
         
-        #Refazer de maneira dinâmica em vez de 'hardcoded'
-        if username == "39126409801":
-            usr = 'Chanrley'
-        else:
-            usr = str(user).replace(str(user), 'User1')
-            print(usr)
-        #Refazer de maneira dinâmica em vez de 'hardcoded'
 
         if (1,) in grupo_acesso:
             # print('Entrei no if')
@@ -305,15 +301,17 @@ def loggin(request):
                     'dezoito': dezoito,
                     'dezenove': dezenove, 
                     'vinte': vinte,
-                    'user': usr,
+                    'user': user,
             }
         elif (2,) in grupo_acesso:
             menus = Menu.objects.all()
+            um = SubMenu.objects.filter(menu_id=1).values()
             oito = SubMenu.objects.filter(menu_id=8).values()
             contexto = {
                     'menus': menus,
+                    'um': um,
                     'oito': oito,
-                    'user': usr,
+                    'user': user,
             }
         else:
             return redirect(request, 'core/loggin.html')
@@ -326,19 +324,18 @@ def loggin(request):
         # drt = username
         # user = authenticate(username=username, password=senha)
         # print(drt)
-
         for username in senha:
             # login_django(request, user)
             # print("Entrou no for")        
-            # print(grupo_acesso)
+            print(grupo_acesso)
             return render(request, 'core/index-portal.html', contexto)
         
             # return HttpResponse('Autenticado')     
         else:
-            db_logger.warning(f'Usuário {username} não cadastrado')
             return HttpResponse("User ou senha inválidos")
     
     
+
 
 
 def logado(request):
