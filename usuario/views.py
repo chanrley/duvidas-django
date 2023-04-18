@@ -80,3 +80,37 @@ def importar(request):
     Usuario.objects.bulk_create(usuarios)
     return HttpResponse("Funcionou!!!")
 
+
+def carregar_usuarios(request):
+    myfile = open("usuario/file.csv", "r")
+    contador = 0
+    user_count_before = Usuario.objects.all().count()
+    print(f'usuários antes: {user_count_before}')
+
+    while myfile:
+        line  = myfile.readline()
+        # print(line)
+        registro = line.split(';')
+        
+        if line == "":
+            # print(f'{registro[0]}')
+            break
+
+        print(f'DRT: {registro[0]}')
+        print(f'Nome: {registro[1]}')
+        print(f'Cargo: {registro[2]}')
+        # print(f'Perfil_Acesso: {registro[3]}')
+        
+        user = Usuario(drt= registro[0], nome= registro[1], cargo= registro[2])
+        user.save()
+        contador += contador
+
+    myfile.close()
+    user_count_after = Usuario.objects.all().count()
+    users_created = user_count_after - user_count_before
+    if users_created:
+        return HttpResponse(f'{users_created} usuários criados com sucesso!!!')
+    else:
+        return HttpResponse(f'Nenhum usuário criado!!!')
+
+

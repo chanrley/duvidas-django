@@ -14,5 +14,6 @@ urlpatterns = [
     path('userdata/', views.userdata, name='userdata'),
     path('importar/', views.importar, name='importar'),
     path('userdata/', views.userdata, name='userdata'),
+    path('carregar_usuarios/', views.carregar_usuarios, name='carregar_usuarios'),
     
 ]

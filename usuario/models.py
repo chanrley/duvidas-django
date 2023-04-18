@@ -16,8 +16,8 @@ class Usuario(models.Model):
     drt = models.CharField(max_length=11)
     nome = models.CharField(max_length=100)
     cargo = models.CharField(max_length=100)
-    # perfil_acesso = models.ForeignKey(to=GrupoAcesso, on_delete=models.CASCADE)
-    perfil_acesso = models.CharField(max_length=100)
+    perfil_acesso = models.ForeignKey(to=GrupoAcesso, on_delete=models.CASCADE, default=2)
+    # perfil_acesso = models.CharField(max_length=100)
     senha = models.CharField(max_length=11, default=1)
 
     class Meta:
