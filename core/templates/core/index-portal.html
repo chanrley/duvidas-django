@@ -47,7 +47,7 @@
         
         {% for i in menus %}
           <a class="nav-link collapsed" data-bs-target="#components-nav{{ i.id }}" data-bs-toggle="collapse" href="#">
-            <span>{{ i.nome }}</span><i class="bi bi-plus ms-auto"></i>
+            <span>{{ i.nome }}</span>x<i class="bi bi-plus ms-auto"></i>
           </a>
           <ul id="components-nav{{ i.id }}" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             {% if i.id == 1 %}
@@ -367,3 +367,4 @@
 </body>
 
 </html>
+<!-- Alteração no index-portal.html em 19/04/23 às 13:10 -->
