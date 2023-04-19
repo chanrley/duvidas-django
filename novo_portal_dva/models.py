@@ -1,4 +1,5 @@
 from django.db import models
+from usuario.models import Usuario
 
 class Menu(models.Model):
     nome = models.CharField(max_length=255)
@@ -22,7 +23,13 @@ class SubMenu(models.Model):
     def __str__(self):
         return f"{self.nome} - {self.menu}"
 
-
+class AcessoAoMenu(models.Model):
+    fk_menu = models.ForeignKey(to=Menu, on_delete=models.CASCADE)
+    fk_user = models.ForeignKey(to=Usuario, on_delete=models.CASCADE)
+    menu_accessed = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return f"{self.fk_menu} - {self.fk_user}"
 
 # class GrupoAcesso(models.Model):
 #     grupo_acesso = models.IntegerField()

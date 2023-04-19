@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Menu, SubMenu
+from .models import Menu, SubMenu, AcessoAoMenu
 
 admin.site.register(Menu)
 
@@ -10,6 +10,8 @@ class ModelAdminSubMenu(admin.ModelAdmin):
     list_display = ['nome', 'menu', 'menu_id']
 
 admin.site.register(SubMenu, ModelAdminSubMenu)
+
+admin.site.register(AcessoAoMenu)
 
 
 # class ModelAdminGrupoAcesso(admin.ModelAdmin):

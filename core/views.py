@@ -20,7 +20,7 @@ from item.forms import ItemForm
 from django.contrib.auth.models import User
 import tkinter
 from tkinter import messagebox
-
+from novo_portal_dva.models import AcessoAoMenu
 
 # db_logger = logging.getLogger('db')
 db_logger = logging.getLogger('db')
@@ -254,8 +254,21 @@ def loggin(request):
             # grupo_acesso = GrupoAcessoDetalhe.objects.values_list('fk_perfil_acesso').filter(fk_perfil_acesso=1)
             grupo_acesso = GrupoAcessoDetalhe.objects.values_list('fk_perfil_acesso').filter(fk_perfil_acesso=user_grupo_acesso)
             
-            # print(f"grupo: {grupo_acesso}")
+            print(f"grupo: {grupo_acesso}")
+            print(f"User nome: {user.nome}")
+            print(f"Username: {username}")
             
+            ##################
+            #Trabalhando aqui#
+            ##################
+            # fk_user = AcessoAoMenu.objects.get('User1'=user.nome)
+            # menu_acessado = AcessoAoMenu.objects.filter(user.nome=fk_user)
+            # print(f"Menu acessado: {menu_acessado}")
+
+            ##################
+            #Trabalhando aqui#
+            ##################
+
             if (1,) in grupo_acesso:
                 # print('Entrei no if')
                 menus = Menu.objects.all()
@@ -344,7 +357,7 @@ def loggin(request):
                 return HttpResponse("DRT não cadastrado. Contate o Administrador.")
     except:
         return HttpResponse("<h2>DRT não cadastrado. Contate o Administrador.</h2>")
-    
+
     
     
 
