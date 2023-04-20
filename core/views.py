@@ -232,134 +232,215 @@ def navbar_novo_layout_integrado(request):
     
 def loggin(request):
     """Função para 'logar' no sistema somente com DRT válido"""
-    try:
+    # try:
 
-        if request.method == "GET":
-            return render(request, 'core/loggin.html')
+    if request.method == "GET":
+        return render(request, 'core/loggin.html')
+    else:
+
+        # print('Entrei no else')
+        username = str(request.POST.get('username'))
+        senha = Usuario.objects.filter(drt=username)
+        #user = Usuario.objects.values_list('nome').filter(drt=username)
+        user = Usuario.objects.get(drt=username)
+        user_grupo_acesso = user.perfil_acesso
+
+        # print(f'Usuário: {user}')
+
+        # perfil_acesso = Usuario.objects.get(drt=username)
+        # perfil = models.Usuario.objects.filter(drt__in=perfil_acesso)
+        # print(f"perfil: {perfil_acesso}")
+
+        # grupo_acesso = GrupoAcessoDetalhe.objects.values_list('fk_perfil_acesso').filter(fk_perfil_acesso=1)
+        grupo_acesso = GrupoAcessoDetalhe.objects.values_list('fk_perfil_acesso').filter(fk_perfil_acesso=user_grupo_acesso)
+        
+        # print(f"grupo: {grupo_acesso}")
+        # print(f"User: {user}")
+        # print(f"User id: {user.pk}")
+        # # print(f"User fk: {fk_user}")
+        # print(f"User nome: {user.nome}")
+        # print(f"Username: {username}")
+        # print(f"User perfil: {user.perfil_acesso}")
+        
+            
+        ##################
+        #Trabalhando aqui#
+        ##################
+        # id = user.id
+        # id =1
+        
+        # fk_users = AcessoAoMenu.objects.get(pk=id)
+        # fk_users = AcessoAoMenu.objects.values_list('fk_user', flat=True).filter(pk=user.pk) #funciona
+        # fk_users = AcessoAoMenu.objects.values_list('fk_user').filter(fk_user=user.nome)
+       
+        perfil = Usuario.objects.values_list('perfil_acesso').filter(drt=username)
+        
+        # print(f"Perfil: {perfil}")
+        
+        if (1,) in perfil:
+            perfil_user = 1
         else:
+            perfil_user = 2
+       
+       
+       
+        fk_users = AcessoAoMenu.objects.values_list('fk_user').filter(id=perfil_user)
+        # print(f"fk_users: {fk_users}")
+        
+        fk_menus = AcessoAoMenu.objects.values_list('fk_user', 'fk_menu', 'menu_accessed').filter(id=perfil_user)
+        # print(f"fk_menus: {fk_menus}")
+        
+        menu_filtrado = Menu.objects.get(id=perfil_user)
+        # print(f"menu_filtrado: {menu_filtrado}")
+        
+        user_pk = user.pk
 
+        usuario_filtrado = Usuario.objects.get(id=user_pk)
+        # print(f"usuario_filtrado: {usuario_filtrado}")
+        
+        # registro = AcessoAoMenu(fk_menu=menu_filtrado, fk_user=usuario_filtrado, menu_accessed=True)
+        # registro.save()
+        # print(f"Registro: {registro}")
+        menu_accessed = True
+        clicar_menu(menu_filtrado, usuario_filtrado, menu_accessed, perfil_user, user_pk)
+
+
+        ##################
+        #Trabalhando aqui#
+        ##################
+
+        if (1,) in grupo_acesso:
+            # print('Entrei no if')
+            menus = Menu.objects.all()
+            submenus = SubMenu.objects.all()
+            um = SubMenu.objects.filter(menu_id=1).values()
+            dois = SubMenu.objects.filter(menu_id=2).values()
+            tres = SubMenu.objects.filter(menu_id=3).values()
+            quatro = SubMenu.objects.filter(menu_id=4).values()
+            cinco = SubMenu.objects.filter(menu_id=5).values()
+            seis = SubMenu.objects.filter(menu_id=6).values()
+            sete = SubMenu.objects.filter(menu_id=7).values()
+            oito = SubMenu.objects.filter(menu_id=8).values()
+            nove = SubMenu.objects.filter(menu_id=9).values()
+            dez = SubMenu.objects.filter(menu_id=10).values()
+            onze = SubMenu.objects.filter(menu_id=11).values()
+            doze = SubMenu.objects.filter(menu_id=12).values()
+            treze = SubMenu.objects.filter(menu_id=13).values()
+            quatorze = SubMenu.objects.filter(menu_id=14).values()
+            quinze = SubMenu.objects.filter(menu_id=15).values()
+            dezesseis = SubMenu.objects.filter(menu_id=16).values()
+            dezessete = SubMenu.objects.filter(menu_id=17).values()
+            dezoito = SubMenu.objects.filter(menu_id=18).values()
+            dezenove = SubMenu.objects.filter(menu_id=19).values()
+            vinte = SubMenu.objects.filter(menu_id=20).values()
+            contexto = {
+                    'menus': menus,
+                    'um': um,
+                    'dois': dois,
+                    'tres': tres,
+                    'quatro': quatro,
+                    'cinco': cinco,
+                    'seis': seis,
+                    'sete': sete,
+                    'oito': oito,
+                    'nove': nove,
+                    'dez': dez,
+                    'onze': onze, 	
+                    'doze': doze,	
+                    'treze': treze,	
+                    'quatorze': quatorze,
+                    'quinze': quinze,
+                    'dezesseis': dezesseis,
+                    'dezessete': dezessete,
+                    'dezoito': dezoito,
+                    'dezenove': dezenove, 
+                    'vinte': vinte,
+                    'user': user,
+                    'menu_filtrado': menu_filtrado,
+                    'usuario_filtrado': usuario_filtrado, 
+                    'menu_accessed': menu_accessed, 
+                    'perfil_user': perfil_user,
+                    'user_pk': user_pk,
+            }
+        elif (2,) in grupo_acesso:
+            menus = Menu.objects.all()
+            um = SubMenu.objects.filter(menu_id=1).values()
+            oito = SubMenu.objects.filter(menu_id=8).values()
+            user.perfil_acesso
+            contexto = {
+                    'menus': menus,
+                    'um': um,
+                    'oito': oito,
+                    'user': user,
+                    'user.perfil_acesso':user.perfil_acesso,
+            }
+        
+        else:
+            return redirect(request, 'core/loggin.html')
             # print('Entrei no else')
-            username = str(request.POST.get('username'))
-            senha = Usuario.objects.filter(drt=username)
-            #user = Usuario.objects.values_list('nome').filter(drt=username)
-            user = Usuario.objects.get(drt=username)
-            user_grupo_acesso = user.perfil_acesso
+        # print(type(username))
+        # print(username)
+        # print(type(senha))
+        # print(senha)
 
-            # print(f'Usuário: {user}')
-
-            # perfil_acesso = Usuario.objects.get(drt=username)
-            # perfil = models.Usuario.objects.filter(drt__in=perfil_acesso)
-            # print(f"perfil: {perfil_acesso}")
-
-            # grupo_acesso = GrupoAcessoDetalhe.objects.values_list('fk_perfil_acesso').filter(fk_perfil_acesso=1)
-            grupo_acesso = GrupoAcessoDetalhe.objects.values_list('fk_perfil_acesso').filter(fk_perfil_acesso=user_grupo_acesso)
+        # drt = username
+        # user = authenticate(username=username, password=senha)
+        # print(drt)
+        for username in senha:
+            # login_django(request, user)
+            # print("Entrou no for")        
+            # print(grupo_acesso)
             
-            print(f"grupo: {grupo_acesso}")
-            print(f"User nome: {user.nome}")
-            print(f"Username: {username}")
-            
-            ##################
-            #Trabalhando aqui#
-            ##################
-            # fk_user = AcessoAoMenu.objects.get('User1'=user.nome)
-            # menu_acessado = AcessoAoMenu.objects.filter(user.nome=fk_user)
-            # print(f"Menu acessado: {menu_acessado}")
+            #Mensagem de sucesso
+            # root = tkinter.Tk()
+            # root.withdraw()
+            # # Message Box
+            # messagebox.showinfo("Informação", "Usuário logado com sucesso")
+            db_logger.info(f'User {username} logado')
+            return render(request, 'core/index-portal.html', contexto)
+        
+            # return HttpResponse('Autenticado')     
+        else:
+            return HttpResponse("DRT não cadastrado. Contate o Administrador.")
+    # except:
+        # return HttpResponse("<h2>DRT não cadastrado. Contate o Administrador.</h2>")
 
-            ##################
-            #Trabalhando aqui#
-            ##################
-
-            if (1,) in grupo_acesso:
-                # print('Entrei no if')
-                menus = Menu.objects.all()
-                submenus = SubMenu.objects.all()
-                um = SubMenu.objects.filter(menu_id=1).values()
-                dois = SubMenu.objects.filter(menu_id=2).values()
-                tres = SubMenu.objects.filter(menu_id=3).values()
-                quatro = SubMenu.objects.filter(menu_id=4).values()
-                cinco = SubMenu.objects.filter(menu_id=5).values()
-                seis = SubMenu.objects.filter(menu_id=6).values()
-                sete = SubMenu.objects.filter(menu_id=7).values()
-                oito = SubMenu.objects.filter(menu_id=8).values()
-                nove = SubMenu.objects.filter(menu_id=9).values()
-                dez = SubMenu.objects.filter(menu_id=10).values()
-                onze = SubMenu.objects.filter(menu_id=11).values()
-                doze = SubMenu.objects.filter(menu_id=12).values()
-                treze = SubMenu.objects.filter(menu_id=13).values()
-                quatorze = SubMenu.objects.filter(menu_id=14).values()
-                quinze = SubMenu.objects.filter(menu_id=15).values()
-                dezesseis = SubMenu.objects.filter(menu_id=16).values()
-                dezessete = SubMenu.objects.filter(menu_id=17).values()
-                dezoito = SubMenu.objects.filter(menu_id=18).values()
-                dezenove = SubMenu.objects.filter(menu_id=19).values()
-                vinte = SubMenu.objects.filter(menu_id=20).values()
-                contexto = {
-                        'menus': menus,
-                        'um': um,
-                        'dois': dois,
-                        'tres': tres,
-                        'quatro': quatro,
-                        'cinco': cinco,
-                        'seis': seis,
-                        'sete': sete,
-                        'oito': oito,
-                        'nove': nove,
-                        'dez': dez,
-                        'onze': onze, 	
-                        'doze': doze,	
-                        'treze': treze,	
-                        'quatorze': quatorze,
-                        'quinze': quinze,
-                        'dezesseis': dezesseis,
-                        'dezessete': dezessete,
-                        'dezoito': dezoito,
-                        'dezenove': dezenove, 
-                        'vinte': vinte,
-                        'user': user,
-                }
-            elif (2,) in grupo_acesso:
-                menus = Menu.objects.all()
-                um = SubMenu.objects.filter(menu_id=1).values()
-                oito = SubMenu.objects.filter(menu_id=8).values()
-                contexto = {
-                        'menus': menus,
-                        'um': um,
-                        'oito': oito,
-                        'user': user,
-                }
-            
-            else:
-                return redirect(request, 'core/loggin.html')
-                # print('Entrei no else')
-            # print(type(username))
-            # print(username)
-            # print(type(senha))
-            # print(senha)
-
-            # drt = username
-            # user = authenticate(username=username, password=senha)
-            # print(drt)
-            for username in senha:
-                # login_django(request, user)
-                # print("Entrou no for")        
-                # print(grupo_acesso)
-                
-                #Mensagem de sucesso
-                # root = tkinter.Tk()
-                # root.withdraw()
-                # # Message Box
-                # messagebox.showinfo("Informação", "Usuário logado com sucesso")
-                db_logger.info(f'User {username} logado')
-                return render(request, 'core/index-portal.html', contexto)
-            
-                # return HttpResponse('Autenticado')     
-            else:
-                return HttpResponse("DRT não cadastrado. Contate o Administrador.")
-    except:
-        return HttpResponse("<h2>DRT não cadastrado. Contate o Administrador.</h2>")
-
+def clicar_menu(menu_filtrado, usuario_filtrado, menu_accessed, perfil_user, user_pk):    
     
+    menu_filtrado = Menu.objects.get(id=perfil_user)
+    print(f"menu_filtrado: {menu_filtrado}")
+
+    usuario_filtrado = Usuario.objects.get(id=user_pk)
+    print(f"usuario_filtrado: {usuario_filtrado}")
     
+    registro = AcessoAoMenu(fk_menu=menu_filtrado, fk_user=usuario_filtrado, menu_accessed=menu_accessed)
+    registro.save()
+    print(f"Registro: {registro}")
+    return (f'Registro inserido')
+
+def clicar_menu2(request):
+    teste = request.GET['menu_filtrado']
+    print(f'Var teste: {teste}')
+    
+
+    menu_filtrado = request.menu_filtrado
+    usuario_filtrado = request.usuario_filtrado
+    menu_accessed = request.menu_accessed
+    perfil_user = request.perfil_user
+    user_pk = request.user_pk
+
+    menu_filtrado = Menu.objects.get(id=perfil_user)
+    print(f"menu_filtrado: {menu_filtrado}")
+
+    usuario_filtrado = Usuario.objects.get(id=user_pk)
+    print(f"usuario_filtrado: {usuario_filtrado}")
+    
+    registro = AcessoAoMenu(fk_menu=menu_filtrado, fk_user=usuario_filtrado, menu_accessed=menu_accessed)
+    registro.save()
+    print(f"Registro: {registro}")
+    return (f'Registro inserido')
+
+
 
 
 

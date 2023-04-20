@@ -28,8 +28,11 @@ class AcessoAoMenu(models.Model):
     fk_user = models.ForeignKey(to=Usuario, on_delete=models.CASCADE)
     menu_accessed = models.BooleanField(default=False)
     
+    class Meta:
+        verbose_name_plural = 'Acesso aos Menus'
+        
     def __str__(self):
-        return f"{self.fk_menu} - {self.fk_user}"
+        return f"{self.fk_menu} - {self.fk_user} - {self.menu_accessed}"
 
 # class GrupoAcesso(models.Model):
 #     grupo_acesso = models.IntegerField()

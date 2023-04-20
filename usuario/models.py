@@ -9,7 +9,8 @@ class GrupoAcesso(models.Model):
         verbose_name_plural = 'Grupos de acesso'
 #usuario_id = models.ForeignKey(to=Usuario, on_delete=models.CASCADE)
     def __str__(self):
-        return f"{self.grupo_acesso} - {self.nome_grupo}"
+        # return f"{self.grupo_acesso} - {self.nome_grupo}"
+        return f"{self.grupo_acesso}"
 
 
 class Usuario(models.Model):
@@ -27,6 +28,7 @@ class Usuario(models.Model):
     
     def __str__(self):
         return f"{self.nome} - {self.perfil_acesso} - {self.senha}"
+        # return f"{self.perfil_acesso}"
     
 class GrupoAcessoDetalhe(models.Model):
     fk_perfil_acesso = models.ForeignKey(to=GrupoAcesso, on_delete=models.CASCADE)

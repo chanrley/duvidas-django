@@ -4,10 +4,14 @@ from .models import Item
 from .admin import OrderItem
 from item.models import Item
 from django.forms import ModelForm
-# from ckeditor_uploader import RichTextUploadingField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 INPUT_CLASSES = 'w-full py-4 px-6 rounded-xl border'
+INPUT_CLASSES_SELECT = 'form-select respiro'
+INPUT_CLASSES_TEXT = 'form-control respiro'
+INPUT_CLASSES_AREA = 'form-control respiro'
+
 
 class NewItemForm(forms.ModelForm):
     class Meta:
@@ -71,7 +75,25 @@ class ItemForm(ModelForm):
     class Meta:
         model = Item
         fields = ['category','name','description', 'description_with_photo', 'created_by']
+        widgets = {
+            'category': forms.Select(attrs={
+                'class': INPUT_CLASSES_SELECT
+            }),
+            'name': forms.TextInput(attrs={
+                'class': INPUT_CLASSES_TEXT
+            }),
+            'description': forms.Textarea(attrs={
+                'class': INPUT_CLASSES_AREA
+            }),
+            'description_with_photo': RichTextUploadingField({
+                'class': INPUT_CLASSES_SELECT
+            }),
+            'created_by': forms.Select(attrs={
+                'class': INPUT_CLASSES_SELECT
+            }),
+        }
 
-
-
+        def __init__(self, *args, **kwargs):
+            super(Item, self).__init__(*args, **kwargs)
+            self.fields['category'].error_messages['required'] = u'Nova mensagem de erro.'
 

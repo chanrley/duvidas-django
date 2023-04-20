@@ -46,9 +46,34 @@
       <li class="nav-item">
         
         {% for i in menus %}
-          <a class="nav-link collapsed" data-bs-target="#components-nav{{ i.id }}" data-bs-toggle="collapse" href="#">
-            <span>{{ i.nome }}</span>x<i class="bi bi-plus ms-auto"></i>
-          </a>
+          <form action="{% url 'core:clicar_menu2' %}">
+            <a class="nav-link collapsed" data-bs-target="#components-nav{{ i.id }}" data-bs-toggle="collapse" href="#">
+            {% comment %} <a class="nav-link collapsed" data-bs-target="#components-nav{{ i.id }}" data-bs-toggle="collapse" href="{% url 'core:clicar_menu2' menu_filtrado %}"> {% endcomment %}
+              <span>{{ i.nome }}</span> - {{ i.id }} 
+              {% comment %} Trabalhando aqui, parei aqui: {% endcomment %}
+                {% comment %} {% if menu_accessed %}    {% endcomment %}
+                  {% comment %} <i class="bi bi-eye-slash-fill"></i> {% endcomment %}
+                {% comment %} {% else %} {% endcomment %}
+                  {% comment %} XXX {% endcomment %}
+                {% comment %} {% endif%} {% endcomment %}
+              {% comment %} Trabalhando aqui, parei aqui: {% endcomment %}
+
+
+              {% comment %} #TRABALHANDO AQUI, PAREI AQUI... {% endcomment %}
+              {% comment %} {% if menu_accessed==True %} {% endcomment %}
+                {% comment %} <i class="bi bi-eye-fill"></i> {% endcomment %}
+              {% comment %} {% else %} {% endcomment %}
+                
+                {% comment %} <i class="bi bi-circle-fill ql-bg-purple"></i> {% endcomment %}
+              {% comment %} {% endif %} {% endcomment %}
+              
+              {% comment %} #TRABALHANDO AQUI, PAREI AQUI... {% endcomment %}
+              <i class="bi bi-plus ms-auto"></i>
+            </a>
+
+            {% comment %} <button type="submit">Clique!!!</button> {% endcomment %}
+          
+          </form>
           <ul id="components-nav{{ i.id }}" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             {% if i.id == 1 %}
               {% for x in um %}

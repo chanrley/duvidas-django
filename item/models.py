@@ -14,10 +14,10 @@ class Category(models.Model):
         return self.name
 
 class Item(models.Model):
-    category = models.ForeignKey(Category, verbose_name='Categoria', related_name='items', on_delete=models.CASCADE)
-    name = models.CharField( verbose_name='Título', max_length=255)
-    description = models.TextField(verbose_name='Descrição curta', blank=True, null=True)
-    description_with_photo = RichTextUploadingField(verbose_name='Descrição longa / com foto', blank=True, null=True)
+    category = models.ForeignKey(Category, verbose_name='Categoria', related_name='items', on_delete=models.CASCADE, blank=False)
+    name = models.CharField( verbose_name='Título', max_length=255, blank=False)
+    description = models.TextField(verbose_name='Descrição curta', blank=False, null=True)
+    description_with_photo = RichTextUploadingField(verbose_name='Descrição longa / com foto', blank=False, null=True)
     price = models.FloatField(default=1)
     image = models.ImageField(upload_to='item_images', blank=True, null=True)
     is_sold = models.BooleanField(default=False)
@@ -28,6 +28,8 @@ class Item(models.Model):
     
     def __str__(self):
         return self.name
+
+    
 
 class Post(models.Model):
     title = models.CharField(max_length=255)

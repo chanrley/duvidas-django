@@ -46,6 +46,12 @@ urlpatterns = [
     ##################
     path('item_visualizar/<int:id>/', views.item_visualizar, name='item_visualizar'),
     
+    ##################
+    #Clicar menu#
+    ##################
+    path('clicar_menu/<int:id>/', views.clicar_menu, name='clicar_menu'),
+    path('clicar_menu2/', views.clicar_menu2, name='clicar_menu2'),
+    
     path('ckeditor/', include('ckeditor_uploader.urls')),
 
     path('detail/<int:pk>/', views.ItemDetail.as_view(), name='detail'),

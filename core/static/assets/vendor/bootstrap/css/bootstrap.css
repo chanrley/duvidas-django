@@ -2176,6 +2176,8 @@ textarea.form-control-lg {
   height: calc(1.5em + 1rem + 2px);
 }
 
+.respiro{margin-top: 2%;}
+
 .form-select {
   display: block;
   width: 100%;
@@ -5304,7 +5306,7 @@ textarea.form-control-lg {
 }
 
 .modal-dialog {
-  position: relative;
+  position: fixed;
   width: auto;
   margin: var(--bs-modal-margin);
   pointer-events: none;
@@ -5339,6 +5341,12 @@ textarea.form-control-lg {
 .modal-dialog-centered {
   display: flex;
   align-items: center;
+  min-height: calc(100% - var(--bs-modal-margin) * 2);
+}
+
+.modal-dialog-center {
+  position: relative;
+  left:0%;
   min-height: calc(100% - var(--bs-modal-margin) * 2);
 }
 
