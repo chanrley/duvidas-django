@@ -51,7 +51,7 @@ class NewItemForm(forms.ModelForm):
 class EditItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ('name', 'description', 'description_with_photo', 'price', 'image', 'is_sold')
+        fields = ('name', 'description', 'description_with_photo', 'price', 'image', 'is_sold', 'is_published')
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': INPUT_CLASSES
@@ -65,6 +65,9 @@ class EditItemForm(forms.ModelForm):
             'price': forms.TextInput(attrs={
                 'class': INPUT_CLASSES
             }),
+            
+            'is_published': forms.BooleanField(),
+
             'image': forms.FileInput(attrs={
                 'class': INPUT_CLASSES
             })
@@ -74,7 +77,7 @@ class EditItemForm(forms.ModelForm):
 class ItemForm(ModelForm):
     class Meta:
         model = Item
-        fields = ['category','name','description', 'description_with_photo', 'created_by']
+        fields = ['category','name','description', 'description_with_photo', 'is_published', 'created_by']
         widgets = {
             'category': forms.Select(attrs={
                 'class': INPUT_CLASSES_SELECT
@@ -88,6 +91,11 @@ class ItemForm(ModelForm):
             'description_with_photo': RichTextUploadingField({
                 'class': INPUT_CLASSES_SELECT
             }),
+
+            # 'is_published': forms.BooleanField(),
+            
+            # 'is_published': forms.BooleanField(),
+
             'created_by': forms.Select(attrs={
                 'class': INPUT_CLASSES_SELECT
             }),

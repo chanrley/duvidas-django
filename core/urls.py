@@ -35,6 +35,12 @@ urlpatterns = [
     path('visualizar/', views.visualizar, name='visualizar'),
     path('remove_publicacao/<int:id>/', views.remove_publicacao, name='remove_publicacao'),    
     path('deletar/<int:id>/', views.item_delete, name='item_delete'),
+    ##############################################
+    #Marcar False na publicação em vez de excluir#
+    ##############################################
+    path('deletar2/<int:id>/', views.item_delete2, name='item_delete2'),
+
+    
     path('item_update/<int:id>/', views.item_update, name='item_update'),
     #######################
     #Criação de publicação#

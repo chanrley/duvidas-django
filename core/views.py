@@ -719,7 +719,7 @@ def testar(request):
     return render(request, 'core/testar.html')
 
 def crud_lista(request):
-    item = Item.objects.all()
+    item = Item.objects.all().filter(is_published=True)
     contexto = {
         'item': item
     }
@@ -765,14 +765,24 @@ def remove_publicacao(request, id):
 #     return render(request, 'core/crud_lista.html', contexto)
 
 def item_delete(request, id):
-    print("pronto")
+    """Deleta um Item"""
     item = get_object_or_404(Item, pk=id)
     item.delete()
     return redirect('core:crud_lista')
 
+def item_delete2(request, id):
+    """Marca um Item como não publicado"""
+    # print("pronto")
+    item = get_object_or_404(Item, pk=id)
+    item.is_published = False
+    item.save()
+    
+    # item.delete()
+    return redirect('core:crud_lista')
+
 def item_update(request, id):
     # print("pronto")
-    item = Item.objects.all()
+    item = Item.objects.all().filter(is_published=True)
 
     items = get_object_or_404(Item, pk=id)
     form = ItemForm(instance=items)
@@ -786,11 +796,15 @@ def item_update(request, id):
             items.name = form.cleaned_data['name']
             items.description = form.cleaned_data['description']
             items.description_with_photo = form.cleaned_data['description_with_photo']
-            
+            items.is_published = form.cleaned_data['is_published']
             items.created_by = form.cleaned_data['created_by']
             # items.created_at = form.cleaned_data['created_at']
             items = form.save(commit=True)
             items.save()
+            ####
+            # item = Item.objects.all()
+            # items = get_object_or_404(Item, pk=id)
+            ###
             print("form válido")
             return render(request, 'core/crud_lista.html', {'items': items, 'item': item})
         

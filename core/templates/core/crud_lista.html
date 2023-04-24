@@ -281,7 +281,7 @@
                     <div class="modal-body">
                       Deseja realmente excluir esse conteúdo?
                     </div>
-                    <form  action="{% url 'core:item_delete' x.id %}" method="POST">
+                    <form  action="{% url 'core:item_delete2' x.id %}" method="POST">
                       {% csrf_token %}
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="location.href= '{% url 'core:crud_lista' %}'">Fechar</button>

@@ -21,6 +21,7 @@ class Item(models.Model):
     price = models.FloatField(default=1)
     image = models.ImageField(upload_to='item_images', blank=True, null=True)
     is_sold = models.BooleanField(default=False)
+    is_published = models.BooleanField(verbose_name='Deseja publicar?', default=True)
     created_by = models.ForeignKey(User, verbose_name='Criado por', related_name='items', on_delete=models.CASCADE)
     created_at = models.DateTimeField(verbose_name='Criado em', auto_now_add=True)
     class Meta:
