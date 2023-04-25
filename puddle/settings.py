@@ -329,7 +329,7 @@ CKEDITOR_CONFIGS = {
              'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
             '/',
             # {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},# Padrão
-            {'name': 'styles', 'items': ['Format', 'FontSize']},
+            {'name': 'styles', 'items': ['Format', 'FontSize']}, # Sem estilos e opções de fontes
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
             {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
             {'name': 'about', 'items': ['About']},

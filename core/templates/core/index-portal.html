@@ -38,8 +38,9 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="{% url 'core:conteudo' %}">
-          <span>Dashboard</span>
+        {% comment %} <a class="nav-link " href="{% url 'core:conteudo' %}"> {% endcomment %}
+        <a class="nav-link " href="{% url 'core:crud_lista' %}">
+          <span>Publicações</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
