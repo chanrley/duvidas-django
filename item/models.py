@@ -13,7 +13,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-class Item(models.Model):
+class Item(models.Model):# Publicação
     category = models.ForeignKey(Category, verbose_name='Categoria', related_name='items', on_delete=models.CASCADE, blank=False)
     name = models.CharField( verbose_name='Título', max_length=255, blank=False)
     description = models.TextField(verbose_name='Descrição curta', blank=False, null=True)

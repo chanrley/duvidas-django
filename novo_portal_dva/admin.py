@@ -1,17 +1,28 @@
 from django.contrib import admin
 
-from .models import Menu, SubMenu, AcessoAoMenu
+from .models import Menu, SubMenu, AcessoAoMenu, SubMenu3
+# , Setor
 
-admin.site.register(Menu)
 
 class ModelAdminSubMenu(admin.ModelAdmin):
     model = SubMenu
     list_display_links = ['nome']
     list_display = ['nome', 'menu', 'menu_id']
 
+class ModelAdminMenu(admin.ModelAdmin):
+    model = Menu
+    list_display_links = ['nome']
+    list_display = ['id', 'nome', 'grupo_acesso']
+
+admin.site.register(Menu, ModelAdminMenu)
+
 admin.site.register(SubMenu, ModelAdminSubMenu)
 
 admin.site.register(AcessoAoMenu)
+
+admin.site.register(SubMenu3)
+
+# admin.site.register(Setor)
 
 
 # class ModelAdminGrupoAcesso(admin.ModelAdmin):

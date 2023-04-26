@@ -1,19 +1,20 @@
 from django.db import models
-from usuario.models import Usuario
+from usuario.models import Usuario, GrupoAcesso
 
 class Menu(models.Model):
-    nome = models.CharField(max_length=255)
-
+    nome = models.CharField(max_length=50)
+    grupo_acesso = models.ForeignKey(to=GrupoAcesso, on_delete=models.CASCADE, default=2)
+    
     class Meta:
-        ordering = ('nome',)
+        ordering = ('nome','grupo_acesso',)
         verbose_name_plural = 'Menus'
     
     def __str__(self):
-        return f'{self.nome}'
+        return f'{self.nome} - {self.id}'
 
 
 class SubMenu(models.Model):
-    nome = models.CharField(max_length=255)
+    nome = models.CharField(max_length=50)
     menu = models.ForeignKey(to=Menu, on_delete=models.CASCADE)
     
     class Meta:
@@ -33,6 +34,32 @@ class AcessoAoMenu(models.Model):
         
     def __str__(self):
         return f"{self.fk_menu} - {self.fk_user} - {self.menu_accessed}"
+
+class SubMenu3(models.Model):
+    nome = models.CharField(max_length=50)
+    menu = models.ForeignKey(to=Menu, on_delete=models.CASCADE)
+    submenu = models.ForeignKey(to=SubMenu, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ('nome', 'menu', 'submenu',)
+        verbose_name_plural = 'SubMenus 3'
+
+    def __str__(self):
+        return f"{self.nome} - {self.menu}"
+
+# class Setor(models.Model):
+#     nome = models.CharField(max_length=50)
+#     menu = models.ForeignKey(to=Menu, on_delete=models.CASCADE)
+#     submenu = models.ForeignKey(to=SubMenu, on_delete=models.CASCADE)
+
+#     class Meta:
+#         ordering = ('nome', 'menu', 'submenu',)
+#         verbose_name_plural = 'Setores'
+
+#     def __str__(self):
+#         return f"{self.nome} - {self.menu}"
+
+
 
 # class GrupoAcesso(models.Model):
 #     grupo_acesso = models.IntegerField()

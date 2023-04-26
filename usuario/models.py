@@ -1,8 +1,10 @@
 from django.db import models
+# from .models import Setor
 
 class GrupoAcesso(models.Model):
-    grupo_acesso = models.IntegerField()
+    grupo_acesso = models.IntegerField(default=2)
     nome_grupo = models.CharField(max_length=100)
+    publicador = models.BooleanField(default=False)
     
     class Meta:
         ordering = ('nome_grupo',)
@@ -20,6 +22,7 @@ class Usuario(models.Model):
     perfil_acesso = models.ForeignKey(to=GrupoAcesso, on_delete=models.CASCADE, default=2)
     # perfil_acesso = models.CharField(max_length=100)
     senha = models.CharField(max_length=11, default=1)
+    # setor = models.ForeignKey(to=Setor, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ('nome',)

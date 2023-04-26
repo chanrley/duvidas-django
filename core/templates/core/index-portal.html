@@ -37,13 +37,14 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        {% comment %} <a class="nav-link " href="{% url 'core:conteudo' %}"> {% endcomment %}
-        <a class="nav-link " href="{% url 'core:crud_lista' %}">
-          <span>Publicações</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-
+      {% if  ga  == True %}
+        <li class="nav-item">
+          {% comment %} <a class="nav-link " href="{% url 'core:conteudo' %}"> {% endcomment %}
+          <a class="nav-link " href="{% url 'core:crud_lista' %}">
+            <span>Publicações</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
+      {% endif %}
       <li class="nav-item">
         
         {% for i in menus %}

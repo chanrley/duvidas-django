@@ -6,7 +6,7 @@ from django.db import models
 from novo_portal_dva.models import models, Menu, SubMenu
 # from core.models import Usuario
 from django.contrib import messages
-from usuario.models import Usuario, GrupoAcessoDetalhe
+from usuario.models import Usuario, GrupoAcessoDetalhe, GrupoAcesso
 from core.forms import UsuarioModelForm, DrtModelForm
 from django.db.models import Q
 from django.views.generic import TemplateView, ListView
@@ -254,6 +254,7 @@ def loggin(request):
         # grupo_acesso = GrupoAcessoDetalhe.objects.values_list('fk_perfil_acesso').filter(fk_perfil_acesso=1)
         grupo_acesso = GrupoAcessoDetalhe.objects.values_list('fk_perfil_acesso').filter(fk_perfil_acesso=user_grupo_acesso)
         
+        
         # print(f"grupo: {grupo_acesso}")
         # print(f"User: {user}")
         # print(f"User id: {user.pk}")
@@ -279,10 +280,18 @@ def loggin(request):
         
         if (1,) in perfil:
             perfil_user = 1
+        elif(2,) in perfil:
+            perfil_user = 2  
+        elif(3,) in perfil:
+            perfil_user = 3
+        elif(4,) in perfil:
+            perfil_user = 4
+        elif(5,) in perfil:
+            perfil_user = 5
         else:
             perfil_user = 2
        
-       
+        # print(f"perfil_user: {perfil_user}")
        
         fk_users = AcessoAoMenu.objects.values_list('fk_user').filter(id=perfil_user)
         # print(f"fk_users: {fk_users}")
@@ -302,15 +311,35 @@ def loggin(request):
         # registro.save()
         # print(f"Registro: {registro}")
         menu_accessed = True
-        clicar_menu(menu_filtrado, usuario_filtrado, menu_accessed, perfil_user, user_pk)
+        
+        
+        clicar_menu(request, menu_filtrado, usuario_filtrado, menu_accessed, perfil_user, user_pk)
 
 
+        # print(f"Antes do IF:")
+        # print(f"grupo_acesso: {grupo_acesso}")
+        # print(f"user.perfil_acesso: {user.perfil_acesso}")
+        
         ##################
         #Trabalhando aqui#
         ##################
 
+        ### se for do grupo ADM ou Publicador pode ver o menu de publicações
+        if (1,) in grupo_acesso or (3, ) in grupo_acesso:
+            ga = True
+        else:
+            ga = False
+
+        # ga = GrupoAcesso.objects.filter(grupo_acesso=user.perfil_acesso)
+        # gap = ga.publicador
+
+        # print(f"Grupo Acesso: {ga}")
+        # print(f"Grupo Acesso Publi: {gap}")
+        
+
         if (1,) in grupo_acesso:
             # print('Entrei no if')
+
             menus = Menu.objects.all()
             submenus = SubMenu.objects.all()
             um = SubMenu.objects.filter(menu_id=1).values()
@@ -334,6 +363,7 @@ def loggin(request):
             dezenove = SubMenu.objects.filter(menu_id=19).values()
             vinte = SubMenu.objects.filter(menu_id=20).values()
             contexto = {
+                    'ga': ga,
                     'menus': menus,
                     'um': um,
                     'dois': dois,
@@ -362,18 +392,237 @@ def loggin(request):
                     'perfil_user': perfil_user,
                     'user_pk': user_pk,
             }
+
         elif (2,) in grupo_acesso:
-            menus = Menu.objects.all()
+            
+            print(f'grupo_acesso no elif 2: {grupo_acesso}')
+
+            menus = Menu.objects.filter(grupo_acesso=2)
             um = SubMenu.objects.filter(menu_id=1).values()
+            dois = SubMenu.objects.filter(menu_id=2).values()
+            tres = SubMenu.objects.filter(menu_id=3).values()
+            quatro = SubMenu.objects.filter(menu_id=4).values()
+            cinco = SubMenu.objects.filter(menu_id=5).values()
+            seis = SubMenu.objects.filter(menu_id=6).values()
+            sete = SubMenu.objects.filter(menu_id=7).values()
             oito = SubMenu.objects.filter(menu_id=8).values()
+            nove = SubMenu.objects.filter(menu_id=9).values()
+            dez = SubMenu.objects.filter(menu_id=10).values()
+            onze = SubMenu.objects.filter(menu_id=11).values()
+            doze = SubMenu.objects.filter(menu_id=12).values()
+            treze = SubMenu.objects.filter(menu_id=13).values()
+            quatorze = SubMenu.objects.filter(menu_id=14).values()
+            quinze = SubMenu.objects.filter(menu_id=15).values()
+            dezesseis = SubMenu.objects.filter(menu_id=16).values()
+            dezessete = SubMenu.objects.filter(menu_id=17).values()
+            dezoito = SubMenu.objects.filter(menu_id=18).values()
+            dezenove = SubMenu.objects.filter(menu_id=19).values()
+            vinte = SubMenu.objects.filter(menu_id=20).values()
+
             user.perfil_acesso
             contexto = {
+                    'ga': ga,
                     'menus': menus,
                     'um': um,
+                    'dois': dois,
+                    'tres': tres,
+                    'quatro': quatro,
+                    'cinco': cinco,
+                    'seis': seis,
+                    'sete': sete,
                     'oito': oito,
+                    'nove': nove,
+                    'dez': dez,
+                    'onze': onze, 	
+                    'doze': doze,	
+                    'treze': treze,	
+                    'quatorze': quatorze,
+                    'quinze': quinze,
+                    'dezesseis': dezesseis,
+                    'dezessete': dezessete,
+                    'dezoito': dezoito,
+                    'dezenove': dezenove, 
+                    'vinte': vinte,
                     'user': user,
-                    'user.perfil_acesso':user.perfil_acesso,
+                    'menu_filtrado': menu_filtrado,
+                    'usuario_filtrado': usuario_filtrado, 
+                    'menu_accessed': menu_accessed, 
+                    'perfil_user': perfil_user,
+                    'user_pk': user_pk,
+
             }
+        
+        elif (3,) in grupo_acesso:
+            menus = Menu.objects.filter(grupo_acesso=3)
+            um = SubMenu.objects.filter(menu_id=1).values()
+            dois = SubMenu.objects.filter(menu_id=2).values()
+            tres = SubMenu.objects.filter(menu_id=3).values()
+            quatro = SubMenu.objects.filter(menu_id=4).values()
+            cinco = SubMenu.objects.filter(menu_id=5).values()
+            seis = SubMenu.objects.filter(menu_id=6).values()
+            sete = SubMenu.objects.filter(menu_id=7).values()
+            oito = SubMenu.objects.filter(menu_id=8).values()
+            nove = SubMenu.objects.filter(menu_id=9).values()
+            dez = SubMenu.objects.filter(menu_id=10).values()
+            onze = SubMenu.objects.filter(menu_id=11).values()
+            doze = SubMenu.objects.filter(menu_id=12).values()
+            treze = SubMenu.objects.filter(menu_id=13).values()
+            quatorze = SubMenu.objects.filter(menu_id=14).values()
+            quinze = SubMenu.objects.filter(menu_id=15).values()
+            dezesseis = SubMenu.objects.filter(menu_id=16).values()
+            dezessete = SubMenu.objects.filter(menu_id=17).values()
+            dezoito = SubMenu.objects.filter(menu_id=18).values()
+            dezenove = SubMenu.objects.filter(menu_id=19).values()
+            vinte = SubMenu.objects.filter(menu_id=20).values()
+
+            print(f"elif 3")
+
+            user.perfil_acesso
+            contexto = {
+                    'ga': ga,
+                    'menus': menus,
+                    'um': um,
+                    'dois': dois,
+                    'tres': tres,
+                    'quatro': quatro,
+                    'cinco': cinco,
+                    'seis': seis,
+                    'sete': sete,
+                    'oito': oito,
+                    'nove': nove,
+                    'dez': dez,
+                    'onze': onze, 	
+                    'doze': doze,	
+                    'treze': treze,	
+                    'quatorze': quatorze,
+                    'quinze': quinze,
+                    'dezesseis': dezesseis,
+                    'dezessete': dezessete,
+                    'dezoito': dezoito,
+                    'dezenove': dezenove, 
+                    'vinte': vinte,
+                    'user': user,
+                    'menu_filtrado': menu_filtrado,
+                    'usuario_filtrado': usuario_filtrado, 
+                    'menu_accessed': menu_accessed, 
+                    'perfil_user': perfil_user,
+                    'user_pk': user_pk,
+            }
+        
+        elif (4,) in grupo_acesso: # ver aqui 26/04/23 15:44
+            menus = Menu.objects.all().filter(grupo_acesso=4)
+            
+            um = SubMenu.objects.filter(menu_id=1).values()
+            dois = SubMenu.objects.filter(menu_id=2).values()
+            tres = SubMenu.objects.filter(menu_id=3).values()
+            quatro = SubMenu.objects.filter(menu_id=4).values()
+            cinco = SubMenu.objects.filter(menu_id=5).values()
+            seis = SubMenu.objects.filter(menu_id=6).values()
+            sete = SubMenu.objects.filter(menu_id=7).values()
+            oito = SubMenu.objects.filter(menu_id=8).values()
+            nove = SubMenu.objects.filter(menu_id=9).values()
+            dez = SubMenu.objects.filter(menu_id=10).values()
+            onze = SubMenu.objects.filter(menu_id=11).values()
+            doze = SubMenu.objects.filter(menu_id=12).values()
+            treze = SubMenu.objects.filter(menu_id=13).values()
+            quatorze = SubMenu.objects.filter(menu_id=14).values()
+            quinze = SubMenu.objects.filter(menu_id=15).values()
+            dezesseis = SubMenu.objects.filter(menu_id=16).values()
+            dezessete = SubMenu.objects.filter(menu_id=17).values()
+            dezoito = SubMenu.objects.filter(menu_id=18).values()
+            dezenove = SubMenu.objects.filter(menu_id=19).values()
+            vinte = SubMenu.objects.filter(menu_id=20).values()
+
+            user.perfil_acesso
+            contexto = {
+                    'ga': ga,
+                    'menus': menus,
+                    'um': um,
+                    'dois': dois,
+                    'tres': tres,
+                    'quatro': quatro,
+                    'cinco': cinco,
+                    'seis': seis,
+                    'sete': sete,
+                    'oito': oito,
+                    'nove': nove,
+                    'dez': dez,
+                    'onze': onze, 	
+                    'doze': doze,	
+                    'treze': treze,	
+                    'quatorze': quatorze,
+                    'quinze': quinze,
+                    'dezesseis': dezesseis,
+                    'dezessete': dezessete,
+                    'dezoito': dezoito,
+                    'dezenove': dezenove, 
+                    'vinte': vinte,
+                    'user': user,
+                    'menu_filtrado': menu_filtrado,
+                    'usuario_filtrado': usuario_filtrado, 
+                    'menu_accessed': menu_accessed, 
+                    'perfil_user': perfil_user,
+                    'user_pk': user_pk,
+
+            }
+        
+        elif (5,) in grupo_acesso:
+            menus = Menu.objects.all().filter(grupo_acesso=5)
+            
+            um = SubMenu.objects.filter(menu_id=1).values()
+            dois = SubMenu.objects.filter(menu_id=2).values()
+            tres = SubMenu.objects.filter(menu_id=3).values()
+            quatro = SubMenu.objects.filter(menu_id=4).values()
+            cinco = SubMenu.objects.filter(menu_id=5).values()
+            seis = SubMenu.objects.filter(menu_id=6).values()
+            sete = SubMenu.objects.filter(menu_id=7).values()
+            oito = SubMenu.objects.filter(menu_id=8).values()
+            nove = SubMenu.objects.filter(menu_id=9).values()
+            dez = SubMenu.objects.filter(menu_id=10).values()
+            onze = SubMenu.objects.filter(menu_id=11).values()
+            doze = SubMenu.objects.filter(menu_id=12).values()
+            treze = SubMenu.objects.filter(menu_id=13).values()
+            quatorze = SubMenu.objects.filter(menu_id=14).values()
+            quinze = SubMenu.objects.filter(menu_id=15).values()
+            dezesseis = SubMenu.objects.filter(menu_id=16).values()
+            dezessete = SubMenu.objects.filter(menu_id=17).values()
+            dezoito = SubMenu.objects.filter(menu_id=18).values()
+            dezenove = SubMenu.objects.filter(menu_id=19).values()
+            vinte = SubMenu.objects.filter(menu_id=20).values()
+
+            user.perfil_acesso
+            contexto = {
+                    'ga': ga,
+                    'menus': menus,
+                    'um': um,
+                    'dois': dois,
+                    'tres': tres,
+                    'quatro': quatro,
+                    'cinco': cinco,
+                    'seis': seis,
+                    'sete': sete,
+                    'oito': oito,
+                    'nove': nove,
+                    'dez': dez,
+                    'onze': onze, 	
+                    'doze': doze,	
+                    'treze': treze,	
+                    'quatorze': quatorze,
+                    'quinze': quinze,
+                    'dezesseis': dezesseis,
+                    'dezessete': dezessete,
+                    'dezoito': dezoito,
+                    'dezenove': dezenove, 
+                    'vinte': vinte,
+                    'user': user,
+                    'menu_filtrado': menu_filtrado,
+                    'usuario_filtrado': usuario_filtrado, 
+                    'menu_accessed': menu_accessed, 
+                    'perfil_user': perfil_user,
+                    'user_pk': user_pk,
+
+            }
+        
         
         else:
             return redirect(request, 'core/loggin.html')
@@ -386,6 +635,8 @@ def loggin(request):
         # drt = username
         # user = authenticate(username=username, password=senha)
         # print(drt)
+        print(f"Depois do IF:")
+        
         for username in senha:
             # login_django(request, user)
             # print("Entrou no for")        
@@ -405,8 +656,9 @@ def loggin(request):
     # except:
         # return HttpResponse("<h2>DRT não cadastrado. Contate o Administrador.</h2>")
 
-def clicar_menu(menu_filtrado, usuario_filtrado, menu_accessed, perfil_user, user_pk):    
-    
+def clicar_menu(request, menu_filtrado, usuario_filtrado, menu_accessed, perfil_user, user_pk):    
+    print(f"clicar_menu")
+
     menu_filtrado = Menu.objects.get(id=perfil_user)
     print(f"menu_filtrado: {menu_filtrado}")
 
@@ -415,8 +667,10 @@ def clicar_menu(menu_filtrado, usuario_filtrado, menu_accessed, perfil_user, use
     
     registro = AcessoAoMenu(fk_menu=menu_filtrado, fk_user=usuario_filtrado, menu_accessed=menu_accessed)
     registro.save()
-    print(f"Registro: {registro}")
-    return (f'Registro inserido')
+
+    print(f"Registro 4: {registro}")
+
+    return (request, f'Registro 4 inserido')
 
 def clicar_menu2(request):
     teste = request.GET['menu_filtrado']
@@ -614,8 +868,10 @@ def index_portal(request):
     dezenove = SubMenu.objects.filter(menu_id=19).values()
     vinte = SubMenu.objects.filter(menu_id=20).values()
     
-    db_logger.info('info message XPTO')
-    db_logger.warning('warning message XPTO')
+    # user = request.GET.get('username')
+    # print(user)
+    # db_logger.info(f'Usuário: {user} entrou')
+    # db_logger.warning('warning message XPTO')
 
     return render(request, 'core/index-portal.html', { 
         'menus': menus,
