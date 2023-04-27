@@ -29,7 +29,15 @@ urlpatterns = [
     # path('login/', auth_views.LoginView.as_view(template_name='core/login.html', authentication_form=LoginForm), name='login'),
     path('loggin/<int:id>', views.loggin, name='loggin'),
     path('', views.loggin, name='loggin'),
-    path('crud_lista/', views.crud_lista, name='crud_lista'),
+    path('crud_lista/<str:user>', views.crud_lista, name='crud_lista'),
+    
+    path('crud_lista2/', views.crud_lista2, name='crud_lista2'),
+    path('canais_especiais/', views.canais_especiais, name='canais_especiais'),
+    
+    #Parei aqui
+    path('aplicativos/', views.aplicativos, name='aplicativos'),
+
+
     path('conteudo/', views.conteudo, name='conteudo'),
     path('busca/', views.busca, name='busca'),
     path('visualizar/', views.visualizar, name='visualizar'),

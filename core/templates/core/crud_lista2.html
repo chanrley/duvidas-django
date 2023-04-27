@@ -34,10 +34,8 @@
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="{% static '/assets/img/profile-img.jpg' %}" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">
-              {% if usuario %}
-                {{ usuario }}
-              {% else %}
-                Sem nome
+              {% if user %}
+                {{user.nome}}
               {% endif %}
 
             </span>
@@ -58,7 +56,7 @@
       {% comment %} {% if  (1,) in perfil_user or 1 in perfil_user %} {% endcomment %}
         <li class="nav-item">
           <a class="nav-link">
-            <span>Testar</span>
+            <span>Testar {{ perfil_user }}</span>
           </a>
         </li><!-- End Dashboard Nav -->
       {% comment %} {% endif %} {% endcomment %}
@@ -257,7 +255,6 @@
                   <td>{{ x.created_at }}</td>
                   <td>{{ x.created_by }}</td>
                   <td>{{ x.name }}</td>
-                  
                   <form action="{% url 'core:item_create' %}" method="GET"> 
                     <td><button type="submit" class="btn btn-purpple">Criar</button></td>
                   </form>

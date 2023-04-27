@@ -255,13 +255,12 @@ def loggin(request):
         grupo_acesso = GrupoAcessoDetalhe.objects.values_list('fk_perfil_acesso').filter(fk_perfil_acesso=user_grupo_acesso)
         
         
-        # print(f"grupo: {grupo_acesso}")
-        # print(f"User: {user}")
-        # print(f"User id: {user.pk}")
-        # # print(f"User fk: {fk_user}")
-        # print(f"User nome: {user.nome}")
-        # print(f"Username: {username}")
-        # print(f"User perfil: {user.perfil_acesso}")
+        print(f"grupo: {grupo_acesso}")
+        print(f"User: {user}")
+        print(f"User id: {user.pk}")
+        print(f"User nome: {user.nome}")
+        print(f"Username: {username}")
+        print(f"User perfil: {user.perfil_acesso}")
         
             
         ##################
@@ -335,7 +334,7 @@ def loggin(request):
 
         # print(f"Grupo Acesso: {ga}")
         # print(f"Grupo Acesso Publi: {gap}")
-        
+        usuario = user.nome
 
         if (1,) in grupo_acesso:
             # print('Entrei no if')
@@ -391,6 +390,7 @@ def loggin(request):
                     'menu_accessed': menu_accessed, 
                     'perfil_user': perfil_user,
                     'user_pk': user_pk,
+                    'usuario': usuario,
             }
 
         elif (2,) in grupo_acesso:
@@ -660,10 +660,10 @@ def clicar_menu(request, menu_filtrado, usuario_filtrado, menu_accessed, perfil_
     print(f"clicar_menu")
 
     menu_filtrado = Menu.objects.get(id=perfil_user)
-    print(f"menu_filtrado: {menu_filtrado}")
+    # print(f"menu_filtrado: {menu_filtrado}")
 
     usuario_filtrado = Usuario.objects.get(id=user_pk)
-    print(f"usuario_filtrado: {usuario_filtrado}")
+    # print(f"usuario_filtrado: {usuario_filtrado}")
     
     registro = AcessoAoMenu(fk_menu=menu_filtrado, fk_user=usuario_filtrado, menu_accessed=menu_accessed)
     registro.save()
@@ -974,12 +974,49 @@ def conteudo(request):
 def testar(request):
     return render(request, 'core/testar.html')
 
-def crud_lista(request):
+def crud_lista(request , user):
+    # , perfil_user
+    print(vars(request))
+
+    print(f'crud_lista - usuario {user}')
+
+    # print(vars(request.kwargs))
+
+
+    usuario = user
+    print(f'user: {usuario}')
+    
+
     item = Item.objects.all().filter(is_published=True)
     contexto = {
-        'item': item
+        'item': item,
+        'usuario': usuario,
     }
     return render(request, 'core/crud_lista.html', contexto)
+
+def crud_lista2(request):
+    # , perfil_user
+    item = Item.objects.all().filter(is_published=True)
+    contexto = {
+        'item': item,
+    }
+    return render(request, 'core/crud_lista2.html', contexto)
+def canais_especiais(request):
+    # , perfil_user
+    item = Item.objects.all().filter(is_published=True)
+    contexto = {
+        'item': item,
+    }
+    return render(request, 'core/canais_especiais.html', contexto)
+
+def aplicativos(request):
+    # , perfil_user
+    # item = Item.objects.all().filter(is_published=True)
+    # contexto = {
+    #     'item': item,
+    # }
+
+    return render(request, 'core/aplicativos.html')
 
 def busca(request):
     item = Item.objects.all()
@@ -1028,13 +1065,17 @@ def item_delete(request, id):
 
 def item_delete2(request, id):
     """Marca um Item como não publicado"""
-    # print("pronto")
+    perfil_user = request.POST.get('1')
+
+    print(f"Perfil_user: {perfil_user}")
+
     item = get_object_or_404(Item, pk=id)
     item.is_published = False
     item.save()
     
     # item.delete()
-    return redirect('core:crud_lista')
+    return redirect('core:crud_lista2')
+
 
 def item_update(request, id):
     # print("pronto")
@@ -1096,7 +1137,9 @@ def item_create(request):
 #            print("form valido")
             item = form.save(commit=True)
             db_logger.info(f'Publicação "{item.name}" criada ')
-            return redirect('../crud_lista', pk=item.pk)
+            # print("cheguei no redirect")
+            return redirect('../crud_lista2', pk=item.pk)
+            # return redirect('../crud_lista', 1)
             
     else:
         form = ItemForm()

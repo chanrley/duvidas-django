@@ -82,6 +82,8 @@ def importar(request):
 
 
 def carregar_usuarios(request):
+    """Inserir usuários no sistema via arquivo CSV separado por ';'.
+    Campos: DRT;NOME;CARGO sem cabeçalho totalmente funcional"""
     myfile = open("usuario/file.csv", "r")
     contador = 0
     user_count_before = Usuario.objects.all().count()

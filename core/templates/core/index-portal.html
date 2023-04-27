@@ -36,14 +36,29 @@
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
+      
+      {% comment %} <input type="button" class="btn btn-black" value="Voltar" onClick="javascript:history.go(-1);"> {% endcomment %}
+      <li class="nav-item"  onClick="javascript:history.go(-1)">
+        {% comment %} <a class="nav-link " href="{% url 'core:conteudo' %}"> {% endcomment %}
+        <a class="nav-link ">
+          <span>Voltar</span>
+          {% comment %}   {{ perfil_user }} {% endcomment %}
+        </a>
+      </li><!-- End Dashboard Nav -->
 
       {% if  ga  == True %}
-        <li class="nav-item">
-          {% comment %} <a class="nav-link " href="{% url 'core:conteudo' %}"> {% endcomment %}
-          <a class="nav-link " href="{% url 'core:crud_lista' %}">
-            <span>Publicações</span>
-          </a>
-        </li><!-- End Dashboard Nav -->
+        
+        <form  action="{% url 'core:crud_lista' usuario %}" method="POST"> 
+          {% csrf_token %}
+          <li class="nav-item">
+            
+            {% comment %} <a class="nav-link " href="{% url 'core:crud_lista' perfil_user %}"> {% endcomment %} 
+            <a class="nav-link ">
+              <span><button type="submit"> Publicações </button> </span> {{ usuario }}
+              {% comment %}   {{ perfil_user }} {% endcomment %}
+            </a>
+          </li><!-- End Dashboard Nav -->
+        </form>  
       {% endif %}
       <li class="nav-item">
         
@@ -80,7 +95,9 @@
             {% if i.id == 1 %}
               {% for x in um %}
                 <li>
-                  <a href="components-alerts.html">
+                  {% comment %} <a class="nav-link " href="{% url 'core:crud_lista' perfil_user %}"> {% endcomment %}
+                  {% comment %} <a href="components-alerts.html"> {% endcomment %}
+                  <a href="{% url 'core:aplicativos' %}">
                     <span>{{ x.nome }}</span>
                   </a>
                 </li>
