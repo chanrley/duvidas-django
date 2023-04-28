@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
+from usuario.models import GrupoAcesso
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -24,6 +25,9 @@ class Item(models.Model):# Publicação
     is_published = models.BooleanField(verbose_name='Deseja publicar?', default=True)
     created_by = models.ForeignKey(User, verbose_name='Criado por', related_name='items', on_delete=models.CASCADE)
     created_at = models.DateTimeField(verbose_name='Criado em', auto_now_add=True)
+    grupo_acesso = models.ForeignKey(to=GrupoAcesso, on_delete=models.CASCADE, default=2, verbose_name='Setor')
+
+    
     class Meta:
         ordering = ['-created_at']
     

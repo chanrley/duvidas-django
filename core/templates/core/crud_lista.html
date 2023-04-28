@@ -258,10 +258,16 @@
                   <td>{{ x.created_by }}</td>
                   <td>{{ x.name }}</td>
                   
-                  <form action="{% url 'core:item_create' %}" method="GET"> 
-                    <td><button type="submit" class="btn btn-purpple">Criar</button></td>
-                  </form>
-
+                  {% if usuario %}
+                    <form action="{% url 'core:item_create2' usuario %}" method="GET"> 
+                      <td><button type="submit" class="btn btn-purpple">Criar</button></td>
+                    </form>
+                  {% else %}
+                    <form action="{% url 'core:item_create' %}" method="GET"> 
+                      <td><button type="submit" class="btn btn-purpple">Criar</button></td>
+                    </form>
+                  {% endif %}
+                  
                   <form action="{% url 'core:item_visualizar' x.id %}" method="GET">
                     {% comment %} {% csrf_token %} {% endcomment %}
                     <td><button type="submit" class="btn btn-purpple">Visualizar</button></td>

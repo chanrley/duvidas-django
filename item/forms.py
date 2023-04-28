@@ -17,8 +17,8 @@ class NewItemForm(forms.ModelForm):
     class Meta:
         model = Item
         orderitem = OrderItem
-        # fields = ('category', 'name', 'description', 'description_with_photo', 'price', 'image')
-        fields = '__all__'
+        fields = ('grupo_acesso', 'category', 'name', 'description', 'description_with_photo', 'price', 'image')
+        # fields = '__all__'
 
         readonly_fields = ['created_at']
         # widgets = {
@@ -51,8 +51,12 @@ class NewItemForm(forms.ModelForm):
 class EditItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ('name', 'description', 'description_with_photo', 'price', 'image', 'is_sold', 'is_published')
+        fields = ('grupo_acesso', 'name', 'description', 'description_with_photo', 'price', 'image', 'is_sold', 'is_published')
         widgets = {
+            'grupo_acesso': forms.Select(attrs={
+                'class': INPUT_CLASSES_SELECT
+            }),
+
             'name': forms.TextInput(attrs={
                 'class': INPUT_CLASSES
             }),
@@ -77,8 +81,11 @@ class EditItemForm(forms.ModelForm):
 class ItemForm(ModelForm):
     class Meta:
         model = Item
-        fields = ['category','name','description', 'description_with_photo', 'is_published', 'created_by']
+        fields = [ 'grupo_acesso', 'category','name','description', 'description_with_photo', 'is_published', 'created_by',]
         widgets = {
+            'grupo_acesso': forms.Select(attrs={
+                'class': INPUT_CLASSES_SELECT
+            }),
             'category': forms.Select(attrs={
                 'class': INPUT_CLASSES_SELECT
             }),

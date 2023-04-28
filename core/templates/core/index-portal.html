@@ -41,20 +41,25 @@
       <li class="nav-item"  onClick="javascript:history.go(-1)">
         {% comment %} <a class="nav-link " href="{% url 'core:conteudo' %}"> {% endcomment %}
         <a class="nav-link ">
-          <span>Voltar</span>
+          <span class="btn btn-purpple">Voltar</span>
           {% comment %}   {{ perfil_user }} {% endcomment %}
         </a>
       </li><!-- End Dashboard Nav -->
 
       {% if  ga  == True %}
         
-        <form  action="{% url 'core:crud_lista' usuario %}" method="POST"> 
+        {% if user %}
+          <form  action="{% url 'core:crud_lista' user.nome %}" method="POST"> 
+        {% else %}
+          <form  action="{% url 'core:loggin' %}" method="POST"> 
+        {% endif %}
           {% csrf_token %}
           <li class="nav-item">
             
             {% comment %} <a class="nav-link " href="{% url 'core:crud_lista' perfil_user %}"> {% endcomment %} 
             <a class="nav-link ">
-              <span><button type="submit"> Publicações </button> </span> {{ usuario }}
+              <span><button type="submit" class="btn btn-purpple"> Publicações </button> </span> 
+              {% comment %} {{ user.nome }} {% endcomment %}
               {% comment %}   {{ perfil_user }} {% endcomment %}
             </a>
           </li><!-- End Dashboard Nav -->

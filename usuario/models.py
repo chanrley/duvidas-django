@@ -12,7 +12,7 @@ class GrupoAcesso(models.Model):
 #usuario_id = models.ForeignKey(to=Usuario, on_delete=models.CASCADE)
     def __str__(self):
         # return f"{self.grupo_acesso} - {self.nome_grupo}"
-        return f"{self.grupo_acesso}"
+        return f"{self.grupo_acesso} - {self.nome_grupo}"
 
 
 class Usuario(models.Model):

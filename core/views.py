@@ -976,12 +976,9 @@ def testar(request):
 
 def crud_lista(request , user):
     # , perfil_user
-    print(vars(request))
+    # print(vars(request))
 
     print(f'crud_lista - usuario {user}')
-
-    # print(vars(request.kwargs))
-
 
     usuario = user
     print(f'user: {usuario}')
@@ -1144,3 +1141,22 @@ def item_create(request):
     else:
         form = ItemForm()
     return render(request, 'core/item_create.html', {'form': form})
+
+def item_create2(request, usuario):
+    # user = authenticate(drt=11111111111)
+    # print(user)
+
+    if request.method == 'GET':
+        form = ItemForm(request.GET)
+        if form.is_valid():
+#            print("form valido")
+            item = form.save(commit=True)
+            db_logger.info(f'Publicação "{item.name}" criada ')
+            # print("cheguei no redirect")
+            return redirect('../crud_lista2', pk=item.pk)
+            # return redirect('../crud_lista', 1)
+            
+    else:
+        form = ItemForm()
+    return render(request, 'core/item_create.html', {'form': form, 'usuario': usuario})
+
