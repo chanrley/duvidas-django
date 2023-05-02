@@ -34,8 +34,10 @@
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="{% static '/assets/img/profile-img.jpg' %}" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">
-              {% if user %}
-                {{user.nome}}
+              {% if usuario %}
+                {{ usuario }}
+              {% else %}
+                Usuario1
               {% endif %}
 
             </span>
@@ -56,7 +58,14 @@
       {% comment %} {% if  (1,) in perfil_user or 1 in perfil_user %} {% endcomment %}
         <li class="nav-item">
           <a class="nav-link">
-            <span>Testar {{ perfil_user }}</span>
+            {% if usuario %}
+              <form action="{% url 'core:item_create2' usuario %}" method="GET"> 
+            {% else %}
+              <form action="{% url 'core:item_create' %}" method="GET"> 
+            {% endif %}
+              <td><button type="submit" class="btn btn-purpple">Criar</button></td>
+            </form>
+
           </a>
         </li><!-- End Dashboard Nav -->
       {% comment %} {% endif %} {% endcomment %}
@@ -245,7 +254,7 @@
                 <th scope="col">Data</th>
                 <th scope="col">Quem publicou?</th>
                 <th scope="col">Titulo</th>
-                <th scope="col" colspan="4">Opções</th>
+                <th scope="col" colspan="3">Opções</th>
               </tr>
             </thead>
             <tbody>
@@ -255,18 +264,28 @@
                   <td>{{ x.created_at }}</td>
                   <td>{{ x.created_by }}</td>
                   <td>{{ x.name }}</td>
-                  <form action="{% url 'core:item_create' %}" method="GET"> 
-                    <td><button type="submit" class="btn btn-purpple">Criar</button></td>
-                  </form>
+                  {% comment %}                   
+                  {% if usuario %}
+                    <form action="{% url 'core:item_create2' usuario %}" method="GET"> 
+                      <td><button type="submit" class="btn btn-purpple">Criar</button></td>
+                    </form>
+                  {% else %}
+                    <form action="{% url 'core:item_create' %}" method="GET"> 
+                      <td><button type="submit" class="btn btn-purpple">Criar</button></td>
+                    </form>
+                  {% endif %}
+                  {% endcomment %}
 
                   <form action="{% url 'core:item_visualizar' x.id %}" method="GET">
                     {% comment %} {% csrf_token %} {% endcomment %}
+                    <input type="text" name="usuario" id="usuario" hidden value="{{ usuario }}">
                     <td><button type="submit" class="btn btn-purpple">Visualizar</button></td>
                   </form>
                   
                   {% comment %} <td><button type="button" class="btn btn-purpple" onclick="location.href= '{% url 'core:item_update' item.id %}'">Editar</button></td> {% endcomment %}
                   <form action="{% url 'core:item_update' x.id %}" method="GET">
                     {% comment %} {% csrf_token %} {% endcomment %}
+                    <input type="text" name="usuario" id="usuario" hidden value="{{ usuario }}">
                     <td><button type="submit" class="btn btn-secondary">Editar</button></td>
                     {% comment %} <td><button type="submit" class="btn btn-danger">Testando{{ x.description_with_photo|safe }}</button></td> {% endcomment %}
 

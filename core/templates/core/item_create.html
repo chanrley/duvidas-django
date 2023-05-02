@@ -214,14 +214,14 @@
     <div class="container" id="div-edicao">
         <br>
         <h2>Criar Publicação</h2>
-        <form action="{% url 'core:item_create' %}" method="GET">
+        <form action="{% url 'core:item_create2' usuario %}" method="GET">
           {% csrf_token %}
           Criado por:<br> 
           {{ usuario }}
           {{ form.as_p }}
           {{ form.media|safe}}
           {{ description_with_photo|safe }}<br>
-        <button type="submit" class="btn btn-purpple" >Criar</button>
+        <button type="submit" class="btn btn-purpple" >Criar publicação</button>
         </form>
         {% comment %} {% endblock %} {% endcomment %}
     </div> 

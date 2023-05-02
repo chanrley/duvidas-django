@@ -311,26 +311,24 @@ CKEDITOR_CONFIGS = {
             ['Source', '-', 'Bold', 'Italic']
         ],
         'toolbar_YourCustomToolbarConfig': [
-            {'name': 'document', 'items': ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']},
-            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
-            {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
+            {'name': 'document', 'items': ["""'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates'"""]},
+            {'name': 'clipboard', 'items': ["""'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'"""]},
+            {'name': 'editing', 'items': ["""'Find', 'Replace', '-', 'SelectAll'"""]},
             {'name': 'forms',
-             'items': ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
-                       'HiddenField']},
+             'items': ["""'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'"""]},
             '/',
             {'name': 'basicstyles',
              'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
             {'name': 'paragraph',
              'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
-                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
-                       'Language']},
+                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl'""", 'Language'"""]},
             {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
             {'name': 'insert',
-             'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
+             'items': ['Image', 'Flash', 'Table', 'HorizontalRule', """'Smiley',""" 'SpecialChar', 'PageBreak', 'Iframe']},
             '/',
             # {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},# Padrão
             {'name': 'styles', 'items': ['Format', 'FontSize']}, # Sem estilos e opções de fontes
-            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+            {'name': 'colors', 'items': ["""'TextColor', 'BGColor'"""]},
             {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
             {'name': 'about', 'items': ['About']},
             '/',  # put this to force next toolbar on new line

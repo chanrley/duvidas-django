@@ -1006,14 +1006,16 @@ def canais_especiais(request):
     }
     return render(request, 'core/canais_especiais.html', contexto)
 
-def aplicativos(request):
+def aplicativos(request, usuario):
     # , perfil_user
     # item = Item.objects.all().filter(is_published=True)
     # contexto = {
     #     'item': item,
     # }
 
-    return render(request, 'core/aplicativos.html')
+    print(f"Usuario: {usuario}")
+    return render(request, 'core/aplicativos.html', {'usuario': usuario})
+
 
 def busca(request):
     item = Item.objects.all()
@@ -1080,12 +1082,15 @@ def item_update(request, id):
 
     items = get_object_or_404(Item, pk=id)
     form = ItemForm(instance=items)
+    disabled = "disabled"
+    # usr = ""
 
     if(request.method == 'POST'):
         form = ItemForm(request.POST, instance=items)	
         if(form.is_valid()):
             # print("Form válido")
-            
+            #
+            items.usuario = form.cleaned_data['usuario']
             items.category = form.cleaned_data['category']
             items.name = form.cleaned_data['name']
             items.description = form.cleaned_data['description']
@@ -1099,14 +1104,19 @@ def item_update(request, id):
             # item = Item.objects.all()
             # items = get_object_or_404(Item, pk=id)
             ###
-            print("form válido")
+            
             return render(request, 'core/crud_lista.html', {'items': items, 'item': item})
         
         else:
             return render(request, 'core/editar.html', {'form': form, 'items' : items})
 
     elif(request.method == 'GET'):
-        return render(request, 'core/editar.html', {'form': form, 'items' : items})
+        print(vars(request))
+        usuario = request.GET.get('usuario', '')
+        print(f'Usuario: {usuario}')
+
+        return render(request, 'core/editar.html', {'form': form, 'items' : items, 'disabled': disabled, 'usuario': usuario })
+    
 
 def item_visualizar(request, id):
     # #print("Entrei no visualizar")
@@ -1121,8 +1131,14 @@ def item_visualizar(request, id):
     # else:
     #     return render(request, 'core/crud_lista.html', {'form': form, 'ver_item' : ver_item})
     item = get_object_or_404(Item, pk=id)
-    db_logger.info(f'Item visualizado')
-    return render(request, 'core/item_visualizar.html', {'item': item})
+    
+    usuario = request.GET.get('usuario')
+    db_logger.info(f'Item {id } visualizado pelo usuário: {usuario}')
+    print(f'Usuário {usuario}')
+    # print(vars(request))
+
+
+    return render(request, 'core/item_visualizar.html', {'item': item, 'usuario': usuario})
 
 def item_create(request):
     # user = authenticate(drt=11111111111)
@@ -1153,7 +1169,10 @@ def item_create2(request, usuario):
             item = form.save(commit=True)
             db_logger.info(f'Publicação "{item.name}" criada ')
             # print("cheguei no redirect")
-            return redirect('../crud_lista2', pk=item.pk)
+            contexto = {'usuario': usuario}
+            # return redirect('../crud_lista2', pk=item.pk) #funcionando
+            return redirect('../crud_lista2', contexto)
+            
             # return redirect('../crud_lista', 1)
             
     else:

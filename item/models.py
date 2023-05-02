@@ -24,6 +24,7 @@ class Item(models.Model):# Publicação
     is_sold = models.BooleanField(default=False)
     is_published = models.BooleanField(verbose_name='Deseja publicar?', default=True)
     created_by = models.ForeignKey(User, verbose_name='Criado por', related_name='items', on_delete=models.CASCADE)
+    usuario = models.CharField(max_length=50, verbose_name='Usuário', default='Usuario1')
     created_at = models.DateTimeField(verbose_name='Criado em', auto_now_add=True)
     grupo_acesso = models.ForeignKey(to=GrupoAcesso, on_delete=models.CASCADE, default=2, verbose_name='Setor')
 

@@ -11,16 +11,18 @@ INPUT_CLASSES = 'w-full py-4 px-6 rounded-xl border'
 INPUT_CLASSES_SELECT = 'form-select respiro'
 INPUT_CLASSES_TEXT = 'form-control respiro'
 INPUT_CLASSES_AREA = 'form-control respiro'
+INPUT_CLASSES_DESABILITADO = 'disabled'
+
 
 
 class NewItemForm(forms.ModelForm):
     class Meta:
         model = Item
         orderitem = OrderItem
-        fields = ('grupo_acesso', 'category', 'name', 'description', 'description_with_photo', 'price', 'image')
+        fields = ('usuario', 'grupo_acesso', 'category', 'name', 'description', 'description_with_photo', 'price', 'image')
         # fields = '__all__'
 
-        readonly_fields = ['created_at']
+        readonly_fields = ['created_at', 'usuario']
         # widgets = {
         #     'category': forms.Select(attrs={
         #         'class': INPUT_CLASSES
@@ -51,8 +53,15 @@ class NewItemForm(forms.ModelForm):
 class EditItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ('grupo_acesso', 'name', 'description', 'description_with_photo', 'price', 'image', 'is_sold', 'is_published')
+        fields = ('usuario', 'grupo_acesso', 'name', 'description', 'description_with_photo', 'price', 'image', 'is_sold', 'is_published')
+        readonly_fields = ['created_at', 'usuario']
+
         widgets = {
+
+            'usuario': forms.TextInput(attrs={
+                'teste': INPUT_CLASSES_DESABILITADO
+            }),
+
             'grupo_acesso': forms.Select(attrs={
                 'class': INPUT_CLASSES_SELECT
             }),
@@ -81,8 +90,15 @@ class EditItemForm(forms.ModelForm):
 class ItemForm(ModelForm):
     class Meta:
         model = Item
-        fields = [ 'grupo_acesso', 'category','name','description', 'description_with_photo', 'is_published', 'created_by',]
+        fields = ['grupo_acesso', 'category','name','description', 'description_with_photo', 'is_published', 'created_by',]
+        readonly_fields = ['created_at', 'usuario']
+        
         widgets = {
+            
+            # 'usuario': forms.TextInput(attrs={
+            #     'class': INPUT_CLASSES_DESABILITADO
+            # }),
+
             'grupo_acesso': forms.Select(attrs={
                 'class': INPUT_CLASSES_SELECT
             }),

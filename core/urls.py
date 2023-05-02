@@ -35,7 +35,7 @@ urlpatterns = [
     path('canais_especiais/', views.canais_especiais, name='canais_especiais'),
     
     #Parei aqui
-    path('aplicativos/', views.aplicativos, name='aplicativos'),
+    path('aplicativos/<str:usuario>', views.aplicativos, name='aplicativos'),
 
 
     path('conteudo/', views.conteudo, name='conteudo'),
