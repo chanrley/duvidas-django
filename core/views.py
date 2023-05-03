@@ -1069,6 +1069,9 @@ def item_delete2(request, id):
     print(f"Perfil_user: {perfil_user}")
 
     item = get_object_or_404(Item, pk=id)
+    print(f"user: {item.usuario}")
+    print(vars(item))
+    
     item.is_published = False
     item.save()
     

@@ -90,7 +90,9 @@ class EditItemForm(forms.ModelForm):
 class ItemForm(ModelForm):
     class Meta:
         model = Item
+        # fields = ['grupo_acesso', 'category','name','description', 'description_with_photo', 'is_published',  """,'created_by',"""]
         fields = ['grupo_acesso', 'category','name','description', 'description_with_photo', 'is_published', 'created_by',]
+        
         readonly_fields = ['created_at', 'usuario']
         
         widgets = {
@@ -119,9 +121,10 @@ class ItemForm(ModelForm):
             
             # 'is_published': forms.BooleanField(),
 
-            'created_by': forms.Select(attrs={
-                'class': INPUT_CLASSES_SELECT
-            }),
+            # 'created_by': forms.Select(attrs={
+            #     'class': INPUT_CLASSES_SELECT
+            # }),
+
         }
 
         def __init__(self, *args, **kwargs):
