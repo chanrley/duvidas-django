@@ -22,8 +22,20 @@ import tkinter
 from tkinter import messagebox
 from novo_portal_dva.models import AcessoAoMenu
 
-# db_logger = logging.getLogger('db')
+""" Linha que instancia o db_logger para registrar todo o acesso do usuário ao sistema. Deve-se colocar esse objeto em todos os arquivo onde desejar gravar os logs """
 db_logger = logging.getLogger('db')
+
+###########################
+#Como gravar logs no banco#
+###########################
+""" Gravar log de info:"""
+#db_logger.info('info message XPTO')
+""" Gravar log de warning:"""
+#db_logger.warning('warning message XPTO')
+""" Existem as opções a seguir:
+notset, info, warning, debug, error, fatal
+
+"""
 
 
 def index(request):
@@ -38,6 +50,7 @@ def index(request):
     })
 
 def contact(request):
+    """Uma das Classes iniciais do projeto, porém foi descontinuada"""
     return render(request, 'core/contact.html')
 
 # def signup(request):
@@ -56,19 +69,21 @@ def contact(request):
 #     })
 
 def nova_url(request):
+    """Uma das Classes iniciais do projeto, porém foi descontinuada"""
     categories = Category.objects.all()
     return render(request, 'core/nova_url.html', {
         'categories': categories
     })
 
 def master(request):
+    """Uma das Classes iniciais do projeto, porém foi descontinuada"""
     categories = Category.objects.all()
     return render(request, 'core/master.html', {
         'categories': categories
     })
 
 def navbar(request):
-    """Popular navbar com dados do banco de dados"""
+    """Popular navbar com dados do banco de dados, porém foi descontinuada"""
     menus = Menu.objects.all()
     submenus = SubMenu.objects.all()
     id = 1
@@ -197,9 +212,9 @@ def navbar_novo_layout_integrado(request):
     dezenove = SubMenu.objects.filter(menu_id=19).values()
     vinte = SubMenu.objects.filter(menu_id=20).values()
 
-
-    db_logger.info('info message XPTO')
-    db_logger.warning('warning message XPTO')
+    
+    #db_logger.info('info message XPTO')
+    #db_logger.warning('warning message XPTO')
 
     return render(request, 'core/navbar_novo_layout_integrado.html', { 
         'menus': menus,
@@ -231,7 +246,14 @@ def navbar_novo_layout_integrado(request):
 #     db_logger.warning('menu clicado XPTO')
     
 def loggin(request):
-    """Função para 'logar' no sistema somente com DRT válido"""
+    """Função para 'logar' no sistema somente com DRT válido
+    Atualmente para efeito de testes existem os seguintes usuários já testados e validados:
+    11111111111 = User adm do sistema, tem acesso a tudo, inclusive publicações
+    22222222222 = User sem acesso a menus, nem publicações
+    33333333333 = User sem acesso a menus, porém com acesso a publicações
+    44444444444 = Usuário do SAC, tem acesso a metade dos menus
+    55555555555 = Usuário do Atendimento, tem acesso a outra metade dos menus
+    """
     # try:
 
     if request.method == "GET":
@@ -635,7 +657,9 @@ def loggin(request):
         # drt = username
         # user = authenticate(username=username, password=senha)
         # print(drt)
-        print(f"Depois do IF:")
+       
+       
+       # print(f"Depois do IF:")
         
         for username in senha:
             # login_django(request, user)
@@ -647,6 +671,7 @@ def loggin(request):
             # root.withdraw()
             # # Message Box
             # messagebox.showinfo("Informação", "Usuário logado com sucesso")
+            """Gravando entrada do usuário no banco de dados"""
             db_logger.info(f'User {username} logado')
             return render(request, 'core/index-portal.html', contexto)
         
@@ -657,7 +682,8 @@ def loggin(request):
         # return HttpResponse("<h2>DRT não cadastrado. Contate o Administrador.</h2>")
 
 def clicar_menu(request, menu_filtrado, usuario_filtrado, menu_accessed, perfil_user, user_pk):    
-    print(f"clicar_menu")
+    
+    #print(f"clicar_menu")
 
     menu_filtrado = Menu.objects.get(id=perfil_user)
     # print(f"menu_filtrado: {menu_filtrado}")
@@ -668,9 +694,9 @@ def clicar_menu(request, menu_filtrado, usuario_filtrado, menu_accessed, perfil_
     registro = AcessoAoMenu(fk_menu=menu_filtrado, fk_user=usuario_filtrado, menu_accessed=menu_accessed)
     registro.save()
 
-    print(f"Registro 4: {registro}")
+    # print(f"Registro: {registro}")
 
-    return (request, f'Registro 4 inserido')
+    return (request, f'Registro inserido')
 
 def clicar_menu2(request):
     teste = request.GET['menu_filtrado']
@@ -694,11 +720,8 @@ def clicar_menu2(request):
     print(f"Registro: {registro}")
     return (f'Registro inserido')
 
-
-
-
-
 def logado(request):
+    """Renderiza a tela logado.html, porém foi descontinuado"""
     menus = Menu.objects.all()
 
     return render(request, 'core/logado.html', { 
@@ -725,6 +748,7 @@ def logado(request):
 #     return render(request, 'core/usuario.html', context)
 
 def loginform(request):
+    """Descontinuado"""
     usuarios = Usuario.objects.all()
     forms = UsuarioModelForm(request.POST, request.FILES)
     #print(usuarios)
@@ -741,6 +765,7 @@ def loginform(request):
     return render(request, 'core/loginform.html', context)
 
 def entrar(request):
+    """Descontinuado"""
     if str(request.method)=='POST':
         form = DrtModelForm(request.POST)
         # print(form)
@@ -796,9 +821,11 @@ def entrar(request):
 
 
 class HomePageView(TemplateView):
+    """Classe que renderiza a tela de pesquisa"""
     template_name = 'core/pesquisa.html'
 
 class SearchResultsView(ListView):
+    """Classe que pesquisa um objeto no banco"""
     model = Menu
     template_name = 'core/search_results.html'
     def get_queryset(self):  # new
@@ -809,10 +836,12 @@ class SearchResultsView(ListView):
         return object_list
 
 class NavbarView(TemplateView):
+    """Classe que renderiza a navbar no novo layout de acordo com o frontend padrão da DVA"""
     template_name = 'core/navbar_novo_layout_integrado.html'
 
 
 class ProcuraMenuView(ListView):
+    """Classe que procura um menu"""
     model = Menu
     template_name = 'core/navbar_novo_layout_integrado_filtrado.html'
     def get_queryset(self):  # new
@@ -823,6 +852,7 @@ class ProcuraMenuView(ListView):
         return object_list
     
 class ProcuraSubMenuView(ListView):
+    """Classe que procura um Submenu"""
     model = SubMenu
     template_name = 'core/navbar_novo_layout_integrado_filtrado2.html'
     def get_queryset(self):  # new
@@ -845,6 +875,7 @@ class ProcuraSubMenuView(ListView):
 
 # @login_required
 def index_portal(request):
+    """Função que renderiza o index-portal.html"""
     menus = Menu.objects.all()
     submenus = SubMenu.objects.all()
     um = SubMenu.objects.filter(menu_id=1).values()
@@ -900,6 +931,7 @@ def index_portal(request):
 
 
 def conteudo(request):
+    """Função que renderiza a pagina de conteudo.html"""
     # if request.method == "GET":
     #     return render(request, 'core/loggin.html')
     # else:
@@ -972,9 +1004,11 @@ def conteudo(request):
 
 
 def testar(request):
+    """Função de testes"""
     return render(request, 'core/testar.html')
 
 def crud_lista(request , user):
+    """Função que renderiza o arquivo crud_lista.html"""
     # , perfil_user
     # print(vars(request))
 
@@ -992,14 +1026,16 @@ def crud_lista(request , user):
     return render(request, 'core/crud_lista.html', contexto)
 
 def crud_lista2(request):
+    """Função que renderiza o arquivo crud_lista2.html"""
     # , perfil_user
     item = Item.objects.all().filter(is_published=True)
     contexto = {
         'item': item,
     }
     return render(request, 'core/crud_lista2.html', contexto)
+
 def canais_especiais(request):
-    # , perfil_user
+    """Função que renderiza o arquivo canais_especiais.html"""
     item = Item.objects.all().filter(is_published=True)
     contexto = {
         'item': item,
@@ -1007,6 +1043,7 @@ def canais_especiais(request):
     return render(request, 'core/canais_especiais.html', contexto)
 
 def aplicativos(request, usuario):
+    """Função que renderiza o arquivo aplicativos.html"""
     # , perfil_user
     # item = Item.objects.all().filter(is_published=True)
     # contexto = {
@@ -1018,6 +1055,7 @@ def aplicativos(request, usuario):
 
 
 def busca(request):
+    """Função que renderiza o arquivo busca.html"""
     item = Item.objects.all()
     contexto = {
         'item': item,
@@ -1025,14 +1063,17 @@ def busca(request):
     return render(request, 'core/busca.html', contexto)
 
 def visualizar(request):
+    """Função que printa no terminal uma mensagem"""
     print("Visualizar")
 
 
 class ItemDetail(DetailView):
+    """Classe que busca todos os Itens"""
     queryset = Item.objects.all()
 
 
 def remove_publicacao(request, id):
+    """Função que remove um Item e renderiza o template 'crud_lista.html'"""
     #print("entrei no remove") # não entra
     
     item = Item.objects.get(id=id)
@@ -1063,7 +1104,7 @@ def item_delete(request, id):
     return redirect('core:crud_lista')
 
 def item_delete2(request, id):
-    """Marca um Item como não publicado"""
+    """Marca um Item como não publicado em vez de deletar"""
     perfil_user = request.POST.get('1')
 
     print(f"Perfil_user: {perfil_user}")
@@ -1080,6 +1121,7 @@ def item_delete2(request, id):
 
 
 def item_update(request, id):
+    """Atualiza um item e renderiza a tela 'crud_lista.html' caso seja método POST e 'editar.html' caso seja método GET"""
     # print("pronto")
     item = Item.objects.all().filter(is_published=True)
 
@@ -1114,14 +1156,15 @@ def item_update(request, id):
             return render(request, 'core/editar.html', {'form': form, 'items' : items})
 
     elif(request.method == 'GET'):
-        print(vars(request))
+        # print(vars(request))
         usuario = request.GET.get('usuario', '')
-        print(f'Usuario: {usuario}')
+        # print(f'Usuario: {usuario}')
 
         return render(request, 'core/editar.html', {'form': form, 'items' : items, 'disabled': disabled, 'usuario': usuario })
     
 
 def item_visualizar(request, id):
+    """Visualiza um item e renderiza o 'item_visualizar.html' """
     # #print("Entrei no visualizar")
     # ver_item = get_object_or_404(Item, pk=id)
     # form = ItemForm(instance=ver_item)
@@ -1144,6 +1187,7 @@ def item_visualizar(request, id):
     return render(request, 'core/item_visualizar.html', {'item': item, 'usuario': usuario})
 
 def item_create(request):
+    """Cria um item"""
     # user = authenticate(drt=11111111111)
     # print(user)
 
@@ -1162,6 +1206,7 @@ def item_create(request):
     return render(request, 'core/item_create.html', {'form': form})
 
 def item_create2(request, usuario):
+    """Nova função que cria um item recebendo o parametro usuario """
     # user = authenticate(drt=11111111111)
     # print(user)
 
