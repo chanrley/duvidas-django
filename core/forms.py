@@ -5,6 +5,7 @@ from usuario.models import Usuario
 
 
 class LoginForm(AuthenticationForm):
+    """Classe que representa um formulário de autenticação através de seu username para login no sistema"""
     username = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'Your username',
         'class': 'w-full py-4 px-6 rounded-xl',
@@ -16,6 +17,7 @@ class LoginForm(AuthenticationForm):
     }))
 
 class LogadoForm(UserCreationForm):
+    """Classe que representa um UserCreationForm com um único campo chamado DRT"""
     drt = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'Your DRT',
         'class': 'container'
@@ -23,6 +25,7 @@ class LogadoForm(UserCreationForm):
     
 
 class SignupForm(UserCreationForm):
+    """Classe de cadastro no sistema baseado na model User"""
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
@@ -45,11 +48,13 @@ class SignupForm(UserCreationForm):
     }))
 
 class UsuarioModelForm(forms.ModelForm):
+    """Classe baseada na model Usuario"""
     class Meta:
         model = Usuario
         fields = ['drt', 'nome', 'cargo', 'perfil_acesso']
 
 class DrtModelForm(forms.ModelForm):
+    """Classe baseada na model Usuario"""
     class Meta:
         model = Usuario
         fields = ['drt']

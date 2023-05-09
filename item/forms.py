@@ -6,7 +6,7 @@ from item.models import Item
 from django.forms import ModelForm
 from ckeditor_uploader.fields import RichTextUploadingField
 
-
+""" variáveis para adicionar propriedades de CSS aos campos dos formulários """
 INPUT_CLASSES = 'w-full py-4 px-6 rounded-xl border'
 INPUT_CLASSES_SELECT = 'form-select respiro'
 INPUT_CLASSES_TEXT = 'form-control respiro'
@@ -16,9 +16,11 @@ INPUT_CLASSES_DESABILITADO = 'disabled'
 
 
 class NewItemForm(forms.ModelForm):
+    """Classe que representa um Item novo(Publicação nova)"""
     class Meta:
         model = Item
         orderitem = OrderItem
+        """Campos do formulário"""
         fields = ('usuario', 'grupo_acesso', 'category', 'name', 'description', 'description_with_photo', 'price', 'image')
         # fields = '__all__'
 
@@ -51,6 +53,7 @@ class NewItemForm(forms.ModelForm):
         arquivo =  forms.FileField()
           
 class EditItemForm(forms.ModelForm):
+    """Classe criada para editar um Item(publicação)"""
     class Meta:
         model = Item
         fields = ('usuario', 'grupo_acesso', 'name', 'description', 'description_with_photo', 'price', 'image', 'is_sold', 'is_published')
@@ -88,6 +91,7 @@ class EditItemForm(forms.ModelForm):
 
 
 class ItemForm(ModelForm):
+    """Classe criada para instanciar um objeto do tipo Item(Publicação)"""
     class Meta:
         model = Item
         # fields = ['grupo_acesso', 'category','name','description', 'description_with_photo', 'is_published',  """,'created_by',"""]

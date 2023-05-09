@@ -22,7 +22,7 @@ import tkinter
 from tkinter import messagebox
 from novo_portal_dva.models import AcessoAoMenu
 
-""" Linha que instancia o db_logger para registrar todo o acesso do usuário ao sistema. Deve-se colocar esse objeto em todos os arquivo onde desejar gravar os logs """
+""" Linha que instancia o db_logger para registrar todo o acesso do usuário ao sistema. Deve-se colocar esse objeto em todos os arquivos onde desejar gravar os logs """
 db_logger = logging.getLogger('db')
 
 ###########################
@@ -39,7 +39,7 @@ notset, info, warning, debug, error, fatal
 
 
 def index(request):
-    """Classe inicial do projeto, porém foi descontinuada"""
+    """Função inicial do projeto, porém foi descontinuada"""
     menus = Menu.objects.all()
     submenus = SubMenu.objects.all()
 
@@ -69,14 +69,14 @@ def contact(request):
 #     })
 
 def nova_url(request):
-    """Uma das Classes iniciais do projeto, porém foi descontinuada"""
+    """Uma das funções iniciais do projeto, porém foi descontinuada"""
     categories = Category.objects.all()
     return render(request, 'core/nova_url.html', {
         'categories': categories
     })
 
 def master(request):
-    """Uma das Classes iniciais do projeto, porém foi descontinuada"""
+    """Uma das funções iniciais do projeto, porém foi descontinuada"""
     categories = Category.objects.all()
     return render(request, 'core/master.html', {
         'categories': categories
@@ -1121,7 +1121,7 @@ def item_delete2(request, id):
 
 
 def item_update(request, id):
-    """Atualiza um item e renderiza a tela 'crud_lista.html' caso seja método POST e 'editar.html' caso seja método GET"""
+    """Atualiza um item e renderiza a tela 'crud_lista.html' caso seja método POST renderiza a página 'editar.html' caso seja método GET renderiza a página 'editar.html' """
     # print("pronto")
     item = Item.objects.all().filter(is_published=True)
 
@@ -1187,7 +1187,7 @@ def item_visualizar(request, id):
     return render(request, 'core/item_visualizar.html', {'item': item, 'usuario': usuario})
 
 def item_create(request):
-    """Cria um item"""
+    """Cria um item / publicação e renderiza o template 'item_create.html"""
     # user = authenticate(drt=11111111111)
     # print(user)
 
@@ -1206,7 +1206,7 @@ def item_create(request):
     return render(request, 'core/item_create.html', {'form': form})
 
 def item_create2(request, usuario):
-    """Nova função que cria um item recebendo o parametro usuario """
+    """Nova função que cria um item recebendo o parametro usuario  que Cria um item / publicação e renderiza o template 'item_create.html recebendo o usuário como parâmetro """
     # user = authenticate(drt=11111111111)
     # print(user)
 

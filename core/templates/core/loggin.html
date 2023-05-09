@@ -1,4 +1,5 @@
 {% load static %}
+{% comment %} Página de login através do DRT do usuário {% endcomment %}
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -42,6 +43,7 @@
 <body class="background-main ">
     {% comment %} <form class="login-main" method="post" action="{% url 'core:entrar' %}" id="form-login"> ***funcionando {% endcomment %}
     <form class="login-main" method="POST" action="{% url 'core:loggin' %}">
+      {% comment %} Todos os formulários que utilizarem o método POST devem ter essa tag csrf_token como medida de segurança {% endcomment %}
       {% csrf_token %}
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">DRT</label>

@@ -1,4 +1,5 @@
 {% load static %}
+{% comment %} Segunda página da aplicação, vem depois do loggin do usuário ser bem sucedido {% endcomment %}
 {% include 'core/partials/__header.html' %}
 
 <nav class="header-nav ms-auto">
@@ -15,7 +16,7 @@
       <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
         <img src="{% static '/assets/img/profile-img.jpg' %}" alt="Profile" class="rounded-circle">
         <span class="d-none d-md-block dropdown-toggle ps-2">
-   
+          {% comment %} se houver usuário logado exibe o seu nome {% endcomment %}
           {% if user %}
             {{ user.nome }}
           {% endif %}
@@ -66,7 +67,7 @@
         </form>  
       {% endif %}
       <li class="nav-item">
-        
+        {% comment %} Iterar em todos os itens de menu {% endcomment %}
         {% for i in menus %}
           <form action="{% url 'core:clicar_menu2' %}">
             <a class="nav-link collapsed" data-bs-target="#components-nav{{ i.id }}" data-bs-toggle="collapse" href="#">
@@ -97,6 +98,7 @@
           
           </form>
           <ul id="components-nav{{ i.id }}" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% if i.id == 1 %}
               {% for x in um %}
                 <li>
@@ -107,7 +109,7 @@
                   </a>
                 </li>
               {% endfor %}
-              
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 2 %}
               {% for x in dois %}
                 <li>
@@ -116,7 +118,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 3 %}
               {% for x in tres %}
                 <li>
@@ -125,7 +127,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 4 %}
               {% for x in quatro %}
                 <li>
@@ -134,7 +136,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 5 %}
               {% for x in cinco %}
                 <li>
@@ -143,7 +145,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 6 %}
               {% for x in seis %}
                 <li>
@@ -152,7 +154,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 7 %}
               {% for x in sete %}
                 <li>
@@ -161,7 +163,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 8 %}
               {% for x in oito %}
                 <li>
@@ -170,7 +172,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 9 %}
               {% for x in nove %}
                 <li>
@@ -179,7 +181,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 10 %}
               {% for x in dez %}
                 <li>
@@ -188,7 +190,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 11 %}
               {% for x in onze %}
                 <li>
@@ -197,7 +199,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 12 %}
               {% for x in doze %}
                 <li>
@@ -206,7 +208,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 13 %}
               {% for x in treze %}
                 <li>
@@ -215,7 +217,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 14 %}
               {% for x in quatorze %}
                 <li>
@@ -224,7 +226,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 15 %}
               {% for x in quinze %}
                 <li>
@@ -233,7 +235,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 16 %}
               {% for x in dezesseis %}
                 <li>
@@ -242,7 +244,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 17 %}
               {% for x in dezessete %}
                 <li>
@@ -251,7 +253,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 18 %}
               {% for x in dezoito %}
                 <li>
@@ -260,7 +262,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 19 %}
               {% for x in dezenove %}
                 <li>
@@ -269,7 +271,7 @@
                   </a>
                 </li>
               {% endfor %}
-
+            {% comment %} Iterando em todos os itens de submenus {% endcomment %}
             {% elif i.id == 20 %}
               {% for x in vinte %}
                 <li>
@@ -417,3 +419,4 @@
 
 </html>
 <!-- Alteração no index-portal.html em 19/04/23 às 13:10 -->
+<!-- Alteração no index-portal.html em 08/05/23 às 11:51 -->

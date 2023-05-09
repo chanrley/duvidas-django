@@ -1,4 +1,5 @@
 {% load static %}
+{% comment %} Página que lista os itens relacionados as publicações. {% endcomment %}
 {% include 'core/partials/__header.html' %}
 
 
@@ -34,6 +35,7 @@
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="{% static '/assets/img/profile-img.jpg' %}" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">
+             {% comment %} Se existir usuario exibe o nome dele caso contrário exiba Usuario1 {% endcomment %}
               {% if usuario %}
                 {{ usuario }}
               {% else %}
@@ -258,6 +260,7 @@
               </tr>
             </thead>
             <tbody>
+              {% comment %} Iterando nas publicações passadas via parâmetro {% endcomment %}
               {% for x in item %}
               <tr>    
                   <th scope="row">{{ x.id }}</th>
@@ -275,7 +278,7 @@
                     </form>
                   {% endif %}
                   {% endcomment %}
-
+                  {% comment %} Formulário que recebe o id para renderizar a página item_visualizar.html {% endcomment %}
                   <form action="{% url 'core:item_visualizar' x.id %}" method="GET">
                     {% comment %} {% csrf_token %} {% endcomment %}
                     <input type="text" name="usuario" id="usuario" hidden value="{{ usuario }}">
@@ -283,6 +286,7 @@
                   </form>
                   
                   {% comment %} <td><button type="button" class="btn btn-purpple" onclick="location.href= '{% url 'core:item_update' item.id %}'">Editar</button></td> {% endcomment %}
+                  {% comment %} Formulário que recebe o id da publicação para renderizar a página editar.html {% endcomment %}
                   <form action="{% url 'core:item_update' x.id %}" method="GET">
                     {% comment %} {% csrf_token %} {% endcomment %}
                     <input type="text" name="usuario" id="usuario" hidden value="{{ usuario }}">
@@ -302,6 +306,7 @@
                     <div class="modal-body">
                       Deseja realmente excluir esse conteúdo?
                     </div>
+                    {% comment %} Formulário que recebe o id da publicação para marcar o item como "is_published"=False, ou seja, deixar a publicação não visível através da view item_delete2 {% endcomment %}
                     <form  action="{% url 'core:item_delete2' x.id %}" method="POST">
                       {% csrf_token %}
                       <div class="modal-footer">
