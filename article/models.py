@@ -12,4 +12,5 @@ class Article(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     
     class Meta:
+        """Ordenação decrescente por data de criação"""
         ordering = ['-created_at',]
