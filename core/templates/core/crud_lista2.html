@@ -56,8 +56,14 @@
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
-
-      {% comment %} {% if  (1,) in perfil_user or 1 in perfil_user %} {% endcomment %}
+        <li class="nav-item"  onClick="javascript:history.go(-1)">
+          {% comment %} <a class="nav-link " href="{% url 'core:conteudo' %}"> {% endcomment %}
+          <a class="nav-link ">
+            <span class="btn btn-purpple">Voltar</span>
+            {% comment %}   {{ perfil_user }} {% endcomment %}
+          </a>
+        </li><!-- End Dashboard Nav -->
+        {% comment %} {% if  (1,) in perfil_user or 1 in perfil_user %} {% endcomment %}
         <li class="nav-item">
           <a class="nav-link">
             {% if usuario %}

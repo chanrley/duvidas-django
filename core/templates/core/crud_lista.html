@@ -56,7 +56,14 @@
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
-
+      <li class="nav-item"  onClick="javascript:history.go(-1)">
+        {% comment %} <a class="nav-link " href="{% url 'core:conteudo' %}"> {% endcomment %}
+        <a class="nav-link ">
+          <span class="btn btn-purpple">Voltar</span>
+          {% comment %}   {{ perfil_user }} {% endcomment %}
+        </a>
+      </li><!-- End Dashboard Nav -->
+      
       {% comment %} {% if  (1,) in perfil_user or 1 in perfil_user %} {% endcomment %}
         <li class="nav-item">
           <a class="nav-link">
@@ -71,7 +78,7 @@
           </a>
         </li><!-- End Dashboard Nav -->
       {% comment %} {% endif %} {% endcomment %}
-
+      
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <span>Components</span><i class="bi bi-plus ms-auto"></i>
@@ -284,7 +291,6 @@
                     <input type="text" name="usuario" id="usuario" hidden value="{{ usuario }}">
                     <td><button type="submit" class="btn btn-purpple">Visualizar</button></td>
                   </form>
-                  
                   {% comment %} <td><button type="button" class="btn btn-purpple" onclick="location.href= '{% url 'core:item_update' item.id %}'">Editar</button></td> {% endcomment %}
                   {% comment %} Formulário que recebe o id da publicação para renderizar a página editar.html {% endcomment %}
                   <form action="{% url 'core:item_update' x.id %}" method="GET">

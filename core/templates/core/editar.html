@@ -226,7 +226,8 @@
 
             {% comment %} {% bootstrap_form form %} {% endcomment %}
             Usuário:<br><br>
-            <input type="text" name="usr" id="usr" {{ disabled }} value= {{ usuario}}>
+            <input type="text" class="form-control" name="usuario" id="usuario" {{ disabled }} value= {{ usuario}}><br>
+            {% comment %} <input type="text" name="item.category"   id="item.category" value="{{ item.category }}"> {% endcomment %}
             <br>
             {{ form.as_p }}
             {{ form.media }}
@@ -238,7 +239,8 @@
             <input type="text" class="form-control" value="{{ item.created_by}}"> <br>
             {% endcomment %}
             {% comment %} {%endfor%} {% endcomment %}
-            <a href="{% url 'core:item_update' items.id %}"><button type="submit" class="btn btn-primary">Salvar</button></a>
+            {% comment %} <a href="{% url 'core:item_update' items.id %}"><button type="submit" class="btn btn-primary">Salvar</button></a> {% endcomment %}
+            <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
 
     </div>

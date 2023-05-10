@@ -255,6 +255,10 @@ def loggin(request):
     55555555555 = Usuário do Atendimento, tem acesso a outra metade dos menus
     """
     # try:
+    # db_logger.NotSet(f'Log NotSet exemplo')
+    # db_logger.debug(f'Log debug exemplo')
+    # db_logger.error(f'Log error exemplo')
+    # db_logger.fatal(f'Log fatal exemplo')
 
     if request.method == "GET":
         return render(request, 'core/loggin.html')
@@ -1123,9 +1127,14 @@ def item_delete2(request, id):
 def item_update(request, id):
     """Atualiza um item e renderiza a tela 'crud_lista.html' caso seja método POST renderiza a página 'editar.html' caso seja método GET renderiza a página 'editar.html' """
     # print("pronto")
+    # user =  
+    # u = request.GET['usuario']
+    # print(f'Usuário: {u}')
+
     item = Item.objects.all().filter(is_published=True)
 
     items = get_object_or_404(Item, pk=id)
+    
     form = ItemForm(instance=items)
     disabled = "disabled"
     # usr = ""
@@ -1135,7 +1144,18 @@ def item_update(request, id):
         if(form.is_valid()):
             # print("Form válido")
             #
-            items.usuario = form.cleaned_data['usuario']
+            # print(vars(request.POST['usr']))
+            usr  = get_object_or_404(Item, pk=id)
+            usuario = usr.usuario
+
+            print('Entrei no post')
+            # usuario = request.POST.get('usuario', '')
+            print(f'Usuario: {usuario}')
+            # print(vars(request))
+
+
+            # items.usuario = form.cleaned_data['usuario']
+            # items.usuario = form.cleaned_data['usuario']
             items.category = form.cleaned_data['category']
             items.name = form.cleaned_data['name']
             items.description = form.cleaned_data['description']
@@ -1157,8 +1177,9 @@ def item_update(request, id):
 
     elif(request.method == 'GET'):
         # print(vars(request))
+        print('entrei no GET')
         usuario = request.GET.get('usuario', '')
-        # print(f'Usuario: {usuario}')
+        print(f'Usuario: {usuario}')
 
         return render(request, 'core/editar.html', {'form': form, 'items' : items, 'disabled': disabled, 'usuario': usuario })
     
@@ -1226,4 +1247,27 @@ def item_create2(request, usuario):
     else:
         form = ItemForm()
     return render(request, 'core/item_create.html', {'form': form, 'usuario': usuario})
+
+def tabela_de_funcionalidades(request, usuario):
+    """Função que renderiza o arquivo tabela_de_funcionalidades.html"""
+    # , perfil_user
+    # item = Item.objects.all().filter(is_published=True)
+    # contexto = {
+    #     'item': item,
+    # }
+
+    print(f"Usuario: {usuario}")
+    return render(request, 'core/tabela_de_funcionalidades.html', {'usuario': usuario})
+
+def pagina_padrao_nao_existe(request, usuario):
+    """Função que renderiza o arquivo pagina_padrao_nao_existe.html"""
+    # , perfil_user
+    # item = Item.objects.all().filter(is_published=True)
+    # contexto = {
+    #     'item': item,
+    # }
+
+    print(f"Usuario: {usuario}")
+    return render(request, 'core/pagina_padrao_nao_existe.html', {'usuario': usuario})
+
 

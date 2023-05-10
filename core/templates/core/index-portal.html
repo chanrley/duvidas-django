@@ -104,8 +104,14 @@
                 <li>
                   {% comment %} <a class="nav-link " href="{% url 'core:crud_lista' perfil_user %}"> {% endcomment %}
                   {% comment %} <a href="components-alerts.html"> {% endcomment %}
-                  <a href="{% url 'core:aplicativos' usuario %}">
-                    <span>{{ x.nome }}</span>
+                  {% if x.id == 1 %}
+                    <a href="{% url 'core:aplicativos' usuario %}">
+                  {% elif x.id == 2 %}
+                    <a href="{% url 'core:tabela_de_funcionalidades' usuario %}">
+                  {% else %}
+                    <a href="{% url 'core:pagina_padrao_nao_existe' usuario %}">
+                  {% endif %}
+                    <span>{{ x.nome }}</span> - {{ x.id }}
                   </a>
                 </li>
               {% endfor %}

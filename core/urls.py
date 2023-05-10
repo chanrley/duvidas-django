@@ -89,6 +89,8 @@ urlpatterns = [
     path("busca/", NavbarView.as_view(), name="NavbarView"),
     path('test/', test),
     path('testar/', views.testar, name='testar'),
+    path('tabela_de_funcionalidades/<str:usuario>', views.tabela_de_funcionalidades, name='tabela_de_funcionalidades'),
+    path('pagina_padrao_nao_existe/<str:usuario>', views.pagina_padrao_nao_existe, name='pagina_padrao_nao_existe'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)#only for development environment, in production using nginx instead
 
