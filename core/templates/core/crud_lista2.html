@@ -77,7 +77,9 @@
           </a>
         </li><!-- End Dashboard Nav -->
       {% comment %} {% endif %} {% endcomment %}
-
+        <li>
+          {{ nome }} - {{ men }} - {{ sub }}
+        </li>
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <span>Components</span><i class="bi bi-plus ms-auto"></i>
@@ -295,6 +297,7 @@
                     {% comment %} {% csrf_token %} {% endcomment %}
                     <input type="text" name="usuario" id="usuario" hidden value="{{ usuario }}">
                     <td><button type="submit" class="btn btn-secondary">Editar</button></td>
+                    
                     {% comment %} <td><button type="submit" class="btn btn-danger">Testando{{ x.description_with_photo|safe }}</button></td> {% endcomment %}
 
                   </form>

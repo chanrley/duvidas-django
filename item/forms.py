@@ -95,7 +95,7 @@ class ItemForm(ModelForm):
     class Meta:
         model = Item
         # fields = ['grupo_acesso', 'category','name','description', 'description_with_photo', 'is_published',  """,'created_by',"""]
-        fields = ['grupo_acesso', 'category','name','description', 'description_with_photo', 'is_published', 'created_by',]
+        fields = ['grupo_acesso', 'category','name','description', 'description_with_photo', 'is_published', 'created_by', 'menu', 'submenu', ]
         
         readonly_fields = ['created_at', 'usuario']
         
@@ -104,7 +104,14 @@ class ItemForm(ModelForm):
             # 'usuario': forms.TextInput(attrs={
             #     'class': INPUT_CLASSES_DESABILITADO
             # }),
-
+            'menu': forms.Select(attrs={
+                'class': INPUT_CLASSES_SELECT
+            }),
+            
+            'submenu': forms.Select(attrs={
+                'class': INPUT_CLASSES_SELECT
+            }),
+            
             'grupo_acesso': forms.Select(attrs={
                 'class': INPUT_CLASSES_SELECT
             }),

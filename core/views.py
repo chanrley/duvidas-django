@@ -20,7 +20,10 @@ from item.forms import ItemForm
 from django.contrib.auth.models import User
 import tkinter
 from tkinter import messagebox
-from novo_portal_dva.models import AcessoAoMenu
+from novo_portal_dva.models import AcessoAoMenu, SubMenu, SubMenu3
+from django.http import QueryDict
+
+
 
 """ Linha que instancia o db_logger para registrar todo o acesso do usuário ao sistema. Deve-se colocar esse objeto em todos os arquivos onde desejar gravar os logs """
 db_logger = logging.getLogger('db')
@@ -1251,6 +1254,17 @@ def item_create2(request, usuario):
     else:
         form = ItemForm()
     return render(request, 'core/item_create.html', {'form': form, 'usuario': usuario})
+
+def criar_submenu3(nome, menu, submenu):
+    # print(vars(request))
+    print(f'nome {nome}')
+    print(f'Menu {menu}')
+    print(f'SubMenu {submenu}')
+    submenu = SubMenu3.objects.create(nome=nome, menu=menu, submenu=submenu)
+    submenu.save()
+
+
+
 
 def tabela_de_funcionalidades(request, usuario):
     """Função que renderiza o arquivo tabela_de_funcionalidades.html"""

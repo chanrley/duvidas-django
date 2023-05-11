@@ -3,6 +3,8 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from usuario.models import GrupoAcesso
+from novo_portal_dva.models import Menu, SubMenu
+
 
 class Category(models.Model):
     """Tipos de categorias de um Item(Publicação) """
@@ -34,7 +36,12 @@ class Item(models.Model):# Publicação
     created_at = models.DateTimeField(verbose_name='Criado em', auto_now_add=True)
     grupo_acesso = models.ForeignKey(to=GrupoAcesso, on_delete=models.CASCADE, default=2, verbose_name='Setor')
 
-    
+    """Novos conteúdos"""
+    menu = models.ForeignKey(to=Menu, on_delete=models.CASCADE, verbose_name='Menu', blank=True, null=True)
+    submenu = models.ForeignKey(to=SubMenu, on_delete=models.CASCADE, verbose_name='SubMenu', blank=True, null=True)
+
+
+
     class Meta:
         """Ordem decrescente por data de criação"""
         ordering = ['-created_at']
