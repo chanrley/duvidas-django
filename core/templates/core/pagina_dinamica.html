@@ -1,0 +1,24 @@
+{% load static %}
+{% comment %} {% include 'core/partials/__header.html' %} {% endcomment %}
+
+<title>{{ nome_pagina }}</title>
+
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+  
+        <li class="nav-item"  onClick="javascript:history.go(-1)">
+            {% comment %} <a class="nav-link " href="{% url 'core:conteudo' %}"> {% endcomment %}
+            <a class="nav-link ">
+            <span class="btn btn-purpple">Voltar</span>
+            {% comment %}   {{ perfil_user }} {% endcomment %}
+            </a>
+        </li><!-- End Dashboard Nav -->
+    </ul>
+</aside><!-- End Sidebar-->
+
+<main id="main" class="main background-main index-main">
+    
+    <h1>{{ nome_pagina }}</h1>
+</main><!-- End #main -->
+{% comment %} Template relacionado a view 'testar' {% endcomment %}

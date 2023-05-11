@@ -1032,6 +1032,9 @@ def crud_lista(request , user):
 def crud_lista2(request):
     """Função que renderiza o arquivo crud_lista2.html"""
     # , perfil_user
+    # usr = request.GET['usuario']
+    # print(f'Usuário no crud_lista2: {usr}')
+
     item = Item.objects.all().filter(is_published=True)
     contexto = {
         'item': item,
@@ -1240,6 +1243,7 @@ def item_create2(request, usuario):
             # print("cheguei no redirect")
             contexto = {'usuario': usuario}
             # return redirect('../crud_lista2', pk=item.pk) #funcionando
+            print(f'Usuário no get: {usuario}')
             return redirect('../crud_lista2', contexto)
             
             # return redirect('../crud_lista', 1)
@@ -1269,5 +1273,16 @@ def pagina_padrao_nao_existe(request, usuario):
 
     print(f"Usuario: {usuario}")
     return render(request, 'core/pagina_padrao_nao_existe.html', {'usuario': usuario})
+
+def pagina_dinamica(request, nome_pagina):
+    """Função que renderiza o arquivo ztestar.html"""
+    # , perfil_user
+    # item = Item.objects.all().filter(is_published=True)
+    # contexto = {
+    #     'item': item,
+    # }
+
+    print(f"nome_pagina: {nome_pagina}")
+    return render(request, 'core/pagina_dinamica.html', {'nome_pagina': nome_pagina})
 
 

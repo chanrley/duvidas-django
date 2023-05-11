@@ -108,6 +108,10 @@
                     <a href="{% url 'core:aplicativos' usuario %}">
                   {% elif x.id == 2 %}
                     <a href="{% url 'core:tabela_de_funcionalidades' usuario %}">
+                  {% elif x.id == 3 %}
+                    <a href="{% url 'core:pagina_dinamica' x.nome %}">
+                  {% elif x.id == 4 %}
+                    <a href="{% url 'core:pagina_dinamica' x.nome %}">
                   {% else %}
                     <a href="{% url 'core:pagina_padrao_nao_existe' usuario %}">
                   {% endif %}
