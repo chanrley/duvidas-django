@@ -59,6 +59,9 @@ urlpatterns = [
     #Criação de publicação2#
     #######################
     path('item_create2/<str:usuario>', views.item_create2, name='item_create2'),
+    
+    #Trabalhando aqui
+    path('item_create3/<str:usuario>', views.item_create3, name='item_create3'),
 
     ##################
     #Visualizar items#

@@ -54,8 +54,8 @@
         {% else %}
           <form  action="{% url 'core:loggin' %}" method="POST"> 
         {% endif %}
-          {% csrf_token %}
-          <li class="nav-item">
+            {% csrf_token %}
+            <li class="nav-item">
             
             {% comment %} <a class="nav-link " href="{% url 'core:crud_lista' perfil_user %}"> {% endcomment %} 
             <a class="nav-link ">
@@ -105,9 +105,9 @@
                   {% comment %} <a class="nav-link " href="{% url 'core:crud_lista' perfil_user %}"> {% endcomment %}
                   {% comment %} <a href="components-alerts.html"> {% endcomment %}
                   {% if x.id == 1 %}
-                    <a href="{% url 'core:aplicativos' usuario %}">
+                    <a href="{% url 'core:aplicativos' user.nome %}">
                   {% elif x.id == 2 %}
-                    <a href="{% url 'core:tabela_de_funcionalidades' usuario %}">
+                    <a href="{% url 'core:tabela_de_funcionalidades' user.nome %}">
                   {% elif x.id == 3 %}
                     <a href="{% url 'core:pagina_dinamica' x.nome %}">
                   {% elif x.id == 4 %}

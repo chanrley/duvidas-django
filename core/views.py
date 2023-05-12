@@ -258,6 +258,7 @@ def loggin(request):
     55555555555 = Usuário do Atendimento, tem acesso a outra metade dos menus
     """
     # try:
+
     # db_logger.NotSet(f'Log NotSet exemplo')
     # db_logger.debug(f'Log debug exemplo')
     # db_logger.error(f'Log error exemplo')
@@ -267,11 +268,19 @@ def loggin(request):
         return render(request, 'core/loggin.html')
     else:
 
-        # print('Entrei no else')
+        print('Entrei no else')
+        print(str(request.POST.get('username')))
+
         username = str(request.POST.get('username'))
+        # if username:    
         senha = Usuario.objects.filter(drt=username)
         #user = Usuario.objects.values_list('nome').filter(drt=username)
         user = Usuario.objects.get(drt=username)
+        
+        
+        # ver se coloco um if aqui
+
+
         user_grupo_acesso = user.perfil_acesso
 
         # print(f'Usuário: {user}')
@@ -301,7 +310,7 @@ def loggin(request):
         # fk_users = AcessoAoMenu.objects.get(pk=id)
         # fk_users = AcessoAoMenu.objects.values_list('fk_user', flat=True).filter(pk=user.pk) #funciona
         # fk_users = AcessoAoMenu.objects.values_list('fk_user').filter(fk_user=user.nome)
-       
+    
         perfil = Usuario.objects.values_list('perfil_acesso').filter(drt=username)
         
         # print(f"Perfil: {perfil}")
@@ -313,14 +322,15 @@ def loggin(request):
         elif(3,) in perfil:
             perfil_user = 3
         elif(4,) in perfil:
+            print('entrei no elif 4')
             perfil_user = 4
         elif(5,) in perfil:
             perfil_user = 5
         else:
             perfil_user = 2
-       
+    
         # print(f"perfil_user: {perfil_user}")
-       
+    
         fk_users = AcessoAoMenu.objects.values_list('fk_user').filter(id=perfil_user)
         # print(f"fk_users: {fk_users}")
         
@@ -504,7 +514,7 @@ def loggin(request):
             dezenove = SubMenu.objects.filter(menu_id=19).values()
             vinte = SubMenu.objects.filter(menu_id=20).values()
 
-            print(f"elif 3")
+            
 
             user.perfil_acesso
             contexto = {
@@ -539,6 +549,7 @@ def loggin(request):
             }
         
         elif (4,) in grupo_acesso: # ver aqui 26/04/23 15:44
+            print(f"elif 4")
             menus = Menu.objects.all().filter(grupo_acesso=4)
             
             um = SubMenu.objects.filter(menu_id=1).values()
@@ -664,9 +675,9 @@ def loggin(request):
         # drt = username
         # user = authenticate(username=username, password=senha)
         # print(drt)
-       
-       
-       # print(f"Depois do IF:")
+    
+    
+    # print(f"Depois do IF:")
         
         for username in senha:
             # login_django(request, user)
@@ -687,7 +698,9 @@ def loggin(request):
             return HttpResponse("DRT não cadastrado. Contate o Administrador.")
     # except:
         # return HttpResponse("<h2>DRT não cadastrado. Contate o Administrador.</h2>")
-
+    # else:
+        # return HttpResponse("DRT não cadastrado. Contate o Administrador.")
+    
 def clicar_menu(request, menu_filtrado, usuario_filtrado, menu_accessed, perfil_user, user_pk):    
     
     #print(f"clicar_menu")
@@ -1233,7 +1246,7 @@ def item_create(request):
     return render(request, 'core/item_create.html', {'form': form})
 
 def item_create2(request, usuario):
-    """Nova função que cria um item recebendo o parametro usuario  que Cria um item / publicação e renderiza o template 'item_create.html recebendo o usuário como parâmetro """
+    """Nova função que cria um item recebendo o parametro usuario  que Cria um item / publicação e renderiza o template 'crud_lista2.html recebendo o usuário como parâmetro """
     # user = authenticate(drt=11111111111)
     # print(user)
 
@@ -1255,11 +1268,91 @@ def item_create2(request, usuario):
         form = ItemForm()
     return render(request, 'core/item_create.html', {'form': form, 'usuario': usuario})
 
+def item_create3(request, usuario):
+    """Tentativa de criar um objeto no menu """
+    # user = authenticate(drt=11111111111)
+    # print(user)
+
+    if request.method == 'POST':
+        form = ItemForm(request.POST)
+        if form.is_valid():
+#            print("form valido")
+            item = form.save(commit=True)
+            db_logger.info(f'Publicação "{item.name}" criada ')
+            # print("cheguei no redirect")
+            contexto = {'usuario': usuario}
+            usr = usuario
+
+
+            # return redirect('../crud_lista2', pk=item.pk) #funcionando
+            print(f'Usuário no post: {usuario}')
+            # print(vars(usuario))
+
+            print(f'grupo_acesso: {item.grupo_acesso}')
+            print(f'Item pk: {item.pk}')
+            print(f'nome submenu3: {item.name}')
+            print(f'Item menu: {item.menu}')
+            print(f'Item submenu: {item.submenu}')
+            
+            i_id = item.grupo_acesso 
+            
+            print(f'i_id: {i_id}')
+
+            i_id_str = str(i_id)
+            i_id_str = i_id_str.split(" ")
+
+            print(f'i_id split: {i_id_str}')
+
+            gr_acesso = i_id_str[0]
+            print(f'gr_acesso: {gr_acesso}')
+
+
+            #criar_submenu3
+            criar_submenu3(item.name, item.menu, item.submenu)
+            # item = Item.objects.filter(is_published=True, grupo_acesso=i_id)
+
+            #Parei aqui em 12/05/23 às 18:30 *****
+            item = Item.objects.filter(is_published=True, grupo_acesso = gr_acesso).first()
+            # item = get_object_or_404(Item, is_published=True, grupo_acesso = 1).first()
+
+
+            #até aqui ok, agora vem a outra parte
+            print('Item:')
+            print(vars(item))
+
+            # grupoacesso = item.grupo_acesso.split(" ")
+            # print(f"gr acesso: {grupoacesso}")
+
+
+            men = Menu.objects.filter(grupo_acesso=i_id)
+            print('Menu:')
+            print(vars(men))
+
+            # sub = SubMenu.objects.filter(menu=men)
+            sub = 1
+            
+
+            # submenu3 = SubMenu3.objects.filter(menu=)
+            # menu = Menu.objects.all().filter(is_published=True) #ver para filtrar
+
+
+            # return redirect('../crud_lista2', {'usuario': usuario, 'usr': usr})
+            return render(request, 'core/crud_lista2.html', {'form': form, 'usuario': usuario, 'item': item, 'men': men, 'sub': sub})
+        
+        
+            
+            # return redirect('../crud_lista', 1)
+            
+    else:
+        form = ItemForm()
+    return render(request, 'core/item_create.html', {'form': form, 'usuario': usuario})
+
 def criar_submenu3(nome, menu, submenu):
     # print(vars(request))
-    print(f'nome {nome}')
-    print(f'Menu {menu}')
-    print(f'SubMenu {submenu}')
+    # print(f'nome {nome}')
+    # print(f'Menu {menu}')
+    # print(f'SubMenu {submenu}')
+
     submenu = SubMenu3.objects.create(nome=nome, menu=menu, submenu=submenu)
     submenu.save()
 
