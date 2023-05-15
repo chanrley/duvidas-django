@@ -77,19 +77,37 @@
           </a>
         </li><!-- End Dashboard Nav -->
       {% comment %} {% endif %} {% endcomment %}
+        
+      {% comment %}         
         <li>
           {{ nome }} - {{ men }} - {{ sub }} - {{ usuario }}
         </li>
+        {% endcomment %}
+      
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <span>Components</span><i class="bi bi-plus ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="components-alerts.html">
-              <span>Alerts</span>
-            </a>
-          </li>
+          
+          {% for s in sub3 %}
+            <li>
+              <form action="{% url 'core:pagina_dinamica' s.nome %}" method="POST">
+                {% csrf_token %} 
+              {% comment %} Funcionando: {% endcomment %}
+              {% comment %} <a href="{% url 'core:pagina_dinamica'  s.nome %}"> {% endcomment %}
+                <input type="text" name="teste" id="teste" hidden value="teste">
+                <input type="text" name="usuario" id="usuario" hidden value="{{ usuario }}">
+                {% comment %} <button type="submit" class="btn btn-purple">{{ s.nome }}</button> {% endcomment %}
+                {% comment %} <button type="submit"><span class="btn btn-purpple">{{ s.nome }}</span></button> {% endcomment %}
+                <button type="submit"><span class="btn btn-purpple">{{ s.nome }}</span></button>
+                
+
+              {% comment %} </a> {% endcomment %}
+              </form>
+            </li>
+          {% endfor %}
+
 
           {% comment %} <li>
             <a href="components-accordion.html">

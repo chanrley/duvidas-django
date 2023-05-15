@@ -10,8 +10,8 @@
         <li class="nav-item"  onClick="javascript:history.go(-1)">
             {% comment %} <a class="nav-link " href="{% url 'core:conteudo' %}"> {% endcomment %}
             <a class="nav-link ">
-            <span class="btn btn-purpple">Voltar</span>
-            {% comment %}   {{ perfil_user }} {% endcomment %}
+                <span class="btn btn-purpple">Voltar</span>
+                {% comment %}   {{ perfil_user }} {% endcomment %}
             </a>
         </li><!-- End Dashboard Nav -->
     </ul>
@@ -20,5 +20,8 @@
 <main id="main" class="main background-main index-main">
     
     <h1>{{ nome_pagina }}</h1>
+    <h2>{{ teste }}<h2>
+    <h3>{{ item.description }}
+    <h4> {{ usuario }}</h4>
 </main><!-- End #main -->
 {% comment %} Template relacionado a view 'testar' {% endcomment %}

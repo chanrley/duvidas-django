@@ -1269,7 +1269,7 @@ def item_create2(request, usuario):
     return render(request, 'core/item_create.html', {'form': form, 'usuario': usuario})
 
 def item_create3(request, usuario):
-    """Tentativa de criar um objeto no menu """
+    """Tentativa de criar um objeto no submenu3 dinamicamente"""
     # user = authenticate(drt=11111111111)
     # print(user)
 
@@ -1312,7 +1312,7 @@ def item_create3(request, usuario):
             # item = Item.objects.filter(is_published=True, grupo_acesso=i_id)
 
             #Parei aqui em 12/05/23 às 18:30 *****
-            item = Item.objects.filter(is_published=True, grupo_acesso = gr_acesso).first()
+            item = Item.objects.filter(is_published=True, grupo_acesso = gr_acesso).values()
             # item = get_object_or_404(Item, is_published=True, grupo_acesso = 1).first()
 
 
@@ -1324,12 +1324,21 @@ def item_create3(request, usuario):
             # print(f"gr acesso: {grupoacesso}")
 
 
-            men = Menu.objects.filter(grupo_acesso=i_id)
+            men = Menu.objects.filter(grupo_acesso=gr_acesso)
             print('Menu:')
             print(vars(men))
+            #testando
+            sub = SubMenu.objects.filter(grupo_acesso=gr_acesso)
+            print('SubMenu:')
+            print(vars(sub))
+            
+            sub3 = SubMenu3.objects.filter(menu_id=gr_acesso)
+            print('SubMenu3:')
+            print(vars(sub3))
 
-            # sub = SubMenu.objects.filter(menu=men)
-            sub = 1
+
+            # sub = 1
+
             
 
             # submenu3 = SubMenu3.objects.filter(menu=)
@@ -1337,7 +1346,7 @@ def item_create3(request, usuario):
 
 
             # return redirect('../crud_lista2', {'usuario': usuario, 'usr': usr})
-            return render(request, 'core/crud_lista2.html', {'form': form, 'usuario': usuario, 'item': item, 'men': men, 'sub': sub})
+            return render(request, 'core/crud_lista2.html', {'form': form, 'usuario': usuario, 'item': item, 'men': men, 'sub': sub, 'sub3': sub3})
         
         
             
@@ -1382,14 +1391,20 @@ def pagina_padrao_nao_existe(request, usuario):
     return render(request, 'core/pagina_padrao_nao_existe.html', {'usuario': usuario})
 
 def pagina_dinamica(request, nome_pagina):
-    """Função que renderiza o arquivo ztestar.html"""
+    """Função que renderiza o arquivo pagina_dinamica.html"""
     # , perfil_user
-    # item = Item.objects.all().filter(is_published=True)
+    item = Item.objects.all().filter(is_published=True)
     # contexto = {
     #     'item': item,
     # }
+    print(f'Request: {request}')
+    print(vars(request))
+    teste = request.POST['teste']
+    print(f'teste: {teste}')
 
     print(f"nome_pagina: {nome_pagina}")
-    return render(request, 'core/pagina_dinamica.html', {'nome_pagina': nome_pagina})
+
+    return render(request, 'core/pagina_dinamica.html', {'nome_pagina': nome_pagina, 'teste': teste, 'item': item})
+
 
 
