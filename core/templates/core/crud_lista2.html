@@ -98,6 +98,11 @@
               {% comment %} <a href="{% url 'core:pagina_dinamica'  s.nome %}"> {% endcomment %}
                 <input type="text" name="teste" id="teste" hidden value="teste">
                 <input type="text" name="usuario" id="usuario" hidden value="{{ usuario }}">
+                <input type="text" name="criado_por" id="criado_por" hidden value="{{ criado_por }}">
+                <input type="text" name="description_with_photo" id="description_with_photo" hidden value="{{ description_with_photo }}">
+                <input type="text" name="created_at" id="created_at" hidden value="{{ created_at }}">
+                <input type="text" name="created_by" id="created_by" hidden value="{{ created_by }}">
+
                 {% comment %} <button type="submit" class="btn btn-purple">{{ s.nome }}</button> {% endcomment %}
                 {% comment %} <button type="submit"><span class="btn btn-purpple">{{ s.nome }}</span></button> {% endcomment %}
                 <button type="submit"><span class="btn btn-purpple">{{ s.nome }}</span></button>

@@ -1,6 +1,8 @@
 from django.db import models
 from usuario.models import Usuario, GrupoAcesso
 # from item.models import Item
+from ckeditor_uploader.fields import RichTextUploadingField
+
 
 class Menu(models.Model):
     """Objetos do tipo Menu para alimentar a 'sidebar' do projeto"""
@@ -54,7 +56,11 @@ class SubMenu3(models.Model):
     menu = models.ForeignKey(to=Menu, on_delete=models.CASCADE)
     submenu = models.ForeignKey(to=SubMenu, on_delete=models.CASCADE)
 
-    # name = models.ForeignKey(to=Item, on_delete=models.CASCADE, to_field="name")
+    #Será q deixa???
+    description_with_photo = RichTextUploadingField(blank=True, null=True)
+    created_at = models.CharField(max_length=50, blank=True, null=True)
+    created_by = models.TimeField(auto_now=True)
+
     # description = models.ForeignKey(to=Item, on_delete=models.CASCADE, to_field="description")
 
     class Meta:

@@ -1130,11 +1130,11 @@ def item_delete2(request, id):
     """Marca um Item como não publicado em vez de deletar"""
     perfil_user = request.POST.get('1')
 
-    print(f"Perfil_user: {perfil_user}")
+    # print(f"Perfil_user: {perfil_user}")
 
     item = get_object_or_404(Item, pk=id)
-    print(f"user: {item.usuario}")
-    print(vars(item))
+    # print(f"user: {item.usuario}")
+    # print(vars(item))
     
     item.is_published = False
     item.save()
@@ -1308,33 +1308,45 @@ def item_create3(request, usuario):
 
 
             #criar_submenu3
-            criar_submenu3(item.name, item.menu, item.submenu)
-            # item = Item.objects.filter(is_published=True, grupo_acesso=i_id)
+            #criar_submenu3(item.name, item.menu, item.submenu) #funcionando
+            # description_with_photo, created_at, created_by
+            criar_submenu3(item.name, item.menu, item.submenu, item.description_with_photo, item.created_at, item.created_by)
+            
+            print('description_with_photo:')
+            print(item.description_with_photo)
+            
+            print('created_by:')
+            print(item.created_by)
+
+            description_with_photo = item.description_with_photo
+            criado_por = item.created_by
+
 
             #Parei aqui em 12/05/23 às 18:30 *****
             item = Item.objects.filter(is_published=True, grupo_acesso = gr_acesso).values()
             # item = get_object_or_404(Item, is_published=True, grupo_acesso = 1).first()
 
 
-            #até aqui ok, agora vem a outra parte
-            print('Item:')
-            print(vars(item))
+            # até aqui ok, agora vem a outra parte
+            # print('Item:')
+            # print(vars(item))
 
             # grupoacesso = item.grupo_acesso.split(" ")
             # print(f"gr acesso: {grupoacesso}")
 
 
             men = Menu.objects.filter(grupo_acesso=gr_acesso)
-            print('Menu:')
-            print(vars(men))
+            # print('Menu:')
+            # print(vars(men))
             #testando
             sub = SubMenu.objects.filter(grupo_acesso=gr_acesso)
-            print('SubMenu:')
-            print(vars(sub))
+            
+            # print('SubMenu:')
+            # print(vars(sub))
             
             sub3 = SubMenu3.objects.filter(menu_id=gr_acesso)
-            print('SubMenu3:')
-            print(vars(sub3))
+            # print('SubMenu3:')
+            # print(vars(sub3))
 
 
             # sub = 1
@@ -1344,9 +1356,15 @@ def item_create3(request, usuario):
             # submenu3 = SubMenu3.objects.filter(menu=)
             # menu = Menu.objects.all().filter(is_published=True) #ver para filtrar
 
+            # print('Item:')
+            # print(vars(item))
 
             # return redirect('../crud_lista2', {'usuario': usuario, 'usr': usr})
-            return render(request, 'core/crud_lista2.html', {'form': form, 'usuario': usuario, 'item': item, 'men': men, 'sub': sub, 'sub3': sub3})
+            return render(request, 'core/crud_lista2.html', {'form': form, 'usuario': usuario, 'item': item, \
+                                                            'men': men, 'sub': sub, 'sub3': sub3, \
+                                                            'description_with_photo': description_with_photo, \
+                                                            'criado_por': criado_por})
+        
         
         
             
@@ -1356,13 +1374,19 @@ def item_create3(request, usuario):
         form = ItemForm()
     return render(request, 'core/item_create.html', {'form': form, 'usuario': usuario})
 
-def criar_submenu3(nome, menu, submenu):
+def criar_submenu3(nome, menu, submenu, description_with_photo, created_at, created_by):
     # print(vars(request))
     # print(f'nome {nome}')
     # print(f'Menu {menu}')
     # print(f'SubMenu {submenu}')
+    print(f'description_with_photo: {description_with_photo}')
+    print(f'created_at: {created_at}')
+    print(f'created_by: {created_by}')
 
-    submenu = SubMenu3.objects.create(nome=nome, menu=menu, submenu=submenu)
+
+    submenu = SubMenu3.objects.create(nome=nome, menu=menu, submenu=submenu, \
+                                        description_with_photo=description_with_photo, created_at=created_at, \
+                                        created_by=created_by)
     submenu.save()
 
 
@@ -1397,14 +1421,30 @@ def pagina_dinamica(request, nome_pagina):
     # contexto = {
     #     'item': item,
     # }
-    print(f'Request: {request}')
-    print(vars(request))
+  
+    # print(f'Request: {request}')
+    # print(vars(request))
+    
     teste = request.POST['teste']
     print(f'teste: {teste}')
 
+    
+    description_with_photo = request.POST['description_with_photo']
+    print(f'description_with_photo: {description_with_photo}')
+
     print(f"nome_pagina: {nome_pagina}")
 
-    return render(request, 'core/pagina_dinamica.html', {'nome_pagina': nome_pagina, 'teste': teste, 'item': item})
+    created_at = request.POST['created_at']
+    print(f'created_at: {created_at}')
+
+    created_by = request.POST['created_by']
+    print(f'created_by: {created_by}')
+
+
+
+    return render(request, 'core/pagina_dinamica.html', {'nome_pagina': nome_pagina, 'teste': teste, 'item': item, \
+                                                         'description_with_photo': description_with_photo, \
+                                                        'created_at': created_at, 'created_by': created_by})
 
 
 

@@ -19,9 +19,12 @@
 
 <main id="main" class="main background-main index-main">
     
-    <h1>{{ nome_pagina }}</h1>
-    <h2>{{ teste }}<h2>
-    <h3>{{ item.description }}
-    <h4> {{ usuario }}</h4>
+    <h1>Título: {{ nome_pagina }}</h1>
+    <p> Descrição com foto: <br>
+        {{ description_with_photo|safe }}
+    </p>
+    {% comment %} <h4> {{ created_at }}</h4> {% endcomment %}
+    <h5> {{ created_by }} </h5>
+
 </main><!-- End #main -->
 {% comment %} Template relacionado a view 'testar' {% endcomment %}
