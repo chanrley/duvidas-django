@@ -23,8 +23,9 @@
     <p> Descrição com foto: <br>
         {{ description_with_photo|safe }}
     </p>
-    {% comment %} <h4> {{ created_at }}</h4> {% endcomment %}
-    <h5> {{ created_by }} </h5>
+    <h4> Criado em: {{ created_at }}</h4>
+    <h5> Criado por: {{ created_by }} </h5>
+    {% comment %} <h5> Criado por: {{ created_by }} </h5> {% endcomment %}
 
 </main><!-- End #main -->
 {% comment %} Template relacionado a view 'testar' {% endcomment %}

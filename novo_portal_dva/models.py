@@ -56,10 +56,13 @@ class SubMenu3(models.Model):
     menu = models.ForeignKey(to=Menu, on_delete=models.CASCADE)
     submenu = models.ForeignKey(to=SubMenu, on_delete=models.CASCADE)
 
-    #Será q deixa???
+    
     description_with_photo = RichTextUploadingField(blank=True, null=True)
-    created_at = models.CharField(max_length=50, blank=True, null=True)
-    created_by = models.TimeField(auto_now=True)
+    
+    created_by = models.CharField(max_length=50, blank=True, null=True)
+    # created_by = models.ForeignKey(to=Usuario, on_delete=models.CASCADE, default=19, to_field="nome", unique=True)
+
+    created_at = models.TimeField(auto_now=True, null=True, blank=True)
 
     # description = models.ForeignKey(to=Item, on_delete=models.CASCADE, to_field="description")
 

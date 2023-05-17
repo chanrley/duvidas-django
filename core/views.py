@@ -1310,19 +1310,23 @@ def item_create3(request, usuario):
             #criar_submenu3
             #criar_submenu3(item.name, item.menu, item.submenu) #funcionando
             # description_with_photo, created_at, created_by
-            criar_submenu3(item.name, item.menu, item.submenu, item.description_with_photo, item.created_at, item.created_by)
-            
+            print(f'antes de criar submenu3')
+            criar_submenu3(item.name, item.menu, item.submenu, item.description_with_photo, item.created_at, str(item.created_by))
+            print(f'depois de criar submenu3')
+
             print('description_with_photo:')
             print(item.description_with_photo)
             
+            created_by = item.created_by
             print('created_by:')
-            print(item.created_by)
+            print(f'{created_by}')
 
             description_with_photo = item.description_with_photo
-            criado_por = item.created_by
+            
+            created_at = item.created_at
+            print('created_at:')
+            print(f'{created_at}')
 
-
-            #Parei aqui em 12/05/23 às 18:30 *****
             item = Item.objects.filter(is_published=True, grupo_acesso = gr_acesso).values()
             # item = get_object_or_404(Item, is_published=True, grupo_acesso = 1).first()
 
@@ -1363,7 +1367,7 @@ def item_create3(request, usuario):
             return render(request, 'core/crud_lista2.html', {'form': form, 'usuario': usuario, 'item': item, \
                                                             'men': men, 'sub': sub, 'sub3': sub3, \
                                                             'description_with_photo': description_with_photo, \
-                                                            'criado_por': criado_por})
+                                                            'created_by': created_by, 'created_at': created_at})
         
         
         
@@ -1425,6 +1429,8 @@ def pagina_dinamica(request, nome_pagina):
     # print(f'Request: {request}')
     # print(vars(request))
     
+    print(f'Função dinamica')
+
     teste = request.POST['teste']
     print(f'teste: {teste}')
 
@@ -1443,7 +1449,7 @@ def pagina_dinamica(request, nome_pagina):
 
 
     return render(request, 'core/pagina_dinamica.html', {'nome_pagina': nome_pagina, 'teste': teste, 'item': item, \
-                                                         'description_with_photo': description_with_photo, \
+                                                        'description_with_photo': description_with_photo, \
                                                         'created_at': created_at, 'created_by': created_by})
 
 
