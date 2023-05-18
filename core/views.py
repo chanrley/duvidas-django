@@ -1420,37 +1420,66 @@ def pagina_padrao_nao_existe(request, usuario):
 
 def pagina_dinamica(request, nome_pagina):
     """Função que renderiza o arquivo pagina_dinamica.html"""
-    # , perfil_user
-    item = Item.objects.all().filter(is_published=True)
-    # contexto = {
-    #     'item': item,
-    # }
-  
-    # print(f'Request: {request}')
-    # print(vars(request))
-    
-    print(f'Função dinamica')
-
-    teste = request.POST['teste']
-    print(f'teste: {teste}')
-
-    
-    description_with_photo = request.POST['description_with_photo']
-    print(f'description_with_photo: {description_with_photo}')
-
-    print(f"nome_pagina: {nome_pagina}")
-
-    created_at = request.POST['created_at']
-    print(f'created_at: {created_at}')
-
-    created_by = request.POST['created_by']
-    print(f'created_by: {created_by}')
+    try:    
+        # , perfil_user
+        print(f'nome_pagina: {nome_pagina}')
+        # print(vars(request))
 
 
+        item = Item.objects.all().filter(is_published=True)
+        # contexto = {
+        #     'item': item,
+        # }
 
-    return render(request, 'core/pagina_dinamica.html', {'nome_pagina': nome_pagina, 'teste': teste, 'item': item, \
-                                                        'description_with_photo': description_with_photo, \
-                                                        'created_at': created_at, 'created_by': created_by})
+        # print(f'Request: {request}')
+        # print(vars(request))
+        
+        print(f'Função dinamica')
 
+        # teste = request.POST['teste']
+        # usuario = request.POST['usuario']
+
+        if request.POST['teste']:
+
+            # print(f'teste: {teste}')
+
+            
+            description_with_photo = request.POST['description_with_photo']
+            print(f'description_with_photo: {description_with_photo}')
+
+            print(f"nome_pagina: {nome_pagina}")
+
+            created_at = request.POST['created_at']
+            print(f'created_at: {created_at}')
+
+            created_by = request.POST['created_by']
+            print(f'created_by: {created_by}')
+
+
+            print('caminho normal')
+            return render(request, 'core/pagina_dinamica.html', {'nome_pagina': nome_pagina, 'teste': 'teste', 'item': item, \
+                                                                'description_with_photo': description_with_photo, \
+                                                                'created_at': created_at, 'created_by': created_by})
+        else:
+            return render(request, 'core/pagina_padrao_nao_existe.html', {'nome_pagina': nome_pagina})
+
+    # except MultiValueDictKeyError as error:
+    # except ZeroDivisionError as error:
+    except NameError as error:
+        db_logger.error('Erro {error} aconteceu')
+        print(f'Erro: {error}')
+        
+    # except UnboundLocalError as error:
+    #     db_logger.error('Erro {error} aconteceu')
+    #     print(f'Erro: {error}')
+
+    else:
+        print('Sem erros')
+    finally:
+        print("finally")
+        # if description_with_photo:
+        return render(request, 'core/pagina_dinamica.html', {'nome_pagina': nome_pagina})                
+        # else:
+            # return HttpResponse("<h2>Página não encontrada</h2>")
 
 
