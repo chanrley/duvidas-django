@@ -13,9 +13,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 
 #Maneira correta com arquivos de configuração
-import environ
-env = environ.Env()
-environ.Env.read_env()
+# import environ
+# env = environ.Env()
+# environ.Env.read_env()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -111,24 +111,6 @@ DATABASES = {
 }
 
 
-"""
-# Maneira hardcoded
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dva-hml', 
-        'USER': 'apl_hml_novoportaldva',
-        'PASSWORD': "DX5DHER,')3*[?px",
-        'HOST': '172.20.24.29', 
-        'PORT': '5432',
-    }
-}
-"""
-
-
-# maneira correta
-# Your secret key
-#SECRET_KEY = env("SECRET_KEY")
 """
 DATABASES = {
     'default': {
