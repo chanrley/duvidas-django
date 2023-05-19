@@ -1475,11 +1475,11 @@ def pagina_dinamica(request, nome_pagina):
 
     else:
         print('Sem erros')
-    finally:
-        print("finally")
-        # if description_with_photo:
-        return render(request, 'core/pagina_dinamica.html', {'nome_pagina': nome_pagina})                
-        # else:
+    # finally:
+    #     print("finally")
+    #     # if description_with_photo:
+    #     return render(request, 'core/pagina_dinamica.html', {'nome_pagina': nome_pagina})                
+    #     # else:
             # return HttpResponse("<h2>Página não encontrada</h2>")
 
 
