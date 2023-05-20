@@ -38,3 +38,22 @@ Sobre gravar os logs no banco:
     https://github.com/CiCiUi/django-db-logger
 
 #print(vars(variavel / objeto)) #semelhante ao var_dump(variavel) no PHP pois printa o objeto inteiro
+
+
+…or create a new repository on the command line
+
+echo "# duvidas-django" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/chanrley/duvidas-django.git
+git push -u origin main
+
+
+…or push an existing repository from the command line
+add projeto github:
+git remote add origin https://github.com/chanrley/duvidas-django.git
+git branch -M main
+git push -u origin main
+
